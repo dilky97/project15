@@ -31,10 +31,11 @@
               "src/assets/plugins/bootstrap/css/bootstrap.min.css",
               "src/assets/plugins/bootstrap/css/bootstrap-slider.css",
               "src/assets/plugins/font-awesome/css/font-awesome.min.css",
-              "src/assets/plugins/slick-carousel/slick/slick.css",
+              "src/assets/plugins/slick-carousel/slick/slick.scss",
               "src/assets/plugins/slick-carousel/slick/slick-theme.css",
               "src/assets/plugins/jquery-nice-select/css/nice-select.css",
               "src/assets/css/style.css",
+              "src/assets/custom-fonts/custom-fonts.scss",
               "src/styles.scss"
             ],
             "scripts": [

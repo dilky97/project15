@@ -1,0 +1,43 @@
+
+.card {
+  width: 300px ;
+  box-shadow: 1px 1px 10px black;
+  border-radius: 10px;
+  margin: 2%;
+  display: inline-block;
+}
+
+.card:hover {
+  box-shadow: 2px 2px 20px black;
+  transition: .1s;
+}
+
+.card-area {
+  text-align: center;
+}
+
+.card-area .container {
+  padding: 1px;
+  max-width: 80%;
+}
+
+.selection-button {
+  display: inline-block;
+  margin-inline-end : 5px;
+  margin-inline-start : 5px;
+  margin-bottom: 10px;
+}
+
+.selection-button h3 {
+  margin: 0px;
+}
+
+
+.section-title{
+  margin: 50px;
+  margin-top: 0px;
+}
+
+.dropdown-item:hover{
+  cursor: pointer;
+}
