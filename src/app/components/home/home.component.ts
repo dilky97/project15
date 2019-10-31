@@ -1,10 +1,11 @@
 import { EventDetails } from './../../models/event-details.model';
 import { EventDetailsService } from '../../services/event-details.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  templateUrl:  './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   test = 'initial' ;
 
 
-  constructor( private eventDetails: EventDetailsService ) {
+  constructor( private eventDetails: EventDetailsService , private router: Router) {
 
     this.setViewList();
 
@@ -53,6 +54,10 @@ export class HomeComponent implements OnInit {
       });                                                   //////////////////////////////////////////////////////
     });
 
+  }
+
+  openEvent(id) {
+    this.router.navigate(['/events' , id]);
   }
 
   ngOnInit() {
