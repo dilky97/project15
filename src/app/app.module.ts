@@ -23,7 +23,7 @@ import { CardComponent } from './components/card/card.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
     HomeComponent,
     CardComponent
   ],

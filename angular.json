@@ -167,7 +167,8 @@
             ],
             "styles": [
               "projects/dashboard/src/assets/css/bootstrap.min.css",
-              "projects/dashboard/src/assets/css/light-bootstrap-dashboard.css"
+              "projects/dashboard/src/assets/css/light-bootstrap-dashboard.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "projects/dashboard/src/assets/js/core/jquery.3.2.1.min.js",
