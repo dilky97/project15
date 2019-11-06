@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardLayoutComponent } from "./dashboard-layout/dashboard-layout.component";
-// import { CreateEventComponent } from "./create-event/create-event.component";
+ import { CreateEventComponent } from "./create-event/create-event.component";
 
 
 const routes: Routes = [
@@ -12,7 +12,8 @@ const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }, {
+  },
+  {
     path: '',
     component: DashboardLayoutComponent,
     children: [
@@ -20,7 +21,7 @@ const routes: Routes = [
       path: '',
       loadChildren: './dashboard-layout/dashboard-layout.module#DashboardLayoutModule'
   }]},
-  { 
+  {
     path: '**',
     redirectTo: 'dashboard'
   }

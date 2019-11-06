@@ -12,18 +12,20 @@ import { ToastrService } from "ngx-toastr";
 })
 export class CreateEventComponent implements OnInit {
 
+
+  data: any;
+
   //eventItem : eventData  = new eventData();
   //submitted = false;
 
-  
-  constructor(private eventService : DashboardService, private dbstore : AngularFirestore, private toastr: ToastrService){}
+  constructor(public eventService: DashboardService, private dbstore: AngularFirestore, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.resetForm();
   }
 
-  resetForm(form?: NgForm){
-    if (form != null){
+  resetForm(form?: NgForm) {
+    if (form != null) {
       form.resetForm();
     }
     this.eventService.eventInfo = {
@@ -35,26 +37,27 @@ export class CreateEventComponent implements OnInit {
       endTime: '',
       venue: '',
       description: '',
-    }
+    };
 
   }
 
-    onSubmit(form: NgForm){
-      let data = Object.assign({},form.value);
-      delete data.id;
-      if(form.value.id == null)
-        this.dbstore.collection('events').add(data);
-      else
-        this.dbstore.doc('events/' + form.value.id).update(data);
+    onSubmit(form: NgForm) {
+      this.data = Object.assign({}, form.value);
+      delete this.data.id;
+      if (form.value.id == null) {
+        this.dbstore.collection('events').add(this.data);
+      } else {
+        this.dbstore.doc('events/' + form.value.id).update(this.data);
+      }
       this.resetForm(form);
-      this.toastr.success('Submitted Successfully','Event Created');
+      this.toastr.success('Submitted Successfully', 'Event Created');
     }
 }
 
   // newEvent(): void{
   //   this.submitted = false;
   //   this.eventItem = new eventData();
-  // } 
+  // }
 
   // addEvent(){
   //   this.eventService.createEvent(this.eventItem);

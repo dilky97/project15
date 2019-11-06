@@ -1,4 +1,5 @@
-export class eventData{
+export class eventData {
+
     id: string;
     eventName: string;
     startDate: string;
@@ -7,4 +8,5 @@ export class eventData{
     endTime: string;
     venue: string;
     description: string;
+
 }

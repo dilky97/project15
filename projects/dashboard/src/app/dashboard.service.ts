@@ -5,20 +5,22 @@ import { eventData } from './app.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DashboardService {
 
-  eventInfo : eventData;
+  eventInfo: eventData;
 
   //private eventdbPath = '/events';
 
   eventsRef: AngularFirestoreCollection<eventData> = null;
 
 
-  constructor(private dbstore : AngularFirestore) { 
+  constructor(private dbstore : AngularFirestore) {
     //this.eventsRef = dbstore.collection(this.eventdbPath);
   }
 
-  getEvents(){
+  getEvents() {
     return this.dbstore.collection('events').snapshotChanges();
   }
+
 }

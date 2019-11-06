@@ -27,7 +27,7 @@ import { DashboardService } from './dashboard.service';
     AppComponent,
     DashboardLayoutComponent,
     //CreateEventComponent
-    
+
   ],
   imports: [
     BrowserModule,
@@ -47,4 +47,5 @@ import { DashboardService } from './dashboard.service';
   providers: [DashboardService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
