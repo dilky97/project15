@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

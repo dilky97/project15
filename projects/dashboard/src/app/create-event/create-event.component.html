@@ -23,13 +23,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Start Date</label>
-                                            <input name="startDate" [(ngModel)]="eventService.eventInfo.startDate" class="form-control" placeholder="Start Date" required >
+                                            <input type = "date" name ="startDate" [(ngModel)]="eventService.eventInfo.startDate" class="form-control" placeholder="Start Date" required >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>End Date</label>
-                                            <input name="endDate"  [(ngModel)]="eventService.eventInfo.endDate" class="form-control" placeholder="End Date" >
+                                            <input type = "date" name="endDate"  [(ngModel)]="eventService.eventInfo.endDate" class="form-control" placeholder="End Date" >
                                         </div>
                                     </div>
                                 </div>
@@ -38,13 +38,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Start Time</label>
-                                            <input name="startTime" [(ngModel)]="eventService.eventInfo.startTime" class="form-control" placeholder="Start Time" required>
+                                            <input type="time" name="startTime" [(ngModel)]="eventService.eventInfo.startTime" class="form-control" placeholder="Start Time" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>End Time</label>
-                                            <input name="endTime" [(ngModel)]="eventService.eventInfo.endTime" class="form-control" placeholder="End Time" >
+                                            <input type="time" name="endTime" [(ngModel)]="eventService.eventInfo.endTime" class="form-control" placeholder="End Time" >
                                         </div>
                                     </div>
                                 </div>
@@ -73,6 +73,20 @@
                             </form>
                         </div>
                     </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card card-body">
+                        <div class="header">
+                            <h4 class="title">Main Event Image</h4>
+                        </div>
+                        <div class="content">
+                            <app-file-uploader></app-file-uploader>
+                        </div>
+                        
+                    </div>
+                        
+                    
                 </div>
 
             </div>

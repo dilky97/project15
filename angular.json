@@ -172,13 +172,12 @@
             ],
             "scripts": [
               "projects/dashboard/src/assets/js/core/jquery.3.2.1.min.js",
-              "projects/dashboard/src/assets/js/core/bootstrap.min.js",
               "projects/dashboard/src/assets/js/core/popper.min.js",
+              "projects/dashboard/src/assets/js/core/bootstrap.min.js",
               "projects/dashboard/src/assets/js/plugins/bootstrap-switch.js",
               "projects/dashboard/src/assets/js/plugins/chartist.min.js",
               "projects/dashboard/src/assets/js/plugins/bootstrap-notify.js",
-              "projects/dashboard/src/assets/js/light-bootstrap-dashboard.js",
-              "projects/dashboard/src/assets/js/demo.js"
+              "projects/dashboard/src/assets/js/light-bootstrap-dashboard.js"
 
             ]
           },
