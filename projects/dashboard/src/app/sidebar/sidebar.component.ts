@@ -9,12 +9,12 @@ declare interface RouteInfo {
 }
 export const dashboardRoutes: RouteInfo[] = [
     { path: '/create_event', title: 'Create Event',  icon: 'nc-icon nc-chart-pie-35', class: 'nav-link' },
-    { path: '/user', title: 'User Profile',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
-    { path: '/table', title: 'Table List',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
-    { path: '/typography', title: 'Typography',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
-    { path: '/icons', title: 'Icons',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
-    { path: '/maps', title: 'Maps',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
-    { path: '/notifications', title: 'Notifications',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
+    { path: '#', title: ' Event Proposal',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
+    { path: '#', title: 'Sponsors',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
+    { path: '#', title: 'Services',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
+    { path: '#', title: 'Attendees',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
+    { path: '#', title: 'Notifications',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
+    { path: '#', title: 'Insights',  icon:'nc-icon nc-chart-pie-35', class: 'nav-link' },
 ];
 
 @Component({

@@ -1,15 +1,9 @@
-<p>file-uploader works!</p>
 <div class="appDragDrop" 
     appDragDrop
      (hovered)="toggleHover($event)"
      (dropped)="onDrop($event)"
      [class.hovering]="isHovering">
 
-
-
-
-
-     <h3>AngularFire Drop Zone</h3>
      <p>Drag and Drop a File</p>
      <div class="file">
         <label class="file-label">
@@ -34,7 +28,7 @@
       </div>
 </div>
 
-<h3>Uploads</h3>
+<p>Uploads</p>
 
 <div *ngFor="let file of files">
   <app-file-drop-upload [file]="file"></app-file-drop-upload>
