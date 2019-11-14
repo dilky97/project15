@@ -21,6 +21,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { AppComponent } from './app.component';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 import { DashboardService } from './dashboard.service';
+//import { SponsorsComponent } from './sponsors/sponsors.component';
 // import { EventProposalComponent } from './event-proposal/event-proposal.component';
 // import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 //import { FileDropUploadComponent } from './file-drop-upload/file-drop-upload.component';
@@ -32,6 +33,7 @@ import { DashboardService } from './dashboard.service';
   declarations: [
     AppComponent,
     DashboardLayoutComponent,
+    //SponsorsComponent,
     //EventProposalComponent
     // FileUploaderComponent,
     //FileDropUploadComponent,

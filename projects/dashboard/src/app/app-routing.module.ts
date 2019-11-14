@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardLayoutComponent } from "./dashboard-layout/dashboard-layout.component";
- import { CreateEventComponent } from "./create-event/create-event.component";
+//import { CreateEventComponent } from "./create-event/create-event.component";
 
 
 const routes: Routes = [
