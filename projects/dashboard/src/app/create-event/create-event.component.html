@@ -7,14 +7,17 @@
                             <h4 class="title">General Information</h4>
                         </div>
                         <div class="content">
-                            <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+                            <form #form="ngForm" autocomplete="off" (ngSubmit)="form.form.valid && onSubmit(form)" novalidate>
                                 <input type="hidden" name="id" [(ngModel)]="eventService.eventInfo.id">
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Event Name</label>
-                                            <input type="text" name="EventName" [(ngModel)]="eventService.eventInfo.eventName" class="form-control" placeholder="Event Name" required >
+                                            <input type="text" name="EventName" [(ngModel)]="eventService.eventInfo.eventName" class="form-control" placeholder="Event Name">
+                                            <!-- <div *ngIf="form.submitted && EventName.invalid" class="invalid-feedback">
+                                                <div *ngIf="EventName.errors.required">Event Name is required</div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -23,7 +26,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Start Date</label>
-                                            <input type = "date" name ="startDate" [(ngModel)]="eventService.eventInfo.startDate" class="form-control" placeholder="Start Date" required >
+                                            <input type = "date" name ="startDate" [(ngModel)]="eventService.eventInfo.startDate" class="form-control" placeholder="Start Date" >
                                         </div>
                                     </div>
                                     <div class="col-md-6">

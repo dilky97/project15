@@ -15,6 +15,7 @@ import { DashboardRoutes } from "./dashboard-layout.routing";
 import { CreateEventComponent } from "../create-event/create-event.component";
 import { FileDropUploadComponent } from "../file-drop-upload/file-drop-upload.component";
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { EventProposalComponent } from '../event-proposal/event-proposal.component';
 import { DragDropDirective } from '../drag-drop.directive';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { DragDropDirective } from '../drag-drop.directive';
       CreateEventComponent,
       FileDropUploadComponent,
       FileUploaderComponent,
+      EventProposalComponent,
       DragDropDirective
     ],
     providers: [DashboardService]

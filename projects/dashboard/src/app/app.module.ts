@@ -21,6 +21,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { AppComponent } from './app.component';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 import { DashboardService } from './dashboard.service';
+// import { EventProposalComponent } from './event-proposal/event-proposal.component';
 // import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 //import { FileDropUploadComponent } from './file-drop-upload/file-drop-upload.component';
 //import { DragDropDirective } from './drag-drop.directive';
@@ -30,7 +31,8 @@ import { DashboardService } from './dashboard.service';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardLayoutComponent
+    DashboardLayoutComponent,
+    //EventProposalComponent
     // FileUploaderComponent,
     //FileDropUploadComponent,
     //DragDropDirective,

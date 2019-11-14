@@ -26,7 +26,8 @@ import { CardComponent } from './components/card/card.component';
     NavbarComponent,
     SidebarComponent,
     HomeComponent,
-    CardComponent
+    CardComponent,
+    
   ],
   imports: [
     BrowserModule,
