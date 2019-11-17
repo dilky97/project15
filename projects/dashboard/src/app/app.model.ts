@@ -10,3 +10,9 @@ export class eventData {
     description: string;
 
 }
+
+export class sponsorData{
+    id:string;
+    sponsorName: string;
+    
+}

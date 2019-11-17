@@ -23,4 +23,8 @@ export class DashboardService {
     return this.dbstore.collection('events').snapshotChanges();
   }
 
+  getSponsors(){
+    return this.dbstore.collection('sponsors').snapshotChanges();
+  }
+
 }

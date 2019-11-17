@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
@@ -29,7 +30,8 @@ import { DragDropDirective } from '../drag-drop.directive';
       ToastrModule.forRoot(),
       AngularFireDatabaseModule,
       AngularFirestoreModule,
-      AngularFireStorageModule
+      AngularFireStorageModule,
+      NgbModule
     ],
     declarations: [
       CreateEventComponent,
