@@ -1,13 +1,10 @@
 import { AngularFirestore } from '@angular/fire/firestore';
-import { EventDetails } from './../models/event-details.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventDetailsService {
-
-  cardData: EventDetails ;
 
   constructor( private firestore: AngularFirestore ) { }
 
@@ -16,7 +13,6 @@ export class EventDetailsService {
   }
 
   getShowingEvents( status: number, club: string ) {
-
     if ( club === 'all' && status === 99 ) {
       return this.firestore.collection('events').snapshotChanges();
 
@@ -33,7 +29,10 @@ export class EventDetailsService {
         ref.where( 'status', '==', status )
            .where( 'club', '==', club )  ).snapshotChanges();
     }
+  }
 
+  getViewEvent( id: string ) {
+    return this.firestore.collection('events').doc(id).valueChanges();
   }
 
 }
