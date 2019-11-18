@@ -30,6 +30,7 @@ export class CreateEventComponent implements OnInit {
     }
     this.eventService.eventInfo = {
       id: null,
+      club: 'defaultClub',
       eventName: '',
       startDate: '',
       endDate: '',

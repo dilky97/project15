@@ -1,6 +1,7 @@
 export class eventData {
 
     id: string;
+    club:string;
     eventName: string;
     startDate: string;
     endDate: string;
