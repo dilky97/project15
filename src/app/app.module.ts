@@ -13,9 +13,6 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 // Services
 import { EventDetailsService } from './services/event-details.service';
 
-// Services
-import { EventDetailsService } from './services/event-details.service';
-
 // Others
 import { AppRoutingModule , routingComponents } from './app-routing.module';
 import { environment } from 'src/environments/environment';
