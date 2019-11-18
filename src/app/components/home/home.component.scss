@@ -41,3 +41,25 @@
 .dropdown-item:hover{
   cursor: pointer;
 }
+
+.cover{
+  text-align: center;
+}
+
+.cover img{
+  width: 100%;
+  border-style: solid;
+  border-color: white;
+  border-width: 0px;
+  border-radius: 0px;
+}
+
+.footer-image{
+  padding: 10px;
+  width: 80%;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.356);
+  border-width: 1px;
+  border-radius: 50px;
+
+}

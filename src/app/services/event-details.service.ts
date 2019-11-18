@@ -7,8 +7,6 @@ import { Injectable } from '@angular/core';
 })
 export class EventDetailsService {
 
-  cardData: EventDetails ;
-
   constructor( private firestore: AngularFirestore ) { }
 
   getAllEvents() {
@@ -16,7 +14,6 @@ export class EventDetailsService {
   }
 
   getShowingEvents( status: number, club: string ) {
-
     if ( club === 'all' && status === 99 ) {
       return this.firestore.collection('events').snapshotChanges();
 
@@ -34,6 +31,8 @@ export class EventDetailsService {
            .where( 'club', '==', club )  ).snapshotChanges();
     }
 
+  getViewEvent( id: string ) {
+    return this.firestore.collection('events').doc(id).valueChanges();
   }
 
 }

@@ -13,21 +13,27 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 // Services
 import { EventDetailsService } from './services/event-details.service';
 
+// Services
+import { EventDetailsService } from './services/event-details.service';
+
 // Others
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule , routingComponents } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
-
+import { ViewEventComponent } from './components/view-event/view-event.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    CardComponent,
+    ViewEventComponent,
+    routingComponents,
     NavbarComponent,
     SidebarComponent,
     HomeComponent,
     CardComponent,
-    
   ],
   imports: [
     BrowserModule,
