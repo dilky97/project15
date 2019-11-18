@@ -1,4 +1,5 @@
 import { AngularFirestore } from '@angular/fire/firestore';
+import { EventDetails } from './../models/event-details.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -29,7 +30,6 @@ export class EventDetailsService {
         ref.where( 'status', '==', status )
            .where( 'club', '==', club )  ).snapshotChanges();
     }
-  }
 
   getViewEvent( id: string ) {
     return this.firestore.collection('events').doc(id).valueChanges();

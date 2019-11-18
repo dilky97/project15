@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
 
   test = 'initial' ;
 
-
   constructor( private eventDetails: EventDetailsService , private router: Router) {
 
     this.setViewList();

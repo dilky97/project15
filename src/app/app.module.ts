@@ -7,6 +7,11 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 // Components
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+
+// Services
+import { EventDetailsService } from './services/event-details.service';
 
 // Services
 import { EventDetailsService } from './services/event-details.service';
@@ -24,7 +29,11 @@ import { ViewEventComponent } from './components/view-event/view-event.component
     HomeComponent,
     CardComponent,
     ViewEventComponent,
-    routingComponents
+    routingComponents,
+    NavbarComponent,
+    SidebarComponent,
+    HomeComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
