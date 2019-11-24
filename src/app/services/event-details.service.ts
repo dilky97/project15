@@ -30,6 +30,7 @@ export class EventDetailsService {
         ref.where( 'status', '==', status )
            .where( 'club', '==', club )  ).snapshotChanges();
     }
+  }
 
   getViewEvent( id: string ) {
     return this.firestore.collection('events').doc(id).valueChanges();
