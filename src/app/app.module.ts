@@ -26,6 +26,9 @@ import { UserDetailsService } from './services/user-details.service';
 // Others
 import { AppRoutingModule , routingComponents } from './app-routing.module';
 import { environment } from 'src/environments/environment';
+import { RegisterComponent } from './components/register/register.component';
+import { SponsorRegisterComponent } from './components/sponsor-register/sponsor-register.component';
+import { ServiceProviderRegisterComponent } from './components/service-provider-register/service-provider-register.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { environment } from 'src/environments/environment';
     CardComponent,
     LoginComponent,
     StudentRegisterComponent,
+    RegisterComponent,
+    SponsorRegisterComponent,
+    ServiceProviderRegisterComponent,
   ],
   imports: [
     BrowserModule,
