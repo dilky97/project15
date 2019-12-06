@@ -14,11 +14,27 @@ export class StudentRegisterComponent implements OnInit {
   successMessage: string;
 
   registerForm = new FormGroup({
-    email: new FormControl(),
-    password: new FormControl(),
     firstName: new FormControl(),
-    lastName: new FormControl()
+    lastName: new FormControl(),
+    email: new FormControl(),
+    faculty: new FormControl(),
+    year: new FormControl(),
+    password: new FormControl(),
    });
+
+   facultyList = [
+     '',
+     'University of colombo school of computing',
+     'Faculty of Science',
+     'Faculty of Management',
+     'Faculty of Arts',
+     'Faculty of Low',
+     'Faculty of Nursing',
+     'Faculty of Medicine',
+     'Faculty of Techmology',
+     'Faculty of Educarion',
+     'Faculty of Ayurvedhic',
+   ];
 
   constructor(private registerService: LoginRegisterAuthService, private userDetails: UserDetailsService) { }
 
