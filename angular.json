@@ -49,8 +49,7 @@
               "src/assets/plugins/jquery-nice-select/js/jquery.nice-select.min.js",
               "src/assets/plugins/smoothscroll/SmoothScroll.min.js",
               "src/assets/plugins/google-map/gmap.js",
-              "src/assets/js/script.js",
-              "src/assets/js/fontAwesome.js"
+              "src/assets/js/script.js"
             ]
           },
           "configurations": {
