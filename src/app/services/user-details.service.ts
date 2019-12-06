@@ -12,7 +12,9 @@ export class UserDetailsService {
     return this.firestore.collection('students').add({
       email: formData.email,
       firstName: formData.firstName,
-      lastName: formData.lastName
+      lastName: formData.lastName,
+      faculty: formData.faculty,
+      year: formData.year
     });
   }
 
