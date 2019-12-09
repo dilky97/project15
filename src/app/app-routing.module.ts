@@ -1,4 +1,4 @@
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/homepage/home/home.component';
 import { ViewEventComponent } from './components/view-event/view-event.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';

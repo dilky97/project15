@@ -9,11 +9,11 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { HomeComponent } from './components/home/home.component';
-import { CardComponent } from './components/card/card.component';
+import { HomeComponent } from './components/homepage/home/home.component';
+import { CardComponent } from './components/homepage/card/card.component';
 import { ViewEventComponent } from './components/view-event/view-event.component';
-import { LoginComponent } from './components/login/login.component';
-import { StudentRegisterComponent } from './components/student-register/student-register.component';
+import { LoginComponent } from './components/login-signup/login/login.component';
+import { StudentRegisterComponent } from './components/login-signup/student-register/student-register.component';
 
 // Services
 import { EventDetailsService } from './services/event-details.service';
