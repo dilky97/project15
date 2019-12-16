@@ -20,6 +20,7 @@ import { CardComponent } from './components/homepage/card/card.component';
 import { ViewEventComponent } from './components/view-event/view-event.component';
 import { LoginComponent } from './components/login-signup/login/login.component';
 import { StudentRegisterComponent } from './components/login-signup/student-register/student-register.component';
+import { EventPlannerLayoutComponent } from './components/event-planner/event-planner-layout/event-planner-layout.component';
 
 import { CreateEventComponent } from "./components/event-planner/create-event/create-event.component";
 import { FileDropUploadComponent } from "./components/event-planner/file-drop-upload/file-drop-upload.component";
@@ -52,7 +53,7 @@ import { environment } from 'src/environments/environment';
     CardComponent,
     LoginComponent,
     StudentRegisterComponent,
-
+    EventPlannerLayoutComponent,
     CreateEventComponent,
     EventProposalComponent,
     FileUploaderComponent,
