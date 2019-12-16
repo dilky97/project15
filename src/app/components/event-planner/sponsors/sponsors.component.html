@@ -1,0 +1,63 @@
+<div class="main-content" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card card-body">
+
+                    <div class="header">
+                        <h4 class="title">Sponsors</h4>
+                    </div>
+
+                    <ng-template #content let-modal>
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modal-basic-title">Add Sponsor</h3>
+                          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                              <div class="row">
+                                <div class="col-8">
+                                  <select class="form-control" placeholder="Search for Sponsor" id="SponsorName">
+                                    <option selected>Select a Sponsor</option>
+                                    <option *ngFor = "let sponsor of sponsorList"> {{sponsor.sponsorName}} </option>
+
+                                  </select>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" id="SponsorshipType">
+                                      <option selected>Choose...</option>
+                                      <option value="1">Platinum</option>
+                                      <option value="2">Gold</option>
+                                      <option value="3">Silver</option>
+                                      <option value="4">Bronze</option>
+                                    </select>
+                                </div>
+                              </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                        </div>
+                      </ng-template>
+                      
+                      <button class="btn btn-lg btn-outline-primary pull-right" (click)="open(content)">Add Sponsor</button>
+                      
+                      
+                      <pre>{{closeResult}}</pre>
+
+                    
+
+                    
+                                    
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+
+
