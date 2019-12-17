@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase/app';
 
 
 @Component({
@@ -8,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  email: string;
 
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  logOut(){
+    firebase.auth().signOut();
   }
 
 }

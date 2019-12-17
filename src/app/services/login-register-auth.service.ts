@@ -28,4 +28,13 @@ export class LoginRegisterAuthService {
     });
   }
 
+  getUser() {
+    return this.afAuth.authState;
+  }
+
+  logOut() {
+    firebase.auth().signOut();
+  }
+
+
 }
