@@ -1,0 +1,65 @@
+
+<!-- /////// card body - start /////// -->
+
+<div class="card">
+
+  <div class="card-image">
+      <img src={{img}}>
+  </div>
+
+  <div class="card-title">
+      <h1>{{title}}</h1>
+  </div>
+
+  <div class="card-des">
+    by <br>
+    <p>{{ club | uppercase }}</p>
+    <div class="date-up" ><p> {{ tempDate.toDate() | date: 'medium' }} </p></div>
+    <div *ngIf="eventDone; then IfDone; else IfPending" > </div>
+  </div>
+
+</div>
+
+<!-- /////// card body - end /////// -->
+
+
+
+<ng-template #IfDone>    <!-- /////// this tempalete works for ended events , instead of time countdown /////// -->
+
+    <div class="card-done-cell" > <p>event</p>
+      <div class="card-done-cell-box">
+         <p>ENDED</p>
+      </div>
+    </div>
+    <p class="date-down" > &nbsp; </p>
+
+</ng-template>
+
+<ng-template #IfPending>    <!-- /////// this tempalete works for pending events time countdown /////// -->
+
+    <div class="card-time-cell" > <p>Days <br> </p>
+      <div class="card-time-cell-box">
+         <p>{{days}}</p>
+      </div>
+    </div>
+
+    <div class="card-time-cell" > <p>Hrs</p>
+      <div class="card-time-cell-box">
+        <p>{{hours}}</p>
+      </div>
+    </div>
+
+    <div class="card-time-cell" > <p>Mins</p>
+      <div class="card-time-cell-box">
+        <p>{{mins}}</p>
+      </div>
+    </div>
+
+    <div class="card-time-cell" > <p>Sec</p>
+      <div class="card-time-cell-box">
+        <p>{{secs}}</p>
+      </div>
+    </div>
+    <p class="date-down" >Remaining</p>
+
+</ng-template>
