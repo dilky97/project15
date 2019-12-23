@@ -27,6 +27,8 @@ import { FileDropUploadComponent } from "./components/event-planner/file-drop-up
 import { FileUploaderComponent } from './components/event-planner/file-uploader/file-uploader.component';
 import { EventProposalComponent } from './components/event-planner/event-proposal/event-proposal.component';
 import { SponsorsComponent } from './components/event-planner/sponsors/sponsors.component';
+import { EventPlannerHomeComponent } from './components/event-planner/event-planner-home/event-planner-home.component';
+import { EventCardComponent } from './components/event-planner/event-card/event-card.component';
 
 // Services
 import { EventDetailsService } from './services/event-details.service';
@@ -39,6 +41,7 @@ import { DragDropDirective } from "./directives/drag-drop.directive";
 // Others
 import { AppRoutingModule , routingComponents } from './app-routing.module';
 import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -59,8 +62,12 @@ import { environment } from 'src/environments/environment';
     FileUploaderComponent,
     FileDropUploadComponent,
     SponsorsComponent,
+    EventPlannerHomeComponent,
+    EventCardComponent,
 
     DragDropDirective
+
+    
   ],
   imports: [
     BrowserModule,
