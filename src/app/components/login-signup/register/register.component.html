@@ -70,7 +70,7 @@
 
                           <br>
                           <label *ngIf="errorMessage != 'temp'" class="error">{{errorMessage}}</label>
-                          <label *ngIf="errorMessage != 'temp'" class="success">{{successMessage}}</label>
+                          <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
 
                           <button type="submit" (click)="tryStudentRegister(StudentRegisterForm.value)" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Register Now</button>
 

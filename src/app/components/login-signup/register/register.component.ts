@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LoginRegisterAuthService } from 'src/app/services/login-register-auth.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
+import { StudentDetails } from 'src/app/models/student-details.model';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ export class RegisterComponent implements OnInit {
   successMessage = 'temp';
 
   facultyList = [
+    '',
     'University of colombo school of computing',
     'Faculty of Science',
     'Faculty of Management',
@@ -25,6 +27,8 @@ export class RegisterComponent implements OnInit {
     'Faculty of Educarion',
     'Faculty of Ayurvedhic',
   ];
+
+  student: StudentDetails = {} as StudentDetails;
 
   roleForm = new FormGroup({
     role: new FormControl('Student in UOC')
@@ -45,11 +49,17 @@ export class RegisterComponent implements OnInit {
   }
 
   tryStudentRegister(formData) {
+
+    this.student.firstName = formData.firstName ;
+    this.student.lastName = formData.lastName;
+    this.student.email = formData.email;
+    this.student.faculty = formData.faculty;
+    this.student.academicYear = formData.year;
+
     this.registerService.doRegisterStudent(formData).then(
       resAuth => {
-        this.userDetailsService.createStudentDatabase(formData).then(
+        this.userDetailsService.createStudentDatabase(this.student).then(
           resDb => {
-            this.userDetailsService.createStudentDatabase(formData);
             this.errorMessage = 'temp';
             this.successMessage = 'Authentification And database added Succesfully';
           },
