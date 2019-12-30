@@ -27,6 +27,7 @@ export class TestComponent implements OnInit {
         this.user = user;
       }
     );
+
   }
 
   logOut() {
