@@ -24,6 +24,7 @@ import { TestComponent } from './components/test/test.component';
 import { EventDetailsService } from './services/event-details.service';
 import { LoginRegisterAuthService } from './services/login-register-auth.service';
 import { UserDetailsService } from './services/user-details.service';
+import { RouteGuardService } from './route-guard.service';
 
 // Others
 import { AppRoutingModule } from './app-routing.module';
@@ -54,7 +55,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgbModule,
   ],
-  providers: [EventDetailsService, LoginRegisterAuthService, UserDetailsService],
+  providers: [EventDetailsService, LoginRegisterAuthService, UserDetailsService, RouteGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

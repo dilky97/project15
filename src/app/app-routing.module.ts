@@ -5,11 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login-signup/login/login.component';
 import { RegisterComponent } from './components/login-signup/register/register.component';
 import { TestComponent } from './components/test/test.component';
+import { RouteGuardService } from './route-guard.service';
 
 
 const routes: Routes = [
   { path: '' , redirectTo: 'home' , pathMatch: 'full' },
-  { path: 'test' , component: TestComponent },
+  { path: 'test' , component: TestComponent , canActivate: [RouteGuardService] , data: {role: 'eventPlanner'}},
   { path: 'login' , component: LoginComponent },
   { path: 'register' , component: RegisterComponent },
   { path: 'home' , component: HomeComponent },
