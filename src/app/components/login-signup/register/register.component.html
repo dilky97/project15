@@ -92,18 +92,37 @@
                     <div class="bg-gray p-4">
                       <h2>Register Now !</h2> as Lecturer
                     </div>
-                    <form action="#">
-                        <fieldset class="p-4">
-                            <input type="email" placeholder="Email*" class="border p-3 w-100 my-2">
-                            <input type="password" placeholder="Password*" class="border p-3 w-100 my-2">
-                            <input type="password" placeholder="Confirm Password*" class="border p-3 w-100 my-2">
-                            <div class="loggedin-forgot d-inline-flex my-3">
-                                    <input type="checkbox" id="registering" class="mt-1">
-                                    <label for="registering" class="px-2">By registering, you accept our <a class="text-primary font-weight-bold" href="terms-condition.html">Terms & Conditions</a></label>
-                            </div>
-                            <button type="submit" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Register Now</button>
-                        </fieldset>
-                    </form>
+                    <form [formGroup]="AdvisorRegisterForm">
+                      <fieldset class="p-4">
+
+                        <label>First Name*</label>
+                        <input type="text" formControlName="firstName" class="border p-3 w-100 my-2" required>
+
+                        <label>Last Name*</label>
+                        <input type="text" formControlName="lastName" class="border p-3 w-100 my-2" required>
+
+                        <label>Email*</label>
+                        <input type="email" formControlName="email" class="border p-3 w-100 my-2" required>
+
+                        <label>Password*</label>
+                        <input type="password" formControlName="password" class="border p-3 w-100 my-2">
+
+                        <label>Confirm Password*</label>
+                        <input type="password" class="border p-3 w-100 my-2">
+
+                        <div class="loggedin-forgot d-inline-flex my-3">
+                                <input type="checkbox" id="registering" class="mt-1">
+                                <label for="registering" class="px-2">By registering, you accept our <a class="text-primary font-weight-bold" href="terms-condition.html">Terms & Conditions</a></label>
+                        </div>
+
+                        <br>
+                        <label *ngIf="errorMessage != 'temp'" class="error">{{errorMessage}}</label>
+                        <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
+
+                        <button type="submit" (click)="tryAdvisorRegister(AdvisorRegisterForm.value)" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Register Now</button>
+
+                      </fieldset>
+                  </form>
                 </div>
             </div>
         </div>
