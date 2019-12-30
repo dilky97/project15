@@ -13,7 +13,17 @@ export class LoginRegisterAuthService {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
       .then( res => {
-        res.user.updateProfile({ displayName: 'students' });
+        res.user.updateProfile({ displayName: 'student' });
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
+  doRegisterAdvisor(formData) {
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
+      .then( res => {
+        res.user.updateProfile({ displayName: 'advisor' });
         resolve(res);
       }, err => reject(err));
     });
