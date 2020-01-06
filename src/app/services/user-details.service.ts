@@ -12,12 +12,16 @@ export class UserDetailsService {
 
   }
 
-  createStudentDatabase(student: StudentDetails) {
-    return this.firestore.collection('students').add(student);
+  createStudentDatabase(student: StudentDetails , id: string ) {
+    return this.firestore.collection('students').doc(id).set(student);
   }
 
   createAdvisorDatabase(advisor: AdvisorDetails) {
     return this.firestore.collection('students').add(advisor);
+  }
+
+  readStudentDatabase(id: string) {
+    return this.firestore.collection('students').doc(id).valueChanges();
   }
 
 }
