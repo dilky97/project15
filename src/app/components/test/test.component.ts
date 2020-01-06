@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, getDebugNode } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { LoginRegisterAuthService } from 'src/app/services/login-register-auth.service';
+import { StudentDetails } from 'src/app/models/student-details.model';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { UserDetailsService } from 'src/app/services/user-details.service';
+import { EventDetailsService } from 'src/app/services/event-details.service';
 
 
 
@@ -12,19 +16,31 @@ import { LoginRegisterAuthService } from 'src/app/services/login-register-auth.s
   styleUrls: ['./test.component.scss']
 })
 
-
-
 export class TestComponent implements OnInit {
 
-  user: firebase.User;
+  userId: string;
+  userEmail: string;
+  userDisplayName: string;
+  dp: string;
 
-  constructor(private router: Router , private authService: LoginRegisterAuthService) {}
+  student: StudentDetails = {} as StudentDetails;
+  name: string;
+
+  constructor( private studentDetailsService: UserDetailsService,
+               private firestore: AngularFirestore,
+               private router: Router,
+               private authService: LoginRegisterAuthService,
+               private eventDetails: EventDetailsService
+             ) {}
 
 
   ngOnInit() {
+
     this.authService.getUser().subscribe(
       user => {
-        this.user = user;
+        this.userId = user.uid;
+        this.userDisplayName = user.displayName;
+        this.userEmail = user.email;
       }
     );
 
@@ -34,5 +50,8 @@ export class TestComponent implements OnInit {
     this.authService.logOut();
   }
 
+  addUser() {
+    return this.firestore.collection('test').add(this.student);
+  }
 
 }
