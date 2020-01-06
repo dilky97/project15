@@ -5,5 +5,6 @@ export class StudentDetails {
   faculty: string;
   academicYear: number;
   participatingEvents: Array<string>;
-  myClubs: Array<{id: string, isPresident: boolean, isEventPlanner: boolean}>;
+  presidentIn: Array<{id: string, name: string}>;
+  eventPlannerIn: Array<{id: string, name: string}>;
 }
