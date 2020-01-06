@@ -48,6 +48,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
                             // from dilky
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StudentHomeComponent } from './components/student-dashbord/student-home/student-home.component';
+import { NoAccessComponent } from './components/no-access/no-access.component';
+import { StudentEventCardComponent } from './components/student-dashbord/student-event-card/student-event-card.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SponsorsComponent,
     EventPlannerHomeComponent,
     EventCardComponent,
-    DragDropDirective
+    DragDropDirective,
+    StudentHomeComponent,
+    NoAccessComponent,
+    StudentEventCardComponent
   ],
   imports: [
     BrowserModule,
