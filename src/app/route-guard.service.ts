@@ -14,12 +14,14 @@ export class RouteGuardService implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if ( firebase.auth().currentUser.displayName === next.data.role ) {
-      return true;
-    } else {
-      return false;
-    }
+    // if ( firebase.auth().currentUser.displayName === next.data.role ) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+    return true;
   }
 
 }
+
 
