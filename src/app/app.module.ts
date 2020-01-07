@@ -29,6 +29,8 @@ import { EventPlannerHomeComponent } from './components/event-planner/event-plan
 import { EventCardComponent } from './components/event-planner/event-card/event-card.component';
 import { RegisterComponent } from './components/login-signup/register/register.component';
 import { TestComponent } from './components/test/test.component';
+import { StudentRegisterComponent } from './components/login-signup/student-register/student-register.component';
+import { NewSponsorComponent } from './components/sponsor/new-sponsor/new-sponsor.component';
 
 // Services
 import { EventDetailsService } from './services/event-details.service';
@@ -46,11 +48,15 @@ import { DragDropDirective } from './directives/drag-drop.directive';
 // Others
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
+
                             // from dilky
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StudentHomeComponent } from './components/student-dashbord/student-home/student-home.component';
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { StudentEventCardComponent } from './components/student-dashbord/student-event-card/student-event-card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SponsorListComponent } from './components/sponsor/sponsor-list/sponsor-list/sponsor-list.component';
+import { SponsorService } from './services/sponsor.service';
 
 @NgModule({
   declarations: [
@@ -77,6 +83,9 @@ import { StudentEventCardComponent } from './components/student-dashbord/student
     StudentHomeComponent,
     NoAccessComponent,
     StudentEventCardComponent
+    StudentRegisterComponent,
+    NewSponsorComponent,
+    SponsorListComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,7 +101,8 @@ import { StudentEventCardComponent } from './components/student-dashbord/student
     ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
-  providers: [EventDetailsService, LoginRegisterAuthService, UserDetailsService, RouteGuardService, EventPlannerService],
+  providers: [EventDetailsService, LoginRegisterAuthService, UserDetailsService, RouteGuardService, EventPlannerService,SponsorService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

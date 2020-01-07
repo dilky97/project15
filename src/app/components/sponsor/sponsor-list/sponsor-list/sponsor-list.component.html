@@ -1,0 +1,15 @@
+<table class="table table-hover">
+    <thead>
+        <th>Company Name</th>
+        <th>Address</th>
+        <th>E mail</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let spo of list">
+            <td>{{spo.sponsorName}}</td>
+            <td>{{spo.sponsorAddress}}</td>
+            <td>{{spo.sponsorEmail}}</td>
+            <td><a class="btn text-danger"><i class="fa fa-trash"></i></a></td>
+        </tr>
+    </tbody>
+</table>
