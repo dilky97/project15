@@ -14,12 +14,12 @@ export class SponsorListComponent implements OnInit {
 
   ngOnInit() {
     this.service.getsponsors().subscribe(actionArray =>{
-    this.list = actionArray.map(item =>{
-      return {
-        id:item.payload.doc.id,
-        ...item.payload.doc.data()
-      }as Sponsor ;
-    })
+      this.list = actionArray.map(item =>{
+        return {
+          id:item.payload.doc.id,
+          ...item.payload.doc.data()
+        } as Sponsor;
+      })
     }); 
   }
 

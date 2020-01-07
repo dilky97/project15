@@ -24,6 +24,7 @@ import { AppRoutingModule , routingComponents } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SponsorListComponent } from './components/sponsor/sponsor-list/sponsor-list/sponsor-list.component';
+import { SponsorService } from './services/sponsor.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { SponsorListComponent } from './components/sponsor/sponsor-list/sponsor-
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [EventDetailsService, LoginRegisterService],
+  providers: [EventDetailsService, LoginRegisterService,SponsorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

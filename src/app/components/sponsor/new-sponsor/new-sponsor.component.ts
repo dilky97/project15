@@ -33,6 +33,11 @@ export class NewSponsorComponent implements OnInit {
     })
     .catch(console.log);
   }
+
+  upload(event){
+    const randomId = Math.random().toString(36).substring(2);
+    
+  }
   
 
   
