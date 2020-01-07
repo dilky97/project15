@@ -24,5 +24,5 @@ export class eventData {
 export class sponsorData{
   id:string;
   sponsorName: string;
-  
+
 }

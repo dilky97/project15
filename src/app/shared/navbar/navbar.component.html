@@ -28,12 +28,18 @@
                                 <a class="dropdown-item" href="dashboard-pending-ads.html">Dashboard Pending Ads</a>
                             </div>
                         </li>
-                        
+
                     </ul>
                     <ul class="navbar-nav ml-auto mt-10">
                         <li class="nav-item">
-                            <a class="nav-link login-button" href="login.html">Login</a>
+                          <a class="nav-link login-button" (click)="logOut()">LogOut</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link login-button" href="login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link login-button" href="student-dashboard">Student</a>
+                      </li>
                         <li class="nav-item">
                             <a class="nav-link text-white add-button" href="ad-listing.html"><i class="fa fa-plus-circle"></i> Add Listing</a>
                         </li>
@@ -42,5 +48,5 @@
             </nav>
         </div>
     </div>
-    
+
 </section>
