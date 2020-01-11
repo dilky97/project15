@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginRegisterAuthService } from 'src/app/services/login-register-auth.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 import { StudentDetails } from 'src/app/models/student-details.model';
-import { AdvisorDetails } from 'src/app/models/advisor-details.model';
+import { AdvisorDetails } from 'src/app/models/advisor-details.model'
+import { MustMatch } from 'src/app/helpers/must-match.validator';
+
 
 @Component({
   selector: 'app-register',
@@ -15,44 +17,40 @@ export class RegisterComponent implements OnInit {
   errorMessage = 'temp';
   successMessage = 'temp';
 
-  facultyList = [
-    '',
-    'University of colombo school of computing',
-    'Faculty of Science',
-    'Faculty of Management',
-    'Faculty of Arts',
-    'Faculty of Low',
-    'Faculty of Nursing',
-    'Faculty of Medicine',
-    'Faculty of Techmology',
-    'Faculty of Educarion',
-    'Faculty of Ayurvedhic',
-  ];
-
   student: StudentDetails = {} as StudentDetails;
   advisor: AdvisorDetails = {} as AdvisorDetails;
 
-  roleForm = new FormGroup({
-    role: new FormControl('Student in UOC')
-   });
-
-  StudentRegisterForm = new FormGroup({
-   firstName: new FormControl(),
-   lastName: new FormControl(),
-   email: new FormControl(),
-   faculty: new FormControl(),
-   year: new FormControl(),
-   password: new FormControl(),
+  roleForm = this.formBuilder.group({
+    role: ['Student in UOC']
   });
 
-  AdvisorRegisterForm = new FormGroup({
-    firstName: new FormControl(),
-    lastName: new FormControl(),
-    email: new FormControl(),
-    password: new FormControl(),
+  StudentRegisterForm = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.email, Validators.required]],
+    faculty: ['', Validators.required],
+    year: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', Validators.required],
+  }, {
+    validator: MustMatch('password', 'confirmPassword')
   });
 
-  constructor(private registerService: LoginRegisterAuthService, private userDetailsService: UserDetailsService) { }
+  AdvisorRegisterForm = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', Validators.required],
+  }, {
+    validator: MustMatch('password', 'confirmPassword')
+  });
+
+  constructor(
+              private formBuilder: FormBuilder,
+              private registerService: LoginRegisterAuthService,
+              private userDetailsService: UserDetailsService
+             ) { }
 
   ngOnInit() {
   }
