@@ -21,8 +21,6 @@ export class StudentHomeComponent implements OnInit {
              ) { }
 
   student: StudentDetails = {} as StudentDetails;
-  isPresident = false;
-  isEventplanner = false;
   allEventList: EventDetails[] ;
   participatingEventList: EventDetails[] = [] as EventDetails[];
 
@@ -38,9 +36,6 @@ export class StudentHomeComponent implements OnInit {
         this.studentObservable.subscribe( temp => {
 
           this.student = temp as StudentDetails ;
-
-          if ( this.student.presidentIn.length > 0) {this.isPresident = true; }
-          if ( this.student.eventPlannerIn.length > 0) {this.isEventplanner = true; }
 
           this.getParticipatingEvents(this.student.participatingEvents);
 

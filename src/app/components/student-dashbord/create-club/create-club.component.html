@@ -1,0 +1,44 @@
+<section class="login py-5 border-top-1">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-10 col-md-16 align-item-center">
+              <div class="border border">
+                  <div class="bg-gray p-4">
+                    <h2>Register Now !</h2> as Student
+                  </div>
+                  <form [formGroup]="ClubRegisterForm">
+                      <fieldset class="p-4">
+
+                        <label>Name of the Club*</label>
+                        <input type="text" formControlName="name" class="border p-3 w-100 my-2" required>
+
+                        <label>Advisor*</label>
+                        <input type="email" formControlName="advisor" class="border p-3 w-100 my-2" required>
+
+                        <label>President*</label>
+                        <input readonly type="text" value="{{userEmail}}" formControlName="president" class="border p-3 w-100 my-2" required>
+
+                        <label>Event Planner*</label>
+                        <input type="email" formControlName="eventPlanner" class="border p-3 w-100 my-2" required>
+
+                        <label>Description*</label>
+                        <input type="text" formControlName="des" class="border p-3 w-100 my-2" required>
+
+                        <div class="loggedin-forgot d-inline-flex my-3">
+                                <input type="checkbox" id="registering" class="mt-1">
+                                <label for="registering" class="px-2">By registering, you accept our <a class="text-primary font-weight-bold" href="terms-condition.html">Terms & Conditions</a></label>
+                        </div>
+
+                        <br>
+                        <label *ngIf="errorMessage != 'temp'" class="error">{{errorMessage}}</label>
+                        <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
+
+                        <button type="submit" (click)="tryClubRegister(ClubRegisterForm.value)" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Register Now</button>
+
+                      </fieldset>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

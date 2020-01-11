@@ -1,8 +1,9 @@
 export class ClubDetails {
-    presidentEmail : string;
-    plannerEmail : string;
-    advisorEmail : string;
-    clubName : string;
-    clubDes : string;
-    
+  name: string;
+  advisor: string;
+  president: string;
+  eventPlanner: string;
+  des: string;
+  events: Array<string>;
+  isActivated: boolean;
 }

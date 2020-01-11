@@ -12,25 +12,26 @@ import { EventPlannerLayoutComponent } from './components/event-planner/event-pl
 import { CreateEventComponent} from './components/event-planner/create-event/create-event.component';
 import { EventPlannerHomeComponent } from './components/event-planner/event-planner-home/event-planner-home.component';
 import { NoAccessComponent } from './components/no-access/no-access.component';
+import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
 
 
 const routes: Routes = [
-
   { path: '' , redirectTo: 'home' , pathMatch: 'full' },
-  { path: 'test' , component: TestComponent , canActivate: [RouteGuardService] , data: {role: 'eventPlanner'}},
+  { path: 'test' , component: TestComponent, canActivate: [RouteGuardService], data: {role: 'eventPlanner'}},
   { path: 'login' , component: LoginComponent },
   { path: 'register' , component: RegisterComponent },
   { path: 'home' , component: HomeComponent },
   { path: 'events/:id' , component: ViewEventComponent },
-  { path: 'student-dashboard' , component: StudentHomeComponent },
+  { path: 'student-dashboard' , component: StudentHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
   { path: 'no-access' , component: NoAccessComponent },
   { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent, children:[
     { path: 'create-event' , component: CreateEventComponent },
     { path: 'event-planner' , component: EventPlannerLayoutComponent }
   ]},
+  { path: 'create-club' , component: CreateClubComponent },
 ];
 
-export const routingComponents = [ ViewEventComponent , HomeComponent ,EventPlannerLayoutComponent, CreateEventComponent ] ;
+export const routingComponents = [ ViewEventComponent , HomeComponent , EventPlannerLayoutComponent, CreateEventComponent ] ;
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
