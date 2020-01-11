@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from "@angular/router";
 import { EventPlannerService } from "../../../services/event-planner.service";
 //import { eventData } from "../app.model";
 import { NgForm } from "@angular/forms";
@@ -10,17 +11,22 @@ import { ToastrService } from "ngx-toastr";
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.css']
 })
+
 export class CreateEventComponent implements OnInit {
 
 
   data: any;
+  selectedClubId: string;
+
+  router: Router;
 
   //eventItem : eventData  = new eventData();
   //submitted = false;
 
-  constructor(public eventService: EventPlannerService, private dbstore: AngularFirestore, private toastr: ToastrService) {}
+  constructor(public eventService: EventPlannerService, private dbstore: AngularFirestore, private toastr: ToastrService, private clubIDService : EventPlannerService) {}
 
   ngOnInit() {
+    this.selectedClubId = this.clubIDService.getClubId();
     this.resetForm();
   }
 
@@ -37,6 +43,7 @@ export class CreateEventComponent implements OnInit {
       endTime: '',
       venue: '',
       description: '',
+      clubID: this.selectedClubId,
     };
 
   }
@@ -51,6 +58,7 @@ export class CreateEventComponent implements OnInit {
       }
       this.resetForm(form);
       this.toastr.success('Submitted Successfully', 'Event Created');
+      this.router.navigate['/home'];
     }
 }
 

@@ -10,6 +10,7 @@ export class EventPlannerService {
 
   
   eventInfo: eventData;
+  loggedInClub : string;
 
   //private eventdbPath = '/events';
 
@@ -18,6 +19,14 @@ export class EventPlannerService {
 
   constructor(private dbstore : AngularFirestore) {
     //this.eventsRef = dbstore.collection(this.eventdbPath);
+  }
+
+  saveClubId(clubID:any){
+    this.loggedInClub=clubID;
+  }
+
+  getClubId(){
+    return this.loggedInClub;
   }
 
   getEvents() {

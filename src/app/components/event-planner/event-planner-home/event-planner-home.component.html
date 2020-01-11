@@ -1,3 +1,5 @@
+
+
 <section class="dashboard">
 <!-- Container Start -->
     <div class="container">
@@ -62,10 +64,27 @@
         <div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
             <!-- Recently Favorited -->
             <div class="widget dashboard-container">
-            <h3 class="widget-header">My Events</h3>
+            <div class="row">
+                <div class="col-md-9">
+                    <h3 class="widget-header">My Events</h3>
+                </div>
+                <div class="col-md-3">
+                    <!-- <a [routerLink]="['create-event']" class="btn text-white add-button pull-right">Create Event</a> -->
+                    <button (click)="goToCreateEvent()" class="btn text-white add-button pull-right"><i class="fa fa-plus-circle"></i>Create Event</button>
+                </div>
+                
+            </div>
+            
+
+
+
 
             <div class="ad-listing-list mt-20">
-                <app-event-card></app-event-card>
+                <!-- <app-event-card></app-event-card> -->
+                <router-outlet></router-outlet>
+
+                <!-- <app-create-event [clubId]="selectedClubId" ></app-create-event> -->
+                
             </div>
 
             

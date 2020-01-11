@@ -24,9 +24,10 @@ const routes: Routes = [
   { path: 'events/:id' , component: ViewEventComponent },
   { path: 'student-dashboard' , component: StudentHomeComponent },
   { path: 'no-access' , component: NoAccessComponent },
-
-  { path: 'event-planner' , component: EventPlannerLayoutComponent },
-  { path: 'event-planner-home' , component: EventPlannerHomeComponent },
+  { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent, children:[
+    { path: 'create-event' , component: CreateEventComponent },
+    { path: 'event-planner' , component: EventPlannerLayoutComponent }
+  ]},
 ];
 
 export const routingComponents = [ ViewEventComponent , HomeComponent ,EventPlannerLayoutComponent, CreateEventComponent ] ;

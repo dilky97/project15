@@ -6,6 +6,7 @@ export class EventDetails {
   img: string;
   date: string;
   status: number;
+  
 }
 
 export class eventData {
@@ -18,6 +19,7 @@ export class eventData {
   endTime: string;
   venue: string;
   description: string;
+  clubID: string;
 
 }
 
