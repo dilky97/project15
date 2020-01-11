@@ -1,52 +1,43 @@
 <section class="bg-4">
-    <div class="row">
-       <div class="container">
-            <div class="col-md-12"></div>
-            <nav class="navbar navbar-expand-lg navbar-light navigation">
-                <a class="navbar-brand" href="#">
-                    <img src="../../../assets/images/logo-small.png" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto main-nav ">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item dropdown dropdown-slide">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">My Events<span><i class="fa fa-angle-down"></i></span>
-                            </a>
+  <div class="row">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light navigation">
+        <a class="navbar-brand" href="#">
+            <img src="../../../assets/images/logo-small.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-10">
+            <li class="nav-item">
+              <a class="nav-link login-button" (click)="logOut()">LogOut</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link login-button" href="login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link login-button" href="student-dashboard">Student</a>
+            </li>
+            <ul class="navbar-nav ml-auto main-nav ">
+              <li class="nav-item dropdown dropdown-slide">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">My Events<span><i class="fa fa-angle-down"></i></span>
+                  </a>
 
-                            <!-- Dropdown list -->
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="dashboard.html">Dashboard</a>
-                                <a class="dropdown-item" href="dashboard-my-ads.html">Dashboard My Ads</a>
-                                <a class="dropdown-item" href="dashboard-favourite-ads.html">Dashboard Favourite Ads</a>
-                                <a class="dropdown-item" href="dashboard-archived-ads.html">Dashboard Archived Ads</a>
-                                <a class="dropdown-item" href="dashboard-pending-ads.html">Dashboard Pending Ads</a>
-                            </div>
-                        </li>
-
-                    </ul>
-                    <ul class="navbar-nav ml-auto mt-10">
-                        <li class="nav-item">
-                          <a class="nav-link login-button" (click)="logOut()">LogOut</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link login-button" href="login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link login-button" href="student-dashboard">Student</a>
-                      </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white add-button" href="ad-listing.html"><i class="fa fa-plus-circle"></i> Add Listing</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                  <!-- Dropdown list -->
+                  <div class="dropdown-menu">
+                      <a class="dropdown-item" href="dashboard.html">Dashboard</a>
+                      <a class="dropdown-item" href="dashboard-my-ads.html">Dashboard My Ads</a>
+                      <a class="dropdown-item" href="dashboard-favourite-ads.html">Dashboard Favourite Ads</a>
+                      <a class="dropdown-item" href="dashboard-archived-ads.html">Dashboard Archived Ads</a>
+                      <a class="dropdown-item" href="dashboard-pending-ads.html">Dashboard Pending Ads</a>
+                  </div>
+              </li>
+            </ul>
+          </ul>
         </div>
+      </nav>
     </div>
-
+  </div>
 </section>
