@@ -46,11 +46,13 @@ import { DragDropDirective } from './directives/drag-drop.directive';
 // Others
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
+import { HttpClientModule } from '@angular/common/http';
                             // from dilky
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StudentHomeComponent } from './components/student-dashbord/student-home/student-home.component';
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { StudentEventCardComponent } from './components/student-dashbord/student-event-card/student-event-card.component';
+import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
 
 @NgModule({
   declarations: [
@@ -76,9 +78,11 @@ import { StudentEventCardComponent } from './components/student-dashbord/student
     DragDropDirective,
     StudentHomeComponent,
     NoAccessComponent,
-    StudentEventCardComponent
+    StudentEventCardComponent,
+    CreateClubComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
