@@ -8,35 +8,28 @@ import { Observable, Subscription } from 'rxjs';
 
 export class RouteGuardService implements CanActivate {
 
-  isEventPlanner: Observable<boolean>;
-
   constructor(private afAuth: LoginRegisterAuthService, private router: Router) {
 
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
-    // if ( firebase.auth().currentUser.displayName === next.data.role ) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
+    this.afAuth.getUser().subscribe(
+      user => {
+        if (user) {
+          localStorage.setItem('displayName', user.displayName);
+        } else {
+          localStorage.setItem('displayName', 'null');
+        }
+      }
+    );
+
+    if ( localStorage.getItem('displayName') === next.data.role ) {
       return true;
-
-
-    // this.afAuth.getUser().subscribe(
-    //   user => {
-    //     if ( firebase.auth().currentUser.displayName === next.data.role ) {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   }
-    // );
-
+    } else {
+      return false;
+    }
 
   }
 
 }
-
-
