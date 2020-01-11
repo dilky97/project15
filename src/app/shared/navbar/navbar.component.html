@@ -1,9 +1,10 @@
+<div class="full">
 <section class="bg-4">
   <div class="row">
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light navigation">
+      <div class="navbar navbar-expand-lg navbar-light navigation">
         <a class="navbar-brand" href="#">
-            <img src="../../../assets/images/logo-small.png" alt="">
+            <img class="logo" src="../../../assets/images/logo-small.png" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +12,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-10">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link login-button" (click)="logOut()">LogOut</a>
             </li>
             <li class="nav-item">
@@ -19,25 +20,28 @@
             </li>
             <li class="nav-item">
               <a class="nav-link login-button" href="student-dashboard">Student</a>
-            </li>
+            </li> -->
             <ul class="navbar-nav ml-auto main-nav ">
-              <li class="nav-item dropdown dropdown-slide">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">My Events<span><i class="fa fa-angle-down"></i></span>
+              <li *ngIf="isLogged" class="nav-item dropdown dropdown-slide">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=""> <small>Logged as:</small><b> {{student.firstName}} {{student.lastName}} </b><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle"
+                    alt="avatar image">
                   </a>
 
                   <!-- Dropdown list -->
-                  <div class="dropdown-menu">
-                      <a class="dropdown-item" href="dashboard.html">Dashboard</a>
-                      <a class="dropdown-item" href="dashboard-my-ads.html">Dashboard My Ads</a>
-                      <a class="dropdown-item" href="dashboard-favourite-ads.html">Dashboard Favourite Ads</a>
-                      <a class="dropdown-item" href="dashboard-archived-ads.html">Dashboard Archived Ads</a>
-                      <a class="dropdown-item" href="dashboard-pending-ads.html">Dashboard Pending Ads</a>
+                  <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
+                      <a class="dropdown-item" href="student-dashboard"><i class="fa fa-columns"></i> Dashboard</a>
+                      <hr>
+                      <a class="dropdown-item" href="#"><i class="fa fa-bell"></i> Notifications</a>
+                      <hr>
+                      <a class="dropdown-item" (click)="logOut()"><i class="fa fa-sign-out"></i> Log Out</a>
                   </div>
               </li>
+              <li *ngIf="!isLogged" > <button routerLink="login" class="btn btn-sm btn-success" ><b>Login</b></button> </li>
             </ul>
           </ul>
         </div>
-      </nav>
+      </div>
     </div>
   </div>
 </section>
+</div>
