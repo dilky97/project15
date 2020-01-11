@@ -27,7 +27,7 @@ export class RouteGuardService implements CanActivate {
     if ( localStorage.getItem('displayName') === next.data.role ) {
       return true;
     } else {
-      return false;
+      this.router.navigate(['home']);
     }
 
   }
