@@ -13,5 +13,9 @@ export class ClubDetailsService {
     return this.firestore.collection('clubs').add(club);
   }
 
+  readClubDatabase(id: string) {
+    return this.firestore.collection('clubs').doc(id).valueChanges();
+  }
+
 }
 

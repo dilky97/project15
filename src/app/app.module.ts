@@ -29,7 +29,7 @@ import { EventPlannerHomeComponent } from './components/event-planner/event-plan
 import { EventCardComponent } from './components/event-planner/event-card/event-card.component';
 import { RegisterComponent } from './components/login-signup/register/register.component';
 import { TestComponent } from './components/test/test.component';
-import { StudentRegisterComponent } from './components/login-signup/student-register/student-register.component';
+//import { StudentRegisterComponent } from './components/login-signup/student-register/student-register.component';
 import { NewSponsorComponent } from './components/sponsor/new-sponsor/new-sponsor.component';
 
 // Services
@@ -56,7 +56,6 @@ import { NoAccessComponent } from './components/no-access/no-access.component';
 import { StudentEventCardComponent } from './components/student-dashbord/student-event-card/student-event-card.component';
 
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SponsorListComponent } from './components/sponsor/sponsor-list/sponsor-list/sponsor-list.component';
 import { SponsorService } from './services/sponsor.service';
 
@@ -84,11 +83,11 @@ import { SponsorService } from './services/sponsor.service';
     DragDropDirective,
     StudentHomeComponent,
     NoAccessComponent,
-    CreateClubComponent
-    StudentEventCardComponent
-    StudentRegisterComponent,
+    CreateClubComponent,
+    StudentEventCardComponent,
+    //StudentRegisterComponent,
     NewSponsorComponent,
-    SponsorListComponent,
+    SponsorListComponent
   ],
   imports: [
     HttpClientModule,
