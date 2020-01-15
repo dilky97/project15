@@ -22,21 +22,21 @@
               <a class="nav-link login-button" href="student-dashboard">Student</a>
             </li> -->
             <ul class="navbar-nav ml-auto main-nav ">
-              <li *ngIf="isLogged" class="nav-item dropdown dropdown-slide">
+              <li *ngIf="isLogged == 1" class="nav-item dropdown dropdown-slide">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=""> <small>Logged as:</small><b> {{student.firstName}} {{student.lastName}} </b><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle"
                     alt="avatar image">
                   </a>
 
                   <!-- Dropdown list -->
                   <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
-                      <a class="dropdown-item" href="student-dashboard"><i class="fa fa-columns"></i> Dashboard</a>
+                      <a class="dropdown-item" routerLink="student-dashboard"><i class="fa fa-columns"></i> Dashboard</a>
                       <hr>
                       <a class="dropdown-item" href="#"><i class="fa fa-bell"></i> Notifications</a>
                       <hr>
                       <a class="dropdown-item" (click)="logOut()"><i class="fa fa-sign-out"></i> Log Out</a>
                   </div>
               </li>
-              <li *ngIf="!isLogged" > <button routerLink="login" class="btn btn-sm btn-success" ><b>Login</b></button> </li>
+              <li *ngIf="isLogged == 0" > <button routerLink="login" class="btn btn-sm btn-success" ><b>Login</b></button> </li>
             </ul>
           </ul>
         </div>

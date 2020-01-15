@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { Router } from '@angular/router';
 import { StudentDetails } from 'src/app/models/student-details.model';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { UserDetailsService } from 'src/app/services/user-details.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -15,9 +14,9 @@ export class NavbarComponent implements OnInit {
   email: string;
   student: StudentDetails;
 
-  isLogged = false;
+  isLogged: number;
 
-  constructor(private router: Router, private userDetails: UserDetailsService) { }
+  constructor(private userDetails: UserDetailsService, private router: Router) { }
 
   ngOnInit() {
 
@@ -25,11 +24,10 @@ export class NavbarComponent implements OnInit {
       if (user) {
         this.userDetails.readStudentDatabase(user.uid).subscribe( temp => {
           this.student = temp as StudentDetails;
-          console.log(this.student);
-          this.isLogged = true;
+          this.isLogged = 1;
         });
       } else {
-        this.isLogged = false;
+        this.isLogged = 0;
       }
     });
 
