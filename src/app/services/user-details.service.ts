@@ -20,6 +20,10 @@ export class UserDetailsService {
     return this.firestore.collection('students').add(advisor);
   }
 
+  createServiceProviderDatabase(advisor: AdvisorDetails) {
+    return this.firestore.collection('serviceproviders').add(advisor);
+  }
+
   readStudentDatabase(id: string) {
     return this.firestore.collection('students').doc(id).valueChanges();
   }
