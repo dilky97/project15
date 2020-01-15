@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { UserDetailsService } from './user-details.service';
+import { StudentDetails } from '../models/student-details.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginRegisterAuthService {
 
-  constructor(private afAuth: AngularFireAuth) { }
+  authDetails: any;
+  generalDetails: any;
+
+  constructor(private router: Router, private afAuth: AngularFireAuth) {
+  }
 
   doRegisterStudent(formData) {
     return new Promise<any>((resolve, reject) => {
@@ -29,6 +36,16 @@ export class LoginRegisterAuthService {
     });
   }
 
+  doRegisterServiceProvider(formData) {
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
+      .then( res => {
+        res.user.updateProfile({ displayName: 'serviceProvider' });
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
   doLogin(formData) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(formData.email, formData.password)
@@ -44,6 +61,7 @@ export class LoginRegisterAuthService {
 
   logOut() {
     firebase.auth().signOut();
+    localStorage.setItem('uid', null);
   }
 
 
