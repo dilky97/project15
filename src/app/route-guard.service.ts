@@ -14,15 +14,15 @@ export class RouteGuardService implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
-    this.afAuth.getUser().subscribe(
-      user => {
-        if (user) {
-          localStorage.setItem('displayName', user.displayName);
-        } else {
-          localStorage.setItem('displayName', 'null');
-        }
-      }
-    );
+    // this.afAuth.getUser().subscribe(
+    //   user => {
+    //     if (user) {
+    //       localStorage.setItem('displayName', user.displayName);
+    //     } else {
+    //       localStorage.setItem('displayName', 'null');
+    //     }
+    //   }
+    // );
 
     if ( localStorage.getItem('displayName') === next.data.role ) {
       return true;
