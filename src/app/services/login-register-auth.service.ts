@@ -1,20 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
-import { UserDetailsService } from './user-details.service';
-import { StudentDetails } from '../models/student-details.model';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginRegisterAuthService {
 
-  authDetails: any;
-  generalDetails: any;
-
-  constructor(private router: Router, private afAuth: AngularFireAuth) {
-  }
+  constructor(private afAuth: AngularFireAuth) { }
 
   doRegisterStudent(formData) {
     return new Promise<any>((resolve, reject) => {
