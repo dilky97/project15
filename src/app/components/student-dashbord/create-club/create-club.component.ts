@@ -10,8 +10,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { async } from '@angular/core/testing';
 import {HttpClient} from '@angular/common/http';
 
-
-
 @Component({
   selector: 'app-create-club',
   templateUrl: './create-club.component.html',
@@ -72,6 +70,15 @@ export class CreateClubComponent implements OnInit {
       this.clubDetailsService.createClubDatabase(this.club).then(
         resDb => {
           this.returnedId = resDb.id;
+          console.log(resDb.id);
+
+          const promise = this.firestore.firestore.collection('students').doc(user.uid).get();
+          promise.then( snapshot => {
+            this.student =  snapshot.data() as StudentDetails;
+            this.student.presidentIn.push({id: this.returnedId , name: this.club.name});
+            this.firestore.collection('students').doc(user.uid).update(this.student);
+          });
+
           this.errorMessage = 'temp';
           this.successMessage = 'database added Succesfully';
         },
@@ -80,13 +87,10 @@ export class CreateClubComponent implements OnInit {
           this.successMessage = 'temp';
         }
       );
-      // this.http.get( 'https://us-central1-testing-1de9d.cloudfunctions.net/sendMail?dest=priyashanshell@gmail.com&msg=cdhscvdhcd' );
 
-
-
-      this.student = (await this.firestore.firestore.collection('students').doc(user.uid).get()).data() as StudentDetails;
-      this.student.presidentIn.push({id: this.returnedId , name: this.club.name});
-      this.firestore.collection('students').doc(user.uid).update(this.student);
+      // this.student = (await this.firestore.firestore.collection('students').doc(user.uid).get()).data() as StudentDetails;
+      // this.student.presidentIn.push({id: this.returnedId , name: this.club.name});
+      // this.firestore.collection('students').doc(user.uid).update(this.student);
 
     });
 
