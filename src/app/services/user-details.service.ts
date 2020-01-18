@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { StudentDetails } from '../models/student-details.model';
 import { AdvisorDetails } from '../models/advisor-details.model';
-import{  ServiceProviderDetails } from '../models/service-provider-details.model';
+import { ServiceProviderDetails } from '../models/service-provider-details.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,12 @@ export class UserDetailsService {
     return this.firestore.collection('students').doc(id).set(student);
   }
 
-  createAdvisorDatabase(advisor: AdvisorDetails) {
-    return this.firestore.collection('students').add(advisor);
+  createAdvisorDatabase(advisor: AdvisorDetails , id: string ) {
+    return this.firestore.collection('students').doc(id).set(advisor);
+  }
+
+  createServiceProviderDatabase(serviceProvider: ServiceProviderDetails , id: string ) {
+    return this.firestore.collection('serviceProviders').doc(id).set(serviceProvider);
   }
 
   readStudentDatabase(id: string) {

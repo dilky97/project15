@@ -29,6 +29,16 @@ export class LoginRegisterAuthService {
     });
   }
 
+  doRegisterServiceProvider(formData) {
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
+      .then( res => {
+        res.user.updateProfile({ displayName: 'serviceProvider' });
+        resolve(res);
+      }, err => reject(err));
+    });
+  }
+
   doLogin(formData) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(formData.email, formData.password)
@@ -44,6 +54,7 @@ export class LoginRegisterAuthService {
 
   logOut() {
     firebase.auth().signOut();
+    localStorage.setItem('uid', null);
   }
 
 

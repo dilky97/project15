@@ -21,7 +21,7 @@ export class StudentHomeComponent implements OnInit {
              ) { }
 
   student: StudentDetails = {} as StudentDetails;
-  allEventList: EventDetails[] ;
+  allEventList: EventDetails[] = [] as EventDetails[];
   participatingEventList: EventDetails[] = [] as EventDetails[];
 
   studentObservable: Observable<StudentDetails>;
@@ -29,20 +29,26 @@ export class StudentHomeComponent implements OnInit {
   ngOnInit() {
 
     firebase.auth().onAuthStateChanged( user => {
-      if (user.displayName === 'student') {
+      if (user) {
+        if (user.displayName === 'student') {
 
-        this.studentObservable = this.studentDetailsService.readStudentDatabase( user.uid ) as Observable<StudentDetails> ;
+          this.studentObservable = this.studentDetailsService.readStudentDatabase( user.uid ) as Observable<StudentDetails> ;
 
-        this.studentObservable.subscribe( temp => {
+          this.studentObservable.subscribe( temp => {
 
-          this.student = temp as StudentDetails ;
+            this.student = temp as StudentDetails ;
 
-          this.getParticipatingEvents(this.student.participatingEvents);
+            console.log(this.student);
 
-        });
+            this.getParticipatingEvents(this.student.participatingEvents);
 
+          });
+
+        } else {
+          this.router.navigate(['/no-access']);
+        }
       } else {
-        this.router.navigate(['/no-access']);
+        this.router.navigate(['/home']);
       }
     });
 
@@ -60,17 +66,6 @@ export class StudentHomeComponent implements OnInit {
   }
 
   getParticipatingEvents(participatingEventIds: Array<string>) {
-
-    this.eventDetails.getAllEvents().subscribe( actionArray => {
-
-      this.allEventList = actionArray.map( item => {
-        return {
-          id: item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as EventDetails ;
-      });
-
-    });
 
     this.allEventList.forEach(element => {
       if (participatingEventIds.includes(element.id)) {
