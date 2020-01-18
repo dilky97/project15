@@ -29,4 +29,12 @@ export class UserDetailsService {
     return this.firestore.collection('students').doc(id).valueChanges();
   }
 
+  createServiceProviderDatabase(serviceProvider: ServiceProviderDetails ,id: string){
+    return this.firestore.collection('serviceproviders').doc(id).set(serviceProvider);
+  }
+  
+  readServiceProviderDatabase(id: string){
+    return this.firestore.collection('serviceProviders').doc(id).valueChanges();
+  }
+
 }
