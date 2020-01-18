@@ -38,6 +38,8 @@ export class StudentHomeComponent implements OnInit {
 
             this.student = temp as StudentDetails ;
 
+            console.log(this.student);
+
             this.getParticipatingEvents(this.student.participatingEvents);
 
           });
@@ -46,7 +48,7 @@ export class StudentHomeComponent implements OnInit {
           this.router.navigate(['/no-access']);
         }
       } else {
-        this.router.navigate(['home']);
+        this.router.navigate(['/home']);
       }
     });
 
@@ -74,7 +76,7 @@ export class StudentHomeComponent implements OnInit {
   }
 
   openEvent(id) {
-    this.router.navigate(['events' , id]);
+    this.router.navigate(['/events' , id]);
   }
 
 }

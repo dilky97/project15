@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { LoginRegisterAuthService } from 'src/app/services/login-register-auth.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 import { StudentDetails } from 'src/app/models/student-details.model';
 import { AdvisorDetails } from 'src/app/models/advisor-details.model';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
 import { ServiceProviderDetails } from 'src/app/models/service-provider-details.model';
-
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-register',
@@ -88,8 +88,10 @@ export class RegisterComponent implements OnInit {
             this.successMessage = 'Authentification And database added Succesfully';
           },
           errDb => {
-            this.errorMessage = 'Authentification added Succesfully And database ERROR(' + errDb.message + ')';
-            this.successMessage = 'temp';
+            firebase.auth().currentUser.delete().then( resDel => {
+              this.errorMessage = 'SignUp error: Try again(' + errDb.message + ')';
+              this.successMessage = 'temp';
+            });
           }
         );
       },
@@ -102,20 +104,22 @@ export class RegisterComponent implements OnInit {
 
   tryAdvisorRegister(formData) {
 
-    this.advisor.firstName = formData.firstName ;
+    this.advisor.firstName = formData.firstName;
     this.advisor.lastName = formData.lastName;
     this.advisor.email = formData.email;
 
     this.registerService.doRegisterAdvisor(formData).then(
       resAuth => {
-        this.userDetailsService.createAdvisorDatabase(this.student).then(
+        this.userDetailsService.createAdvisorDatabase(this.student, resAuth.user.uid ).then(
           resDb => {
             this.errorMessage = 'temp';
             this.successMessage = 'Authentification And database added Succesfully';
           },
           errDb => {
-            this.errorMessage = 'Authentification added Succesfully And database ERROR(' + errDb.message + ')';
-            this.successMessage = 'temp';
+            firebase.auth().currentUser.delete().then( resDel => {
+              this.errorMessage = 'SignUp error: Try again(' + errDb.message + ')';
+              this.successMessage = 'temp';
+            });
           }
         );
       },
@@ -136,14 +140,16 @@ export class RegisterComponent implements OnInit {
 
     this.registerService.doRegisterServiceProvider(formData).then(
       resAuth => {
-        this.userDetailsService.createServiceProviderDatabase(this.serviceProvider).then(
+        this.userDetailsService.createServiceProviderDatabase(this.serviceProvider, resAuth.user.uid ).then(
           resDb => {
             this.errorMessage = 'temp';
             this.successMessage = 'Authentification And database added Succesfully';
           },
           errDb => {
-            this.errorMessage = 'Authentification added Succesfully And database ERROR(' + errDb.message + ')';
-            this.successMessage = 'temp';
+            firebase.auth().currentUser.delete().then( resDel => {
+              this.errorMessage = 'SignUp error: Try again(' + errDb.message + ')';
+              this.successMessage = 'temp';
+            });
           }
         );
       },

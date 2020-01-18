@@ -29,14 +29,14 @@
 
                   <!-- Dropdown list -->
                   <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
-                      <a class="dropdown-item" routerLink="student-dashboard"><i class="fa fa-columns"></i> Dashboard</a>
+                      <a class="dropdown-item" routerLink="/student-dashboard"><i class="fa fa-columns"></i> Dashboard</a>
                       <hr>
                       <a class="dropdown-item" href="#"><i class="fa fa-bell"></i> Notifications</a>
                       <hr>
                       <a class="dropdown-item" (click)="logOut()"><i class="fa fa-sign-out"></i> Log Out</a>
                   </div>
               </li>
-              <li *ngIf="isLogged == 0" > <button routerLink="login" class="btn btn-sm btn-success" ><b>Login</b></button> </li>
+              <li *ngIf="isLogged == 0" > <button routerLink="/login" class="btn btn-sm btn-success" ><b>Login</b></button> </li>
             </ul>
           </ul>
         </div>

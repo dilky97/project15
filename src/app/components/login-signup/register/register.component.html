@@ -56,7 +56,7 @@
                           </div>
 
                           <div class="form-group">
-                            <label>Select Your Faculty</label>
+                            <label>Select Your Faculty :</label>
                             <select [class.is-invalid]="StudentRegisterForm.get('faculty').invalid && StudentRegisterForm.get('faculty').touched" class="form-control" formControlName="faculty">
                               <option>University of colombo school of computing</option>
                               <option>Faculty of Science</option>
@@ -73,7 +73,7 @@
                           </div>
 
                           <div class="form-group">
-                            <label>Academic Year</label>
+                            <label>Academic Year :</label>
                             <select [class.is-invalid]="StudentRegisterForm.get('year').invalid && StudentRegisterForm.get('year').touched" class="form-control" formControlName="year">
                               <option value=1 >1st Year</option>
                               <option value=2 >2nd year</option>
@@ -142,10 +142,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-10 col-md-16 align-item-center">
                 <div class="border border">
-                    <div class="bg-gray p-4">
-                      <h2>Register Now !</h2> as Lecturer
-                    </div>
-                    <form [formGroup]="AdvisorRegisterForm">
+                  <div class="bg-gray p-4">
+                    <h2>Register Now !</h2> as Lecturer
+                  </div>
+                  <form [formGroup]="AdvisorRegisterForm">
                       <fieldset class="p-4">
 
                         <div class="form-group">
@@ -228,10 +228,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-10 col-md-16 align-item-center">
                 <div class="border border">
-                    <div class="bg-gray p-4">
-                      <h2>Register Now !</h2> as Service Provider
-                    </div>
-                    <form [formGroup]="ServiceProviderRegisterForm">
+                  <div class="bg-gray p-4">
+                    <h2>Register Now !</h2> as Service Provider
+                  </div>
+                  <form [formGroup]="ServiceProviderRegisterForm">
                       <fieldset class="p-4">
 
                         <div class="form-group">
@@ -321,7 +321,7 @@
                         <button [disabled]="ServiceProviderRegisterForm.invalid" type="submit" (click)="tryServiceProviderRegister(ServiceProviderRegisterForm.value)" class="btn btn-primary" >Register Now</button>
 
                       </fieldset>
-                    </form>
+                  </form>
                 </div>
             </div>
         </div>
@@ -335,10 +335,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-10 col-md-16 align-item-center">
                 <div class="border border">
-                    <div class="bg-gray p-4">
-                      <h2>Register Now !</h2> as Sponsor
-                    </div>
-                    <form action="#">
+                  <div class="bg-gray p-4">
+                    <h2>Register Now !</h2> as Sponsor
+                  </div>
+                  <form action="#">
                         <fieldset class="p-4">
                             <input type="email" placeholder="Email*" class="form-control">
                             <input type="password" placeholder="Password*" class="form-control">
@@ -349,7 +349,7 @@
                             </div>
                             <button type="submit" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Register Now</button>
                         </fieldset>
-                    </form>
+                  </form>
                 </div>
             </div>
         </div>
