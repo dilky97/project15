@@ -7,7 +7,7 @@ import { RegisterComponent } from './components/login-signup/register/register.c
 import { TestComponent } from './components/test/test.component';
 import { RouteGuardService } from './route-guard.service';
 import { StudentHomeComponent } from './components/student-dashbord/student-home/student-home.component';
-
+import {ServiceproviderHomeComponent} from './components/serviceprovider-dashboard/serviceprovider-home/serviceprovider-home.component';
 import { EventPlannerLayoutComponent } from './components/event-planner/event-planner-layout/event-planner-layout.component';
 import { CreateEventComponent} from './components/event-planner/create-event/create-event.component';
 import { EventPlannerHomeComponent } from './components/event-planner/event-planner-home/event-planner-home.component';
@@ -25,6 +25,8 @@ const routes: Routes = [
   { path: 'student-dashboard' , component: StudentHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
   { path: 'no-access' , component: NoAccessComponent },
   { path: 'create-club' , component: CreateClubComponent },
+  {path:'serviceprovider-dashboard' ,component:ServiceproviderHomeComponent},
+
 
   { path: 'event-planner' , component: EventPlannerLayoutComponent },
   { path: 'event-planner-home' , component: EventPlannerHomeComponent },
