@@ -18,12 +18,16 @@ export class CreateEventComponent implements OnInit {
   data: any;
   selectedClubId: string;
 
-  router: Router;
 
   //eventItem : eventData  = new eventData();
   //submitted = false;
 
-  constructor(public eventService: EventPlannerService, private dbstore: AngularFirestore, private toastr: ToastrService, private clubIDService : EventPlannerService) {}
+  constructor(
+    public eventService: EventPlannerService, 
+    private dbstore: AngularFirestore, 
+    private toastr: ToastrService, 
+    private clubIDService : EventPlannerService, 
+    private router: Router) {}
 
   ngOnInit() {
     this.selectedClubId = this.clubIDService.getClubId();
@@ -58,7 +62,8 @@ export class CreateEventComponent implements OnInit {
       }
       this.resetForm(form);
       this.toastr.success('Submitted Successfully', 'Event Created');
-      this.router.navigate['/home'];
+      this.router.navigate(['/event-planner-home', this.selectedClubId]);
+;
     }
 }
 
