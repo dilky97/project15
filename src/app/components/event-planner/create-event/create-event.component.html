@@ -1,0 +1,79 @@
+<div class="col-md-12 ">
+    <div class="card card-body">
+        <div class="header">
+            <h4 class="title">General Information</h4>
+        </div>
+        <div class="content">
+            <form #form="ngForm" autocomplete="off" (ngSubmit)="form.form.valid && onSubmit(form)" novalidate>
+                <input type="hidden" name="id" [(ngModel)]="eventService.eventInfo.id">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Event Name</label>
+                            <input type="text" name="EventName" [(ngModel)]="eventService.eventInfo.eventName" class="form-control" placeholder="Event Name">
+                            <!-- <div *ngIf="form.submitted && EventName.invalid" class="invalid-feedback">
+                                <div *ngIf="EventName.errors.required">Event Name is required</div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input type = "date" name ="startDate" [(ngModel)]="eventService.eventInfo.startDate" class="form-control" placeholder="Start Date" >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type = "date" name="endDate"  [(ngModel)]="eventService.eventInfo.endDate" class="form-control" placeholder="End Date" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Start Time</label>
+                            <input type="time" name="startTime" [(ngModel)]="eventService.eventInfo.startTime" class="form-control" placeholder="Start Time" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>End Time</label>
+                            <input type="time" name="endTime" [(ngModel)]="eventService.eventInfo.endTime" class="form-control" placeholder="End Time" >
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Venue</label>
+                            <input name="venue" [(ngModel)]="eventService.eventInfo.venue" class="form-control" placeholder="Venue" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Event Description</label>
+                            <textarea rows="8" class="form-control" placeholder="Here can be your description" value=""></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit"   class="btn btn-info btn-fill pull-right">Save Draft</button>
+                <button type="submit"   class="btn btn-info btn-fill pull-right">Update Information</button>
+                <div class="clearfix"></div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+

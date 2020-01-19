@@ -1,0 +1,26 @@
+<!-- <section class="dashboard section">
+
+    <div class="container">
+
+        
+
+    </div>
+  </section> -->
+
+  <div class="row">
+    <div class="col-md-12">
+      <ngb-tabset>
+        <ngb-tab title="Create Event">
+          <ng-template ngbTabContent>
+            <app-create-event></app-create-event></ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Event Photo</ng-template>
+          <ng-template ngbTabContent><app-file-uploader></app-file-uploader></ng-template>
+        </ngb-tab>
+        <ngb-tab title="Event Sponsors">
+          <ng-template ngbTabContent> <app-sponsors></app-sponsors> </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
