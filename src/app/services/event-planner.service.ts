@@ -21,6 +21,11 @@ export class EventPlannerService {
     //this.eventsRef = dbstore.collection(this.eventdbPath);
   }
 
+  createEventDatabase(newEvent:eventData) {
+    return this.dbstore.collection('events').add(newEvent);
+  }
+
+
   saveClubId(clubID:any){
     this.loggedInClub=clubID;
   }

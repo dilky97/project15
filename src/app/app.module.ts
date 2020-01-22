@@ -54,6 +54,7 @@ import { StudentHomeComponent } from './components/student-dashbord/student-home
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { StudentEventCardComponent } from './components/student-dashbord/student-event-card/student-event-card.component';
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
+import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { CreateClubComponent } from './components/student-dashbord/create-club/c
     StudentHomeComponent,
     NoAccessComponent,
     StudentEventCardComponent,
-    CreateClubComponent
+    CreateClubComponent,
+    EventsListComponent
   ],
   imports: [
     HttpClientModule,

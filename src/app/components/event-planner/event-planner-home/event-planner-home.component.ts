@@ -21,6 +21,8 @@ export class EventPlannerHomeComponent implements OnInit {
   ngOnInit() {
     this.selectedClubId = this.route.snapshot.paramMap.get('id');
 
+    console.log(this.selectedClubId);
+
     this.clubObservable = this.ClubDataService.readClubDatabase(this.selectedClubId) as Observable<ClubDetails> ;
 
     this.clubObservable.subscribe( tempClub => {

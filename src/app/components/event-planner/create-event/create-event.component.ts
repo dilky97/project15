@@ -1,10 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from "@angular/router";
-import { EventPlannerService } from "../../../services/event-planner.service";
-//import { eventData } from "../app.model";
-import { NgForm } from "@angular/forms";
+import { FormGroup,FormControl } from "@angular/forms";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { ToastrService } from "ngx-toastr";
+
+import { EventPlannerService } from "../../../services/event-planner.service";
+import { ClubDetailsService } from "../../../services/club-details.service";
+//import { eventData } from "../app.model";
+
+import { ClubDetails } from 'src/app/models/club-details.model';
+import { eventData } from "src/app/models/event-details.model";
 
 @Component({
   selector: 'app-create-event',
@@ -14,72 +19,97 @@ import { ToastrService } from "ngx-toastr";
 
 export class CreateEventComponent implements OnInit {
 
-
   data: any;
   selectedClubId: string;
+  returnedId: string;
+  loggedInClub : ClubDetails = {} as ClubDetails;
+  newEvent : eventData = {} as eventData;
 
+  CreateEventForm = new FormGroup({
+    clubId: new FormControl(),
+    eventName: new FormControl(),
+    startDate: new FormControl(),
+    endDate: new FormControl(),
+    startTime: new FormControl(),
+    endTime: new FormControl(),
+    venue: new FormControl(),
+    description: new FormControl(),
+  });
 
   //eventItem : eventData  = new eventData();
   //submitted = false;
 
   constructor(
-    public eventService: EventPlannerService, 
+    public eventService: EventPlannerService, private clubIDService : EventPlannerService, private clubDataService : ClubDetailsService,
     private dbstore: AngularFirestore, 
     private toastr: ToastrService, 
-    private clubIDService : EventPlannerService, 
     private router: Router) {}
 
   ngOnInit() {
     this.selectedClubId = this.clubIDService.getClubId();
-    this.resetForm();
+    //this.resetForm();
   }
+  async createEventSubmit(formData) {
+    this.newEvent.clubID = this.selectedClubId;
+    this.newEvent.eventName = formData.eventName;
+    this.newEvent.startDate = formData.startDate;
+    this.newEvent.endDate = formData.endDate;
+    this.newEvent.startTime = formData.startTime;
+    this.newEvent.endTime = formData.endTime;
+    this.newEvent.venue = formData.venue;
+    this.newEvent.description = formData.description;
 
-  resetForm(form?: NgForm) {
-    if (form != null) {
-      form.resetForm();
-    }
-    this.eventService.eventInfo = {
-      id: null,
-      eventName: '',
-      startDate: '',
-      endDate: '',
-      startTime: '',
-      endTime: '',
-      venue: '',
-      description: '',
-      clubID: this.selectedClubId,
-    };
-
-  }
-
-    onSubmit(form: NgForm) {
-      this.data = Object.assign({}, form.value);
-      delete this.data.id;
-      if (form.value.id == null) {
-        this.dbstore.collection('events').add(this.data);
-      } else {
-        this.dbstore.doc('events/' + form.value.id).update(this.data);
+    await this.eventService.createEventDatabase(this.newEvent).then(
+      resDb => {
+        this.returnedId = resDb.id;
+        console.log(this.returnedId);
       }
-      this.resetForm(form);
-      this.toastr.success('Submitted Successfully', 'Event Created');
-      this.router.navigate(['/event-planner-home', this.selectedClubId]);
-;
-    }
+    );
+
+    this.loggedInClub = (await this.dbstore.firestore.collection('clubs').doc(this.selectedClubId).get()).data() as ClubDetails;
+    // console.log(this.loggedInClub);
+    console.log(this.returnedId);
+
+    this.loggedInClub.events.push(this.returnedId);
+    // console.log(this.loggedInClub);
+    this.dbstore.collection('clubs').doc(this.selectedClubId).update(this.loggedInClub);
+
+
+   this.router.navigate(['/event-planner-home',this.selectedClubId,'event', this.returnedId]);
+
+  }
+
+  // resetForm(form?: NgForm) {
+  //   if (form != null) {
+  //     form.resetForm();
+  //   }
+  //   this.eventService.eventInfo = {
+  //     id: null,
+  //     eventName: '',
+  //     startDate: '',
+  //     endDate: '',
+  //     startTime: '',
+  //     endTime: '',
+  //     venue: '',
+  //     description: '',
+  //     clubID: this.selectedClubId,
+  //   };
+
+//   }
+
+//     async onSubmit(form: NgForm) {
+//       this.data = Object.assign({}, form.value);
+//       delete this.data.id;
+//       if (form.value.id == null) {
+//         this.dbstore.collection('events').add(this.data);
+//       } else {
+//         this.dbstore.doc('events/' + form.value.id).update(this.data);
+//       }
+//       this.resetForm(form);
+//       this.toastr.success('Submitted Successfully', 'Event Created');
+//       this.router.navigate(['/event-planner-home', this.selectedClubId]);
+// ;
+//     }
 }
-
-  // newEvent(): void{
-  //   this.submitted = false;
-  //   this.eventItem = new eventData();
-  // }
-
-  // addEvent(){
-  //   this.eventService.createEvent(this.eventItem);
-  //   this.eventItem = new eventData();
-  // }
-
-  // onSubmitCreateEvent(){
-  //   this.submitted = true;
-  //   this.addEvent();
-  // }
 
 

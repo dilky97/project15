@@ -25,8 +25,13 @@ const routes: Routes = [
   { path: 'student-dashboard' , component: StudentHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
   { path: 'no-access' , component: NoAccessComponent },
   { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent, children:[
-    { path: 'create-event' , component: CreateEventComponent },
-    { path: 'event-planner' , component: EventPlannerLayoutComponent }
+    { path: 'create-event' , 
+    component: CreateEventComponent 
+  },
+   {
+     path: 'event/:eventId',
+     component:EventPlannerLayoutComponent
+   }
   ]},
   { path: 'create-club' , component: CreateClubComponent },
 ];

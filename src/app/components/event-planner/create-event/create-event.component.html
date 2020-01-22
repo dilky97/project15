@@ -5,18 +5,14 @@
             <p>Please tell us the about your event</p> <hr>
         </div>
         <div class="content">
-            <form #form="ngForm" autocomplete="off" (ngSubmit)="form.form.valid && onSubmit(form)" novalidate>
-                <input type="hidden" name="id" [(ngModel)]="eventService.eventInfo.id">
-                <input type="hidden" name="clubid" [(ngModel)]="eventService.eventInfo.clubID">
+            <form [formGroup]="CreateEventForm">
+                <input type="hidden" name="clubid" formControlName="clubId">
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Event Name</label>
-                            <input type="text" name="EventName" [(ngModel)]="eventService.eventInfo.eventName" class="form-control" placeholder="Event Name">
-                            <!-- <div *ngIf="form.submitted && EventName.invalid" class="invalid-feedback">
-                                <div *ngIf="EventName.errors.required">Event Name is required</div>
-                            </div> -->
+                            <input type="text" name="EventName" formControlName="eventName" class="form-control" placeholder="Event Name">
                         </div>
                     </div>
                 </div>
@@ -25,13 +21,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Start Date</label>
-                            <input type = "date" name ="startDate" [(ngModel)]="eventService.eventInfo.startDate" class="form-control" placeholder="Start Date" >
+                            <input type = "date" name ="startDate" formControlName="startDate" class="form-control" placeholder="Start Date" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>End Date</label>
-                            <input type = "date" name="endDate"  [(ngModel)]="eventService.eventInfo.endDate" class="form-control" placeholder="End Date" >
+                            <input type = "date" name="endDate"  formControlName="endDate" class="form-control" placeholder="End Date" >
                         </div>
                     </div>
                 </div>
@@ -40,13 +36,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Start Time</label>
-                            <input type="time" name="startTime" [(ngModel)]="eventService.eventInfo.startTime" class="form-control" placeholder="Start Time" required>
+                            <input type="time" name="startTime" formControlName="startTime" class="form-control" placeholder="Start Time" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>End Time</label>
-                            <input type="time" name="endTime" [(ngModel)]="eventService.eventInfo.endTime" class="form-control" placeholder="End Time" >
+                            <input type="time" name="endTime" formControlName="endTime" class="form-control" placeholder="End Time" >
                         </div>
                     </div>
                 </div>
@@ -56,7 +52,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Venue</label>
-                            <input name="venue" [(ngModel)]="eventService.eventInfo.venue" class="form-control" placeholder="Venue" required>
+                            <input type = "text" name="venue" formControlName="venue" class="form-control" placeholder="Venue" required>
                         </div>
                     </div>
                 </div>
@@ -65,20 +61,16 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Event Description</label>
-                            <textarea rows="8" class="form-control" placeholder="Here can be your description" value=""></textarea>
+                            <input type="text" rows="8" class="form-control" formControlName="description" placeholder="Here can be your description" value="">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Create Event</button>  
+                        <button type="submit" (click)="createEventSubmit(CreateEventForm.value)" class="btn btn-info btn-fill pull-right">Create Event</button>  
                     </div>
                     
                 </div>
-                
-                
-                <!-- <div class="clearfix"></div> -->
-
             </form>
         </div>
     </div>

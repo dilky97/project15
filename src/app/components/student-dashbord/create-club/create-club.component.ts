@@ -62,7 +62,7 @@ export class CreateClubComponent implements OnInit {
     this.club.advisor = formData.advisor;
     this.club.eventPlanner = formData.eventPlanner;
     this.club.des = formData.des;
-    this.club.events = {} as string[];
+    this.club.events = [] as string[];
     this.club.isActivated = false;
 
     firebase.auth().onAuthStateChanged(async user => {
