@@ -4,20 +4,22 @@
 			<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
         <!-------------- article - Srart -------------->
 				<article class="single-post">
-          <h2>{{eventDetailsObject.title}}</h2>
+          <h2>{{event.title}}</h2>
 
 					<ul class="list-inline">
-						<li class="list-inline-item">by <a href="">{{eventDetailsObject.club}}</a></li>
-						<li class="list-inline-item">{{eventDetailsObject.date.toDate() | date: 'medium'}}</li>
+						<li class="list-inline-item">by <a href="">{{event.club}}</a></li>
+						<!-- <li class="list-inline-item">{{event.date.toDate() | date: 'medium'}}</li> -->
           </ul>
 
-          <img src="{{eventDetailsObject.img}}" alt="article-01">
+          <img src="{{event.img}}" alt="article-01">
 
           <!-- Details paragraph - start -->
           <p>
-            {{eventDetailsObject.des}}
+            {{event.des}}
           </p>
           <!-- Details paragraph - end -->
+          <button *ngIf="isGoing == 0" (click)="changeGoing()" type="button" class="btn btn-outline-success">Mark as Going</button>
+          <button *ngIf="isGoing == 1" (click)="changeGoing()" type="button" class="btn btn-success">Going</button>
 
           <!-- social media icons - start -->
 					<ul class="social-circle-icons list-inline">
@@ -71,10 +73,10 @@
 					<div class="widget category">
 						<h5 class="widget-header">Sponsors</h5>
 						<ul class="category-list">
-							<li class="sponsor-levels" ><img src="../../../assets/images/eventsHub/sponsor-levels/platinum.png">{{eventDetailsObject.sponsor.platinum}}</li>
-							<li class="sponsor-levels" ><img src="../../../assets/images/eventsHub/sponsor-levels/gold.png">{{eventDetailsObject.sponsor.gold}}</li>
-							<li class="sponsor-levels" ><img src="../../../assets/images/eventsHub/sponsor-levels/silver.png">{{eventDetailsObject.sponsor.silver}}</li>
-							<li class="sponsor-levels" ><img src="../../../assets/images/eventsHub/sponsor-levels/bronze.png">{{eventDetailsObject.sponsor.bronze}}</li>
+							<!-- <li class="sponsor-levels" ><img src="../../../assets/images/eventsHub/sponsor-levels/platinum.png">{{event.sponsor.platinum}}</li>
+							<li class="sponsor-levels" ><img src="../../../assets/images/eventsHub/sponsor-levels/gold.png">{{event.sponsor.gold}}</li>
+							<li class="sponsor-levels" ><img src="../../../assets/images/eventsHub/sponsor-levels/silver.png">{{event.sponsor.silver}}</li>
+							<li class="sponsor-levels" ><img src="../../../assets/images/eventsHub/sponsor-levels/bronze.png">{{event.sponsor.bronze}}</li> -->
 						</ul>
           </div>
           <!-- Sponsor Widget - end -->
