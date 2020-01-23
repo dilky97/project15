@@ -20,8 +20,6 @@ export class HomeComponent implements OnInit {
   selectedStatus = 0 ;         // ----- ( 1 = done/ended ) , ( 0 = undone/new ) , ( 99 = all ) ---- // , initially selected club is new
   selectedStatusWord = 'New' ; // for button display word
 
-  test = 'initial' ;
-
   constructor( private eventDetails: EventDetailsService , private router: Router) {
 
     this.setViewList();

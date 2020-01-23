@@ -30,8 +30,6 @@ export class CreateClubComponent implements OnInit {
 
   returnedId: string;
 
-  x: File;
-
   ClubRegisterForm = this.formBuilder.group({
     name: ['', Validators.required],
     advisor: ['', [Validators.email, Validators.required]],
@@ -39,14 +37,6 @@ export class CreateClubComponent implements OnInit {
     eventPlanner: ['', [Validators.email, Validators.required, unregisteredEmailValidator('students')]],
     des: ['', Validators.required]
   });
-
-  // ClubRegisterForm = this.formBuilder.group({
-  //   name: [''],
-  //   advisor: [''],
-  //   president: [''],
-  //   eventPlanner: ['', unregisteredEmailValidator('students')],
-  //   des: [''],
-  // });
 
   constructor(
               private formBuilder: FormBuilder,
@@ -62,7 +52,6 @@ export class CreateClubComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.x);
     this.http.get( 'https://us-central1-testing-1de9d.cloudfunctions.net/sendMail?dest=priyashanshell@gmail.com&msg=cdhscvdhcd' );
   }
 
@@ -72,10 +61,10 @@ export class CreateClubComponent implements OnInit {
     this.club.advisor = formData.advisor;
     this.club.eventPlanner = formData.eventPlanner;
     this.club.des = formData.des;
-    this.club.events = {} as string[];
+    this.club.events = [] as Array<string>;
     this.club.isActivated = false;
 
-    firebase.auth().onAuthStateChanged(async user => {
+    firebase.auth().onAuthStateChanged( user => {
 
       this.club.president = user.email ;
 
