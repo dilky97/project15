@@ -21,11 +21,15 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
 
     firebase.auth().onAuthStateChanged( user => {
-      if (user.displayName === 'student') {
-        this.userDetails.readStudentDatabase(user.uid).subscribe( temp => {
-          this.student = temp as StudentDetails;
-          this.isLogged = 1;
-        });
+      if (user) {
+        if (user.displayName === 'student') {
+          this.userDetails.readStudentDatabase(user.uid).subscribe( temp => {
+            this.student = temp as StudentDetails;
+            this.isLogged = 1;
+          });
+        } else {
+          this.isLogged = 0;
+        }
       } else {
         this.isLogged = 0;
       }
