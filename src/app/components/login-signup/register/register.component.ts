@@ -76,7 +76,7 @@ export class RegisterComponent implements OnInit {
     this.student.email = formData.email;
     this.student.faculty = formData.faculty;
     this.student.academicYear = formData.year;
-    this.student.participatingEvents = [] as string[] ;
+    this.student.participatingEvents = [] as Array<string> ;
     this.student.presidentIn = [] as Array<{id: string, name: string}> ;
     this.student.eventPlannerIn = [] as Array<{id: string, name: string}> ;
 
@@ -110,7 +110,7 @@ export class RegisterComponent implements OnInit {
 
     this.registerService.doRegisterAdvisor(formData).then(
       resAuth => {
-        this.userDetailsService.createAdvisorDatabase(this.student, resAuth.user.uid ).then(
+        this.userDetailsService.createAdvisorDatabase(this.advisor, resAuth.user.uid ).then(
           resDb => {
             this.errorMessage = 'temp';
             this.successMessage = 'Authentification And database added Succesfully';

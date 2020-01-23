@@ -102,10 +102,10 @@
                                    type="password"
                                    formControlName="password"
                                    class="form-control">
-                                  <div *ngIf="StudentRegisterForm.get('password').invalid && StudentRegisterForm.get('password').touched">
-                                    <small class="text-danger" *ngIf="StudentRegisterForm.get('password').errors.required">*Enter a password !</small>
-                                    <small class="text-danger" *ngIf="StudentRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
-                                  </div>
+                            <div *ngIf="StudentRegisterForm.get('password').invalid && StudentRegisterForm.get('password').touched">
+                              <small class="text-danger" *ngIf="StudentRegisterForm.get('password').errors.required">*Enter a password !</small>
+                              <small class="text-danger" *ngIf="StudentRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
+                            </div>
                           </div>
 
                           <div class="form-group">
@@ -114,10 +114,10 @@
                                    type="password"
                                    formControlName="confirmPassword"
                                    class="form-control">
-                                   <div *ngIf="StudentRegisterForm.get('confirmPassword').invalid && StudentRegisterForm.get('confirmPassword').touched">
-                                    <small class="text-danger" *ngIf="StudentRegisterForm.get('confirmPassword').errors.required">*Re-Enter the password !</small>
-                                    <small class="text-danger" *ngIf="StudentRegisterForm.get('confirmPassword').errors.mustMatch">*Passwords doesn't match !</small>
-                                  </div>
+                            <div *ngIf="StudentRegisterForm.get('confirmPassword').invalid && StudentRegisterForm.get('confirmPassword').touched">
+                              <small class="text-danger" *ngIf="StudentRegisterForm.get('confirmPassword').errors.required">*Re-Enter the password !</small>
+                              <small class="text-danger" *ngIf="StudentRegisterForm.get('confirmPassword').errors.mustMatch">*Passwords doesn't match !</small>
+                            </div>
                           </div>
 
                           <div class="form-group">
@@ -295,10 +295,10 @@
                                  type="password"
                                  formControlName="password"
                                  class="form-control">
-                                <div *ngIf="ServiceProviderRegisterForm.get('password').invalid && ServiceProviderRegisterForm.get('password').touched">
-                                  <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.required">*Enter a password !</small>
-                                  <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
-                                </div>
+                          <div *ngIf="ServiceProviderRegisterForm.get('password').invalid && ServiceProviderRegisterForm.get('password').touched">
+                            <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.required">*Enter a password !</small>
+                            <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
+                          </div>
                         </div>
 
                         <div class="form-group">
@@ -307,10 +307,10 @@
                                  type="password"
                                  formControlName="confirmPassword"
                                  class="form-control">
-                                 <div *ngIf="ServiceProviderRegisterForm.get('confirmPassword').invalid && ServiceProviderRegisterForm.get('confirmPassword').touched">
-                                  <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('confirmPassword').errors.required">*Re-Enter the password !</small>
-                                  <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('confirmPassword').errors.mustMatch">*Passwords doesn't match !</small>
-                                </div>
+                          <div *ngIf="ServiceProviderRegisterForm.get('confirmPassword').invalid && ServiceProviderRegisterForm.get('confirmPassword').touched">
+                            <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('confirmPassword').errors.required">*Re-Enter the password !</small>
+                            <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('confirmPassword').errors.mustMatch">*Passwords doesn't match !</small>
+                          </div>
                         </div>
 
                         <div class="form-group">
