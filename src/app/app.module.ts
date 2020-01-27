@@ -29,34 +29,41 @@ import { EventPlannerHomeComponent } from './components/event-planner/event-plan
 import { EventCardComponent } from './components/event-planner/event-card/event-card.component';
 import { RegisterComponent } from './components/login-signup/register/register.component';
 import { TestComponent } from './components/test/test.component';
-import { StudentRegisterComponent } from './components/login-signup/student-register/student-register.component';
 import { NewSponsorComponent } from './components/sponsor/new-sponsor/new-sponsor.component';
+//from dily
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StudentHomeComponent } from './components/student-dashbord/student-home/student-home.component';
+import { NoAccessComponent } from './components/no-access/no-access.component';
+import { StudentEventCardComponent } from './components/student-dashbord/student-event-card/student-event-card.component';
+//from lamudu
+import { SponsorListComponent } from './components/sponsor/sponsor-list/sponsor-list/sponsor-list.component';
 
 // Services
 import { EventDetailsService } from './services/event-details.service';
 import { LoginRegisterAuthService } from './services/login-register-auth.service';
 import { UserDetailsService } from './services/user-details.service';
 import { RouteGuardService } from './route-guard.service';
-                              // from dilky
+// from dilky
 import { EventPlannerService } from './services/event-planner.service';
-
+//from lamudu
+import { SponsorService } from './services/sponsor.service';
 
 // Directives
-                            // from dilky
+// from dilky
 import { DragDropDirective } from './directives/drag-drop.directive';
 
 // Others
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
+import { SponsorDashboardComponent } from './components/sponsor/sponsor-dashboard/sponsor-dashboard.component';
+import { EditSponsorComponent } from './components/sponsor/edit-sponsor/edit-sponsor.component';
 
-                            // from dilky
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { StudentHomeComponent } from './components/student-dashbord/student-home/student-home.component';
-import { NoAccessComponent } from './components/no-access/no-access.component';
-import { StudentEventCardComponent } from './components/student-dashbord/student-event-card/student-event-card.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SponsorListComponent } from './components/sponsor/sponsor-list/sponsor-list/sponsor-list.component';
-import { SponsorService } from './services/sponsor.service';
+
+
+// from dilky
+
+
+
 
 @NgModule({
   declarations: [
@@ -82,10 +89,13 @@ import { SponsorService } from './services/sponsor.service';
     DragDropDirective,
     StudentHomeComponent,
     NoAccessComponent,
-    StudentEventCardComponent
-    StudentRegisterComponent,
+    StudentEventCardComponent,
     NewSponsorComponent,
     SponsorListComponent,
+    SponsorDashboardComponent,
+    EditSponsorComponent
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -97,8 +107,6 @@ import { SponsorService } from './services/sponsor.service';
     ReactiveFormsModule,
     NgbModule,
     AngularFireStorageModule,
-    FormsModule,
-    ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
   providers: [EventDetailsService, LoginRegisterAuthService, UserDetailsService, RouteGuardService, EventPlannerService,SponsorService],

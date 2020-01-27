@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Output ,EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-file-uploader',
@@ -8,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class FileUploaderComponent implements OnInit {
 
   isHovering : boolean;
-
+  message: string = ""
+  @Output() messageEvent = new EventEmitter<string>();
   files: File[] = [];
 
   constructor() { }
 
   ngOnInit() {
-  }
-
   
+  }
 
   toggleHover(event: boolean) {
     this.isHovering = event;

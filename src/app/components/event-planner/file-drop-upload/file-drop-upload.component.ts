@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef,  Output, EventEmitter} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from "@angular/fire/storage";
 import { Observable } from "rxjs";
@@ -22,12 +22,18 @@ export class FileDropUploadComponent implements OnInit{
   snapshot : Observable<any>;
   downloadURL : string;
 
-  
+  message: string = ""
 
+
+
+  @Output() messageEvent = new EventEmitter<string>();
+  
   constructor(private fileStorage: AngularFireStorage,private datastore: AngularFirestore) { }
 
   ngOnInit(){
     this.startUpload();
+
+    this.messageEvent.emit("ndjjefop");
   }
 
   startUpload(){
@@ -50,8 +56,13 @@ export class FileDropUploadComponent implements OnInit{
     this.snapshot = this.task.snapshotChanges().pipe(
       tap(console.log),
       finalize( async() => {
-        //console.log('uploads');
+
         this.downloadURL = await fileRef.getDownloadURL().toPromise();
+
+        console.log("url sr " + this.downloadURL);
+        this.message = this.downloadURL;
+        console.log("url sr " + this.message);
+        this.messageEvent.emit(this.message);
 
         this.datastore.collection('files').add({downloadURL:this.downloadURL,filePath});
 

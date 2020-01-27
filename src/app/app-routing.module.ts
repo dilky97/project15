@@ -12,7 +12,10 @@ import { EventPlannerLayoutComponent } from './components/event-planner/event-pl
 import { CreateEventComponent} from './components/event-planner/create-event/create-event.component';
 import { EventPlannerHomeComponent } from './components/event-planner/event-planner-home/event-planner-home.component';
 import { NoAccessComponent } from './components/no-access/no-access.component';
-
+import { EditSponsorComponent } from './components/sponsor/edit-sponsor/edit-sponsor.component';
+import { SponsorDashboardComponent } from './components/sponsor/sponsor-dashboard/sponsor-dashboard.component';
+import { SponsorListComponent } from './components/sponsor/sponsor-list/sponsor-list/sponsor-list.component';
+import { NewSponsorComponent } from './components/sponsor/new-sponsor/new-sponsor.component';
 
 const routes: Routes = [
 
@@ -20,16 +23,19 @@ const routes: Routes = [
   { path: 'test' , component: TestComponent , canActivate: [RouteGuardService] , data: {role: 'eventPlanner'}},
   { path: 'login' , component: LoginComponent },
   { path: 'register' , component: RegisterComponent },
-  { path: 'home' , component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'events/:id' , component: ViewEventComponent },
   { path: 'student-dashboard' , component: StudentHomeComponent },
   { path: 'no-access' , component: NoAccessComponent },
-
+  { path: 'sponsor-dashboard' ,component:SponsorDashboardComponent},
   { path: 'event-planner' , component: EventPlannerLayoutComponent },
   { path: 'event-planner-home' , component: EventPlannerHomeComponent },
+  { path: 'edit-sponsor', component: EditSponsorComponent },
+  { path: 'sponsor-list', component:SponsorListComponent },
+  { path : 'new-sponsor', component:NewSponsorComponent}
 ];
 
-export const routingComponents = [ ViewEventComponent , HomeComponent ,EventPlannerLayoutComponent, CreateEventComponent ] ;
+export const routingComponents = [ ViewEventComponent , HomeComponent ,EventPlannerLayoutComponent, CreateEventComponent, EditSponsorComponent ] ;
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
