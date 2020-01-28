@@ -25,6 +25,11 @@ export class EventPlannerService {
     return this.dbstore.collection('events').add(newEvent);
   }
 
+  getanEvent(eventid : string){
+    return this.dbstore.collection('events').doc(eventid).snapshotChanges();
+
+  }
+
 
   saveClubId(clubID:any){
     this.loggedInClub=clubID;
