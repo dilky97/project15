@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClubDetails } from 'src/app/models/club-details.model';
-import { eventData } from "src/app/models/event-details.model";
+import { eventData, EventDetails } from "src/app/models/event-details.model";
 import { EventPlannerService } from 'src/app/services/event-planner.service';
 import { ClubDetailsService } from 'src/app/services/club-details.service';
 
@@ -15,7 +15,7 @@ import { ClubDetailsService } from 'src/app/services/club-details.service';
 export class EventsListComponent implements OnInit {
   selectedClubId: any;
   club: ClubDetails = {} as ClubDetails;
-  singleEventData: eventData[] = []; 
+  singleEventData: eventData[];
   eventIdsoftheClub: Array<string>;
 
   clubObservable : Observable<ClubDetails>;
@@ -46,29 +46,26 @@ export class EventsListComponent implements OnInit {
   }
 
   getEventData(){
-    
+    // this.singleEventData.push(eventsArray.payload.data() as eventData)
 
     this.eventIdsoftheClub.forEach(eventItem => {
 
       this.EventDataService.getanEvent(eventItem).subscribe( eventsArray =>{
-    
-        this.singleEventData.push(eventsArray.payload.data() as eventData)
-        
-        // this.singleEventData =  any.map( item =>{
-        //   return{
-        //     id: item.payload.doc.id,
-        //     ...item.payload.doc.data()                       
-        //   } as eventData ;
-        // })
-
-        
+        this.singleEventData.push( 
+          { id: eventsArray.payload.id,
+            eventName: eventsArray.payload.data().eventName,
+            startDate: eventsArray.payload.data().startDate,
+            endDate: eventsArray.payload.data().startTime,
+            startTime: eventsArray.payload.data().startTime,
+            endTime: eventsArray.payload.data().endTime,
+            venue: eventsArray.payload.data().venue,
+            description: eventsArray.payload.data().description,
+            clubID: eventsArray.payload.data().clubID }
+         );
       })
       
     });
     console.log(this.singleEventData);
-
-   
-    
   }
 
   openEventPlan(){

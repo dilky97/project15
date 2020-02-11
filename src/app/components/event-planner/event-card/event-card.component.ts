@@ -1,4 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-card',
@@ -17,10 +18,14 @@ export class EventCardComponent implements OnInit {
   @Input('tempDescription') description: string;
   @Input('tempClubID') clubID: string;
 
-  constructor() { }
+  constructor( private router: Router ) { }
 
 
   ngOnInit() {
+  }
+
+  openEvent(id) {
+    this.router.navigate(['/events' , id]);
   }
 
 }
