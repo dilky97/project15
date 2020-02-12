@@ -7,6 +7,7 @@ import { AdvisorDetails } from 'src/app/models/advisor-details.model';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
 import { ServiceProviderDetails } from 'src/app/models/service-provider-details.model';
 import * as firebase from 'firebase/app';
+import { MustLecturer } from 'src/app/helpers/must-lecturer.validator';
 
 @Component({
   selector: 'app-register',
@@ -39,9 +40,10 @@ export class RegisterComponent implements OnInit {
   });
 
   AdvisorRegisterForm = this.formBuilder.group({
+    title: ['Mr.'],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    email: ['', [Validators.email, Validators.required]],
+    email: ['', [MustLecturer, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', Validators.required],
   }, {
@@ -104,9 +106,12 @@ export class RegisterComponent implements OnInit {
 
   tryAdvisorRegister(formData) {
 
+    this.advisor.title = formData.title;
     this.advisor.firstName = formData.firstName;
     this.advisor.lastName = formData.lastName;
     this.advisor.email = formData.email;
+    this.advisor.advisorIn = [] as Array<{id: string, name: string}>;
+    this.advisor.newClubRequests = [] as Array<{id: string, name: string}>;
 
     this.registerService.doRegisterAdvisor(formData).then(
       resAuth => {
@@ -128,6 +133,7 @@ export class RegisterComponent implements OnInit {
         this.successMessage = 'temp';
       }
     );
+
   }
 
   tryServiceProviderRegister(formData) {
@@ -158,6 +164,7 @@ export class RegisterComponent implements OnInit {
         this.successMessage = 'temp';
       }
     );
+
   }
 
 }
