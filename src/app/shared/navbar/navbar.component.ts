@@ -3,6 +3,7 @@ import * as firebase from 'firebase/app';
 import { StudentDetails } from 'src/app/models/student-details.model';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 import { Router } from '@angular/router';
+import { AdvisorDetails } from 'src/app/models/advisor-details.model';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  email: string;
-  student: StudentDetails;
+  user: any;
+  displayName: string;
 
   isLogged: number;
 
@@ -23,8 +24,15 @@ export class NavbarComponent implements OnInit {
     firebase.auth().onAuthStateChanged( user => {
       if (user) {
         if (user.displayName === 'student') {
+          this.displayName = user.displayName;
           this.userDetails.readStudentDatabase(user.uid).subscribe( temp => {
-            this.student = temp as StudentDetails;
+            this.user = temp as StudentDetails;
+            this.isLogged = 1;
+          });
+        } else if (user.displayName === 'advisor') {
+          this.displayName = user.displayName;
+          this.userDetails.readAdvisorDatabase(user.uid).subscribe( temp => {
+            this.user = temp as AdvisorDetails;
             this.isLogged = 1;
           });
         } else {
