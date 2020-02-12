@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
 
           this.errorMessage = 'temp';
           this.successMessage = 'You Logged In';
+          console.log(user);
           this.router.navigate(['/home']);
         } else { // no user
           this.errorMessage = 'Login Error, Try Again !';
