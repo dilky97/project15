@@ -75,6 +75,10 @@ export class CreateEventComponent implements OnInit {
     this.dbstore.collection('clubs').doc(this.selectedClubId).update(this.loggedInClub);
 
 
+    this.newEvent.id = this.returnedId;
+    this.dbstore.collection('events').doc(this.returnedId).update(this.newEvent);
+
+
    this.router.navigate(['/event-planner-home',this.selectedClubId,'event', this.returnedId]);
 
   }

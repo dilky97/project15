@@ -15,7 +15,7 @@ import { ClubDetailsService } from 'src/app/services/club-details.service';
 export class EventsListComponent implements OnInit {
   selectedClubId: any;
   club: ClubDetails = {} as ClubDetails;
-  singleEventData: eventData[];
+  singleEventData: eventData[] = [];
   eventIdsoftheClub: Array<string>;
 
   clubObservable : Observable<ClubDetails>;
@@ -46,22 +46,23 @@ export class EventsListComponent implements OnInit {
   }
 
   getEventData(){
-    // this.singleEventData.push(eventsArray.payload.data() as eventData)
-
+  
     this.eventIdsoftheClub.forEach(eventItem => {
 
       this.EventDataService.getanEvent(eventItem).subscribe( eventsArray =>{
-        this.singleEventData.push( 
-          { id: eventsArray.payload.id,
-            eventName: eventsArray.payload.data().eventName,
-            startDate: eventsArray.payload.data().startDate,
-            endDate: eventsArray.payload.data().startTime,
-            startTime: eventsArray.payload.data().startTime,
-            endTime: eventsArray.payload.data().endTime,
-            venue: eventsArray.payload.data().venue,
-            description: eventsArray.payload.data().description,
-            clubID: eventsArray.payload.data().clubID }
-         );
+        // this.singleEventData.push( 
+        //   { id: eventsArray.payload.id,
+        //     eventName: eventsArray.payload.data().eventName,
+        //     startDate: eventsArray.payload.data().startDate,
+        //     endDate: eventsArray.payload.data().startTime,
+        //     startTime: eventsArray.payload.data().startTime,
+        //     endTime: eventsArray.payload.data().endTime,
+        //     venue: eventsArray.payload.data().venue,
+        //     description: eventsArray.payload.data().description,
+        //     clubID: eventsArray.payload.data().clubID }
+        //  );
+        this.singleEventData.push(eventsArray.payload.data() as eventData);
+
       })
       
     });
