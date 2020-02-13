@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { EventDetailsService } from 'src/app/services/event-details.service';
-import { EventDetails } from 'src/app/models/event-details.model';
+import { EventDetails, eventData } from 'src/app/models/event-details.model';
 
 @Component({
   selector: 'app-student-home',
@@ -21,8 +21,8 @@ export class StudentHomeComponent implements OnInit {
              ) { }
 
   student: StudentDetails = {} as StudentDetails;
-  allEventList: EventDetails[] = [] as EventDetails[];
-  participatingEventList: EventDetails[] = [] as EventDetails[];
+  allEventList: eventData[] = [] as eventData[];
+  participatingEventList: eventData[] = [] as eventData[];
 
   studentObservable: Observable<StudentDetails>;
 
@@ -54,12 +54,8 @@ export class StudentHomeComponent implements OnInit {
 
     this.eventDetails.getAllEvents().subscribe( actionArray => {
 
-      this.allEventList = actionArray.map( item => {
-        return {
-          id: item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as EventDetails ;
-      });
+      this.allEventList = actionArray as unknown as eventData[] ;
+      console.log(this.allEventList);
 
     });
 
