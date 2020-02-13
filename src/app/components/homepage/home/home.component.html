@@ -60,10 +60,15 @@
 
               <div class="card" *ngFor="let tempEvent of showingEventList">
                 <app-card (click)='openEvent(tempEvent.id)' [tempId]="tempEvent.id"
-                                                            [tempTitle]="tempEvent.title"
-                                                            [tempImg]="tempEvent.img"
-                                                            [tempClub]="tempEvent.club"
-                                                            [tempDate]="tempEvent.date"
+                                                            [tempTitle]="tempEvent.eventName"
+                                                            [tempImg]="tempEvent.image"
+                                                            [tempClub]="tempEvent.clubID"
+                                                            [tempStartDate]="tempEvent.startDate"
+                                                            [tempStartTime]="tempEvent.startTime"
+                                                            [tempStartTimeStamp]="tempEvent.startTimeStamp"
+                                                            [tempEndDate]="tempEvent.endDate"
+                                                            [tempEndTime]="tempEvent.endTime"
+                                                            [tempEndTimeStamp]="tempEvent.endTimeStamp"
                                                             [tempStatus]="tempEvent.status" >
                 </app-card>
               </div>

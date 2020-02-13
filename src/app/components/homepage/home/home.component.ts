@@ -1,4 +1,4 @@
-import { EventDetails } from '../../../models/event-details.model';
+import { EventDetails, eventData } from '../../../models/event-details.model';
 import { EventDetailsService } from '../../../services/event-details.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,14 +11,18 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit {
 
-  allEventList: EventDetails[];
-  showingEventList: EventDetails[];
+  // allEventList: EventDetails[];
+  // showingEventList: EventDetails[];
+  allEventList: eventData[];
+  showingEventList: eventData[];
 
   clubs = [] ;
 
   selectedClub = 'all' ;       // initially selected club is All
   selectedStatus = 0 ;         // ----- ( 1 = done/ended ) , ( 0 = undone/new ) , ( 99 = all ) ---- // , initially selected club is new
   selectedStatusWord = 'New' ; // for button display word
+
+  test = 'initial' ;
 
   constructor( private eventDetails: EventDetailsService , private router: Router) {
 
@@ -47,7 +51,7 @@ export class HomeComponent implements OnInit {
         return {                                            //                                                  //
           id: item.payload.doc.id,                          //     set the showing events list according to     //
           ...item.payload.doc.data()                        //             selected status ans club             //
-        } as EventDetails ;                                 //                                                  //
+        } as eventData ;                                    //                                                  //
       });                                                   //////////////////////////////////////////////////////
     });
 
@@ -67,12 +71,12 @@ export class HomeComponent implements OnInit {
         return {                                        //                                            //
           id: item.payload.doc.id,                      //         set the all events list to         //
           ...item.payload.doc.data()                    //   find all clubs that has created events   //
-        } as EventDetails ;                             //                                            //
+        } as eventData ;                                //                                            //
       });                                               ////////////////////////////////////////////////
 
-      for ( const item  of this.allEventList ) {        ////////////////////////////////////////////////
-        if ( !( this.clubs.includes(item.club) ) ) {    //        pushing clubs to clubs array        //
-          this.clubs.push(item.club);                   ////////////////////////////////////////////////
+      for ( const item  of this.allEventList ) {          ////////////////////////////////////////////////
+        if ( !( this.clubs.includes(item.clubID) ) ) {    //        pushing clubs to clubs array        //
+          this.clubs.push(item.clubID);                   ////////////////////////////////////////////////
         }
       }
 
@@ -81,7 +85,5 @@ export class HomeComponent implements OnInit {
     });
 
 ////////// getting all event details - end //////////
-
   }
-
 }

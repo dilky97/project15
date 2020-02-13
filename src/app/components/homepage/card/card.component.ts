@@ -30,8 +30,14 @@ export class CardComponent implements OnInit {
   @Input( 'tempTitle' ) title: string ;     ////////////                    //////////////
   @Input( 'tempImg' ) img: string ;         ////////////    inputs from     //////////////
   @Input( 'tempClub' ) club: string ;       ////////////   home component   //////////////
-  @Input( 'tempDate' ) tempDate: any ;      ////////////                    //////////////
   @Input( 'tempStatus' )status: number ;    //////////////////////////////////////////////
+  @Input( 'tempStartDate' )startDate: any ;
+  @Input( 'tempStartTime' )startTime: any ;
+  @Input( 'tempStartTimeStamp' )startTimeStamp: number ;
+  @Input( 'tempEndDate' )endDate: any ;
+  @Input( 'tempEndTime' )endTime: any ;
+  @Input( 'tempEndTimeStamp' )endTimeStam: number ;
+
 
   ngOnInit() {
 
@@ -41,7 +47,7 @@ export class CardComponent implements OnInit {
 
   calculateTime() {  // this function calculating the time left & updating the databse, if event done
 
-    this.rest = ( this.tempDate.toDate().getTime() - Date.now() ) / 1000 ;   // remaining time as a number
+    this.rest = ( this.startTimeStamp - Date.now() ) / 1000 ;   // remaining time as a number
 
     if ( this.rest >= 0 ) {      // if time is left
       this.days = Math.floor(this.rest / 86400);
