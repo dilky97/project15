@@ -21,16 +21,12 @@ export class UserDetailsService {
     return this.firestore.collection('students').doc(id).set(advisor);
   }
 
-  createServiceProviderDatabase(serviceProvider: ServiceProviderDetails , id: string ) {
-    return this.firestore.collection('serviceProviders').doc(id).set(serviceProvider);
-  }
-
   readStudentDatabase(id: string) {
     return this.firestore.collection('students').doc(id).valueChanges();
   }
 
   createServiceProviderDatabase(serviceProvider: ServiceProviderDetails ,id: string){
-    return this.firestore.collection('serviceproviders').doc(id).set(serviceProvider);
+    return this.firestore.collection('serviceProviders').doc(id).set(serviceProvider);
   }
   
   readServiceProviderDatabase(id: string){

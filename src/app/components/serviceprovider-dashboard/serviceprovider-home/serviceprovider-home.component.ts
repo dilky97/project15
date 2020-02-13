@@ -3,6 +3,7 @@ import { UserDetailsService } from 'src/app/services/user-details.service';
 import { ServiceProviderDetails } from 'src/app/models/service-provider-details.model';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { EventDetailsService } from 'src/app/services/event-details.service';
 import { EventDetails } from 'src/app/models/event-details.model';
@@ -15,6 +16,7 @@ import { EventDetails } from 'src/app/models/event-details.model';
 export class ServiceproviderHomeComponent implements OnInit {
 
   constructor(
+               private firestore:AngularFirestore,
                private ServiceProviderDetails: UserDetailsService,
                public router: Router,
                private eventDetails: EventDetailsService
@@ -24,11 +26,15 @@ export class ServiceproviderHomeComponent implements OnInit {
   // participatingEventList: EventDetails[] = [] as EventDetails[];
 
   serviceProviderObservable: Observable<ServiceProviderDetails>;
-
-
+  // data;
+  // id = 'EOAb2xg26PhVrrd4lHq7';
   ngOnInit() {
+  
+    
+
     firebase.auth().onAuthStateChanged( user => {
       if (user.displayName === 'serviceProvider') {
+        localStorage.setItem("id",user.uid);
 
         this.serviceProviderObservable = this.ServiceProviderDetails.readServiceProviderDatabase( user.uid ) as Observable<ServiceProviderDetails> ;
 
@@ -40,24 +46,23 @@ export class ServiceproviderHomeComponent implements OnInit {
 
           //this.getParticipatingEvents(this.serviceProvider.participatingEvents);
 
+          
+
         });
 
       } else {
         this.router.navigate(['/no-access']);
       }
+
+
     });
 
-    // this.eventDetails.getAllEvents().subscribe( actionArray => {
+    
 
-    //   this.allEventList = actionArray.map( item => {
-    //     return {
-    //       id: item.payload.doc.id,
-    //       ...item.payload.doc.data()
-    //     } as EventDetails ;
-    //   });
-
-    // });
-
+  }
+  
+  
+   
   }
 
   // getParticipatingEvents(participatingEventIds: Array<string>) {
@@ -81,11 +86,11 @@ export class ServiceproviderHomeComponent implements OnInit {
 
   // }
 
-  openEvent(id) {
-    this.router.navigate(['/events' , id]);
-  }
+  // openEvent(id) {
+  //   this.router.navigate(['/events' , id]);
+  // }
 
-}
+
     
    
 

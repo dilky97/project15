@@ -13,8 +13,8 @@ import { CreateEventComponent} from './components/event-planner/create-event/cre
 import { EventPlannerHomeComponent } from './components/event-planner/event-planner-home/event-planner-home.component';
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
-
-
+import{ EditServiceproviderComponent } from './components/service-provider/edit-serviceprovider/edit-serviceprovider.component';
+import { ServiceproviderListComponent } from './components/service-provider/serviceprovider-list/serviceprovider-list.component';
 const routes: Routes = [
   { path: '' , redirectTo: 'home' , pathMatch: 'full' },
   { path: 'test' , component: TestComponent, canActivate: [RouteGuardService], data: {role: 'eventPlanner'}},
@@ -25,11 +25,12 @@ const routes: Routes = [
   { path: 'student-dashboard' , component: StudentHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
   { path: 'no-access' , component: NoAccessComponent },
   { path: 'create-club' , component: CreateClubComponent },
-  {path:'serviceprovider-dashboard' ,component:ServiceproviderHomeComponent},
-
+  {path:'serviceprovider-dashboard' ,component:ServiceproviderHomeComponent,canActivate: [RouteGuardService], data: {role: 'serviceProvider'}},
+  {path:'Edit-serviceprovider',component:EditServiceproviderComponent},
 
   { path: 'event-planner' , component: EventPlannerLayoutComponent },
   { path: 'event-planner-home' , component: EventPlannerHomeComponent },
+  { path:'splist' , component:ServiceproviderListComponent},
 ];
 
 export const routingComponents = [ ViewEventComponent , HomeComponent , EventPlannerLayoutComponent, CreateEventComponent ] ;

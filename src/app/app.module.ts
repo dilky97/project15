@@ -54,6 +54,8 @@ import { NoAccessComponent } from './components/no-access/no-access.component';
 import { StudentEventCardComponent } from './components/student-dashbord/student-event-card/student-event-card.component';
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
 import { ServiceproviderHomeComponent } from './components/serviceprovider-dashboard/serviceprovider-home/serviceprovider-home.component';
+import { EditServiceproviderComponent } from './components/service-provider/edit-serviceprovider/edit-serviceprovider.component';
+import { ServiceproviderListComponent } from './components/service-provider/serviceprovider-list/serviceprovider-list.component';
 //import {CreateClubComponent } from './components/serviceprovider-dashboard/create-club/create-club.component';
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { ServiceproviderHomeComponent } from './components/serviceprovider-dashb
     StudentEventCardComponent,
     CreateClubComponent,
     ServiceproviderHomeComponent,
+    EditServiceproviderComponent,
+    ServiceproviderListComponent,
     
   ],
   imports: [
