@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormControl } from '@angular/forms';
 import { from } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 import { Sponsor } from 'src/app/models/sponsor.model';
 import { Router } from '@angular/router';
 
@@ -14,19 +14,31 @@ import { Router } from '@angular/router';
 export class NewSponsorComponent implements OnInit {
   
   sponsorModel = new Sponsor(); 
-
   uploadPath:string = "sponsors";
-  
+
+  form: FormGroup;
+  categories: Array<string> = ["IT", "Cultural", "Health", "Music", "Motivational", "Other"]
+  reactiveForm: FormGroup;
+
 
   constructor(
     private firestore : AngularFirestore,
     private fb:FormBuilder,
     private router:Router
-    ) { }
+    ) { 
+      
+     this.form = this.fb.group({
+    });
+  }
+
+  get skills() {
+    return this.form.get('skills');
+  };
 
   ngOnInit() {
-   
+   favcat: this.addCategoriesControls()
   }
+
 
   message:string;
 
@@ -39,7 +51,7 @@ export class NewSponsorComponent implements OnInit {
   onSubmit(){
 
     console.log(this.sponsorModel);
-    console.log("Id" + this.message);
+    // console.log("Id" + this.messa  ge);
 
     this.firestore.collection('sponsors').add({
       name:this.sponsorModel.name,
@@ -66,6 +78,17 @@ export class NewSponsorComponent implements OnInit {
   upload(event){
     const randomId = Math.random().toString(36).substring(2);
     
+  }
+
+  addCategoriesControls(){
+    const arr = this.categories.map(element => {
+      return this.fb.control(false);
+    });
+    return this.fb.array(arr);
+  } 
+
+  get catogoriesArray(){
+    return <FormArray>this.form.get('favcat');
   }
   
   

@@ -55,9 +55,32 @@
 							
 							<div class="form-group">
 								<label>Telephone No</label>	
-								<input name="email" class="form-control" [(ngModel)]="sponsorModel.email">
-								<input name="email" class="form-control" [(ngModel)]="sponsorModel.email">
+								<input name="telephone" class="form-control" [(ngModel)]="sponsorModel.telephone">
+								
 							</div>
+
+							<div class="form-group">
+								<label>Interested Categories</label>
+							</div>
+							
+							<!-- <div class="form-check mb-3">
+									<input class="form-check-input" type="checkbox">
+									<label class="form-check label" *ngFor="let item of categories">{{item}}
+										
+									</label> -->
+								
+									<!-- <input class="form-check-input" type="checkbox">
+									<label class="form-check label">
+										Cultural
+									</label>
+								
+									
+							</div> 
+
+							<div class="form-check form-check-inline" *ngFor="let control of categories.controls; let i index;">
+								<input class="form-check-input" type="checkbox" name="categories" [(ngModel)]="sponsorModel.categories"  id="inlineCheckbox{{i}}" value="option1">
+								<label class="form-check-label" for="inlineCheckbox{{i}}">{{categories[i]}}</label>
+							</div> -->
 							
 							<div class="form-group">
 								<label>Maximum Budget Limit</label>	
@@ -65,28 +88,28 @@
 							</div>
 
 							<div class="form-group">
-								<label>E mail</label>	
+								<label>Web Site URL</label>	
 								<input name="websiteUrl" class="form-control" [(ngModel)]="sponsorModel.websiteUrl">
 							</div>
 							
 						
 							<!-- Comunity Name -->
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="comunity-name">Description</label>
 								<input type="text" class="form-control" id="description" height="50">
-							</div>
+							</div> -->
 							<!-- Checkbox -->
-							<div class="form-check">
+							<!-- <div class="form-check">
 							  <label class="form-check-label" for="hide-profile">
 								<input class="form-check-input" type="checkbox" value="" id="hide-profile">
 								Hide Profile from Public/ComunitY
 							  </label>
-							</div>
+							</div> -->
 							<!-- Zip Code -->
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="zip-code">Zip Code</label>
 								<input type="text" class="form-control" id="zip-code">
-							</div>
+							</div> -->
 							
 							<!-- Submit button -->
 							<button class="btn btn-transparent" type="submit">REGISTER</button>
