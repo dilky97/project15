@@ -43,16 +43,10 @@ export class HomeComponent implements OnInit {
     this.setViewList();
   }
 
-  setViewList() {
+  setViewList() { // set the showing events list according to selected status ans club
 
     this.eventDetails.getShowingEvents( this.selectedStatus, this.selectedClub ).subscribe( actionArray => {
-
-      this.showingEventList = actionArray.map( item => {    //////////////////////////////////////////////////////
-        return {                                            //                                                  //
-          id: item.payload.doc.id,                          //     set the showing events list according to     //
-          ...item.payload.doc.data()                        //             selected status ans club             //
-        } as eventData ;                                    //                                                  //
-      });                                                   //////////////////////////////////////////////////////
+      this.showingEventList = actionArray as unknown as eventData[];
     });
 
   }
@@ -65,14 +59,10 @@ export class HomeComponent implements OnInit {
 
 ////////// getting all event details - start //////////
 
+    // set the all events list to find all clubs that has created events
     this.eventDetails.getAllEvents().subscribe( actionArray => {
 
-      this.allEventList = actionArray.map( item => {    ////////////////////////////////////////////////
-        return {                                        //                                            //
-          id: item.payload.doc.id,                      //         set the all events list to         //
-          ...item.payload.doc.data()                    //   find all clubs that has created events   //
-        } as eventData ;                                //                                            //
-      });                                               ////////////////////////////////////////////////
+      this.allEventList = actionArray as unknown as eventData[] ;
 
       for ( const item  of this.allEventList ) {          ////////////////////////////////////////////////
         if ( !( this.clubs.includes(item.clubID) ) ) {    //        pushing clubs to clubs array        //
