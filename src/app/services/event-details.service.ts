@@ -10,25 +10,25 @@ export class EventDetailsService {
   constructor( private firestore: AngularFirestore ) { }
 
   getAllEvents() {
-    return this.firestore.collection('events').snapshotChanges();
+    return this.firestore.collection('events').valueChanges();
   }
 
   getShowingEvents( status: number, club: string ) {
     if ( club === 'all' && status === 99 ) {
-      return this.firestore.collection('events').snapshotChanges();
+      return this.firestore.collection('events').valueChanges();
 
     } else if ( club === 'all' && status !== 99 ) {
         return this.firestore.collection('events', ref =>
-          ref.where( 'status', '==', status )  ).snapshotChanges();
+          ref.where( 'status', '==', status )  ).valueChanges();
 
     } else if ( club !== 'all' && status === 99 ) {
         return this.firestore.collection('events', ref =>
-          ref.where( 'clubID', '==', club )  ).snapshotChanges();
+          ref.where( 'clubID', '==', club )  ).valueChanges();
 
     } else {
       return this.firestore.collection('events', ref =>
         ref.where( 'status', '==', status )
-           .where( 'clubID', '==', club )  ).snapshotChanges();
+           .where( 'clubID', '==', club )  ).valueChanges();
     }
   }
 
