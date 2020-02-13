@@ -36,7 +36,8 @@ export class CardComponent implements OnInit {
   @Input( 'tempStartTimeStamp' )startTimeStamp: number ;
   @Input( 'tempEndDate' )endDate: any ;
   @Input( 'tempEndTime' )endTime: any ;
-  @Input( 'tempEndTimeStamp' )endTimeStam: number ;
+  @Input( 'tempEndTimeStamp' )endTimeStamp: number ;
+  @Input( 'tempDescription' )des: number ;
 
 
   ngOnInit() {
