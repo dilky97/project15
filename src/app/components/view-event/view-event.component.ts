@@ -4,7 +4,7 @@ import { EventDetailsService } from 'src/app/services/event-details.service';
 import * as firebase from 'firebase/app';
 import { StudentDetails } from 'src/app/models/student-details.model';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { EventDetails } from 'src/app/models/event-details.model';
+import { EventDetails, eventData } from 'src/app/models/event-details.model';
 
 @Component({
   selector: 'app-view-event',
@@ -14,17 +14,17 @@ import { EventDetails } from 'src/app/models/event-details.model';
 export class ViewEventComponent implements OnInit {
 
   selectedEventId: string;
-  event = {} as EventDetails;
+  event = {} as eventData;
   student = {} as StudentDetails;
 
   isGoing: number ;
 
-  constructor( private route: ActivatedRoute, private eventDetails: EventDetailsService, private firestore: AngularFirestore ) { }
+  constructor( private route: ActivatedRoute, private eventDetailsService: EventDetailsService, private firestore: AngularFirestore ) { }
 
   ngOnInit() {
     this.selectedEventId = this.route.snapshot.paramMap.get('id');
-    this.eventDetails.getViewEvent(this.selectedEventId).subscribe( temp => {
-      this.event = temp as EventDetails ;
+    this.eventDetailsService.getViewEvent(this.selectedEventId).subscribe( temp => {
+      this.event = temp as eventData ;
     });
 
     firebase.auth().onAuthStateChanged( user => {

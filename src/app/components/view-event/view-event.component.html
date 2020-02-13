@@ -4,18 +4,18 @@
 			<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
         <!-------------- article - Srart -------------->
 				<article class="single-post">
-          <h2>{{event.title}}</h2>
+          <h2>{{event.eventName}}</h2>
 
 					<ul class="list-inline">
-						<li class="list-inline-item">by <a href="">{{event.club}}</a></li>
+						<li class="list-inline-item">by <a href="">{{event.clubID}}</a></li>
 						<!-- <li class="list-inline-item">{{event.date.toDate() | date: 'medium'}}</li> -->
           </ul>
 
-          <img src="{{event.img}}" alt="article-01">
+          <img src="{{event.image}}" alt="article-01">
 
           <!-- Details paragraph - start -->
           <p>
-            {{event.des}}
+            {{event.description}}
           </p>
           <!-- Details paragraph - end -->
           <button *ngIf="isGoing == 0" (click)="changeGoing()" type="button" class="btn btn-outline-success">Mark as Going</button>
