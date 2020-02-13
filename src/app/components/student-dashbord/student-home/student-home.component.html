@@ -25,9 +25,10 @@
 
 
                     <li class="active"><a href="#"><i class="fa fa-user"></i>My Clubs</a></li>
-                    <li *ngFor="let temp of student.presidentIn" ><a href="#"><i class="fa fa-bookmark-o"></i> {{temp.name}} <span>president</span></a></li>
-                    <li *ngFor="let temp of student.eventPlannerIn" ><a href="#"><i class="fa fa-bookmark-o"></i> {{temp.name}} <span>event-planner</span></a></li>
-                    <div class="text-center"><a routerLink="/create-club" class="btn btn-main-sm">+<br>CREATE CLUB</a></div>
+
+                    <li *ngFor="let temp of student.presidentIn" ><a href="event-planner-home/{{temp.id}}"><i class="fa fa-bookmark-o"></i> {{temp.name}} <span>President</span></a></li>
+                    <li *ngFor="let temp of student.eventPlannerIn" ><a href="#"><i class="fa fa-bookmark-o"></i> {{temp.name}} <span>Event-planner</span></a></li>
+                    <div class="text-center"><a routerLink="/create-club" class="btn btn-main-sm">CREATE CLUB</a></div>
 
                 </ul>
               </div>

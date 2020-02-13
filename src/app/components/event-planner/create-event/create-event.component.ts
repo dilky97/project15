@@ -41,6 +41,7 @@ export class CreateEventComponent implements OnInit {
 
   constructor(
     public eventService: EventPlannerService, private clubIDService : EventPlannerService, private clubDataService : ClubDetailsService,
+
     private dbstore: AngularFirestore,
     private toastr: ToastrService,
     private router: Router) {}
@@ -64,6 +65,7 @@ export class CreateEventComponent implements OnInit {
     this.newEvent.image = 'https://miro.medium.com/max/3200/1*supQ92uykNElEfyYf7UgHw.png';
     this.newEvent.status = 0;
 
+
     await this.eventService.createEventDatabase(this.newEvent).then(
       resDb => {
         this.returnedId = resDb.id;
@@ -83,8 +85,8 @@ export class CreateEventComponent implements OnInit {
     this.newEvent.id = this.returnedId;
     this.dbstore.collection('events').doc(this.returnedId).update(this.newEvent);
 
-
     this.router.navigate(['/event-planner-home',this.selectedClubId,'event', this.returnedId]);
+
 
   }
 

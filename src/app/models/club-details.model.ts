@@ -4,6 +4,6 @@ export class ClubDetails {
   president: string;
   eventPlanner: string;
   des: string;
-  events: Array<string>;
+  events: Array<string> = [];
   isActivated: boolean;
 }
