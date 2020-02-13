@@ -14,6 +14,13 @@ export class LoginRegisterAuthService {
       firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
       .then( res => {
         res.user.updateProfile({ displayName: 'student' });
+        if (localStorage.getItem('tempURL')) {
+          res.user.updateProfile({ photoURL: localStorage.getItem('tempURL') });
+          localStorage.removeItem('tempURL');
+        } else {
+          // tslint:disable-next-line: max-line-length
+          res.user.updateProfile({ photoURL: 'https://firebasestorage.googleapis.com/v0/b/eventshubuoc.appspot.com/o/images%2Fprofile.jpg_1581593016464?alt=media&token=0263ec1f-1707-4544-b80f-41307f46dc8a' });
+        }
         resolve(res);
       }, err => reject(err));
     });

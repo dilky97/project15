@@ -27,36 +27,32 @@ export class ViewEventComponent implements OnInit {
       this.event = temp as eventData ;
     });
 
-    firebase.auth().onAuthStateChanged( user => {
-      const promise = this.firestore.firestore.collection('students').doc(user.uid).get();
-      promise.then( snapshot => {
-        this.student =  snapshot.data() as StudentDetails;
+    if (JSON.parse(localStorage.getItem('user'))) {
+      if ( localStorage.getItem('displayName') === 'student' ) {
+
+        this.student = JSON.parse(localStorage.getItem('user'));
+
         if (this.student.participatingEvents.includes(this.selectedEventId)) {
           this.isGoing = 1 ;
         } else {
           this.isGoing = 0 ;
         }
-      });
-    });
-
+      }
+    }
   }
 
   changeGoing() {
-    firebase.auth().onAuthStateChanged( user => {
-      const promise = this.firestore.firestore.collection('students').doc(user.uid).get();
-      promise.then( snapshot => {
-        this.student =  snapshot.data() as StudentDetails;
         if (this.isGoing === 0) {
           this.student.participatingEvents.push(this.selectedEventId);
-          this.firestore.collection('students').doc(user.uid).update(this.student);
+          localStorage.setItem('user', JSON.stringify(this.student));
+          this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
           this.isGoing = 1 ;
         } else if (this.isGoing === 1) {
           this.student.participatingEvents.splice( this.student.participatingEvents.indexOf(this.selectedEventId), 1 );
-          this.firestore.collection('students').doc(user.uid).update(this.student);
+          localStorage.setItem('user', JSON.stringify(this.student));
+          this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
           this.isGoing = 0 ;
         }
-      });
-    });
   }
 
 }

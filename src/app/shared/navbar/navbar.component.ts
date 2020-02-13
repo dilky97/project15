@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { StudentDetails } from 'src/app/models/student-details.model';
 import { UserDetailsService } from 'src/app/services/user-details.service';
@@ -14,47 +14,32 @@ import { ServiceProviderDetails } from 'src/app/models/service-provider-details.
 export class NavbarComponent implements OnInit {
 
   user: any;
-  displayName: string;
+  displayName = localStorage.getItem('displayName');
+  profilePicture = '../../../assets/profile.jpg'; timeLoop: any;
 
   isLogged: number;
 
   constructor(private userDetails: UserDetailsService, private router: Router) { }
 
   ngOnInit() {
+    console.log(JSON.parse(localStorage.getItem('user')));
 
-    firebase.auth().onAuthStateChanged( user => {
-      if (user) {
-        if (user.displayName === 'student') {
-          this.displayName = user.displayName;
-          this.userDetails.readStudentDatabase(user.uid).subscribe( temp => {
-            this.user = temp as StudentDetails;
-            this.isLogged = 1;
-          });
-        } else if (user.displayName === 'advisor') {
-          this.displayName = user.displayName;
-          this.userDetails.readAdvisorDatabase(user.uid).subscribe( temp => {
-            this.user = temp as AdvisorDetails;
-            this.isLogged = 1;
-          });
-        } else if (user.displayName === 'serviceProvider') {
-          this.displayName = user.displayName;
-          this.userDetails.readServiceProviderDatabase(user.uid).subscribe( temp => {
-            this.user = temp as ServiceProviderDetails;
-            this.isLogged = 1;
-          });
-        } else {
-          this.isLogged = 0;
-        }
-      } else {
-        this.isLogged = 0;
+    if (JSON.parse(localStorage.getItem('user'))) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      if ((localStorage.getItem('profilePicture')) !== 'null' ) {
+        this.profilePicture = localStorage.getItem('profilePicture');
       }
-    });
+      this.isLogged = 1;
+    } else {
+      this.isLogged = 0;
+    }
 
   }
 
   logOut() {
+    localStorage.clear();
     firebase.auth().signOut();
-    this.router.navigate(['/home']);
+    location.reload();
   }
 
 }

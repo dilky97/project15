@@ -44,15 +44,10 @@ export class CreateClubComponent implements OnInit {
               private clubDetailsService: ClubDetailsService ,
               private http: HttpClient
              ) {
-    firebase.auth().onAuthStateChanged( user => {
-
-      this.userEmail = user.email;
-
-    });
   }
 
   ngOnInit() {
-    this.http.get( 'https://us-central1-testing-1de9d.cloudfunctions.net/sendMail?dest=priyashanshell@gmail.com&msg=cdhscvdhcd' );
+    this.student = JSON.parse(localStorage.getItem('user'));
   }
 
   tryClubRegister(formData) {
@@ -63,33 +58,24 @@ export class CreateClubComponent implements OnInit {
     this.club.des = formData.des;
     this.club.events = [] as Array<string>;
     this.club.isActivated = false;
+    this.club.president = this.student.email ;
 
-    firebase.auth().onAuthStateChanged( user => {
+    this.clubDetailsService.createClubDatabase(this.club).then(
+      resDb => {
+        this.returnedId = resDb.id;
 
-      this.club.president = user.email ;
+        this.student.presidentIn.push({id: this.returnedId , name: this.club.name});
+        localStorage.setItem('user', JSON.stringify(this.student));
+        this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
 
-      this.clubDetailsService.createClubDatabase(this.club).then(
-        resDb => {
-          this.returnedId = resDb.id;
-          console.log(resDb.id);
-
-          const promise = this.firestore.firestore.collection('students').doc(user.uid).get();
-          promise.then( snapshot => {
-            this.student =  snapshot.data() as StudentDetails;
-            this.student.presidentIn.push({id: this.returnedId , name: this.club.name});
-            this.firestore.collection('students').doc(user.uid).update(this.student);
-          });
-
-          this.errorMessage = 'temp';
-          this.successMessage = 'database added Succesfully';
-        },
-        errDb => {
-          this.errorMessage = 'database ERROR(' + errDb.message + ')';
-          this.successMessage = 'temp';
-        }
-      );
-
-    });
+        this.errorMessage = 'temp';
+        this.successMessage = 'Club created Successfully';
+      },
+      errDb => {
+        this.errorMessage = 'database ERROR(' + errDb.message + ')';
+        this.successMessage = 'temp';
+      }
+    );
 
   }
 

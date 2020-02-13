@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { EventDetailsService } from 'src/app/services/event-details.service';
-import { EventDetails, eventData } from 'src/app/models/event-details.model';
+import { eventData } from 'src/app/models/event-details.model';
 
 @Component({
   selector: 'app-student-home',
@@ -26,49 +26,37 @@ export class StudentHomeComponent implements OnInit {
 
   studentObservable: Observable<StudentDetails>;
 
+  profilePicture = '../../../../assets/images/account/Account.png';
+
   ngOnInit() {
 
-    firebase.auth().onAuthStateChanged( user => {
-      if (user) {
-        if (user.displayName === 'student') {
+    if (JSON.parse(localStorage.getItem('user'))) {
 
-          this.studentObservable = this.studentDetailsService.readStudentDatabase( user.uid ) as Observable<StudentDetails> ;
-
-          this.studentObservable.subscribe( temp => {
-
-            this.student = temp as StudentDetails ;
-
-            console.log(this.student);
-
-            this.getParticipatingEvents(this.student.participatingEvents);
-
-          });
-
-        } else {
-          this.router.navigate(['/no-access']);
-        }
-      } else {
-        this.router.navigate(['/home']);
+      if ( localStorage.getItem('displayName') === 'student' ) {
+        this.student = JSON.parse(localStorage.getItem('user')) as StudentDetails ;
       }
-    });
 
-    this.eventDetails.getAllEvents().subscribe( actionArray => {
+      if ( localStorage.getItem('profilePicture') !== 'null' ) {
+        this.profilePicture = localStorage.getItem('profilePicture');
+      }
 
-      this.allEventList = actionArray as unknown as eventData[] ;
-      console.log(this.allEventList);
+      this.eventDetails.getAllEvents().subscribe( actionArray => {
+        this.allEventList = actionArray as unknown as eventData[] ;
+        this.getParticipatingEvents(this.student.participatingEvents);
+      });
 
-    });
+    } else {
+      this.router.navigate(['/no-access']);
+    }
 
   }
 
   getParticipatingEvents(participatingEventIds: Array<string>) {
-
     this.allEventList.forEach(element => {
       if (participatingEventIds.includes(element.id)) {
         this.participatingEventList.push(element);
       }
     });
-
   }
 
   openEvent(id) {
