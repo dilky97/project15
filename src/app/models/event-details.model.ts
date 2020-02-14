@@ -24,6 +24,8 @@ export class eventData {
   endTimeStamp: number;
   image: string;
   status: number;
+  registeredStudents: Array<string>;
+  participatedStudent: Array<string>;
 }
 
 export class sponsorData {
