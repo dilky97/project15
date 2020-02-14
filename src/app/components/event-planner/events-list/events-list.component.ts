@@ -23,7 +23,7 @@ export class EventsListComponent implements OnInit {
   constructor(private route: ActivatedRoute, private CreateEventRoute: Router,private EventDataService: EventPlannerService,private ClubDataService:ClubDetailsService) { }
 
   ngOnInit() {
-    this.selectedClubId = this.route.snapshot.paramMap.get('id');
+    this.selectedClubId = localStorage.getItem("cludId");
 
     console.log(this.selectedClubId);
 

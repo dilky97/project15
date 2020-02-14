@@ -3,7 +3,9 @@
         <a (click)='openEvent(id)'>
             <img src="../../../../assets/images/products/products-1.jpg" class="img-fluid" alt={{eventName}}>
         </a>
-        <div class="col-lg-12 align-self-center btn btn-main-sm">Manage Event</div>
+        <div class="col-lg-12 align-self-center">
+            <input type="button" class="btn btn-main-sm" value="Manage Event" (click)="openManageEvent(id)" />  
+        </div>
     </div>
     <div class="col-lg-8">
         <div class="row">

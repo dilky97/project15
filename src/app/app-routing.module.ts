@@ -13,6 +13,7 @@ import { CreateEventComponent} from './components/event-planner/create-event/cre
 import { EventPlannerHomeComponent } from './components/event-planner/event-planner-home/event-planner-home.component';
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
+import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
 
 
 const routes: Routes = [
@@ -26,13 +27,29 @@ const routes: Routes = [
   { path: 'no-access' , component: NoAccessComponent },
 
   { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent, children:[
-    { path: 'create-event' ,
-    component: CreateEventComponent
-  },
+
+    {
+      path: '',
+      redirectTo : 'all-events',
+      pathMatch : 'full'
+
+    },
+    {
+      path : 'all-events',
+      component: EventsListComponent
+    },
+
+    {
+      path: 'create-event' ,
+      component: CreateEventComponent
+    },
+
    {
      path: 'event/:eventId',
      component:EventPlannerLayoutComponent
-   }
+   },
+
+
   ]},
 
   { path: 'create-club' , component: CreateClubComponent },

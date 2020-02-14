@@ -16,16 +16,25 @@ export class EventCardComponent implements OnInit {
   @Input('tempEndTime') endTime: string;
   @Input('tempVenue') venue: string;
   @Input('tempDescription') description: string;
-  @Input('tempClubID') clubID: string;
+ 
+
+ clubID:string;
 
   constructor( private router: Router ) { }
 
 
   ngOnInit() {
+    
   }
 
   openEvent(id) {
     this.router.navigate(['/events' , id]);
+  }
+
+  openManageEvent(id){
+    localStorage.setItem("curEventId",id);
+    this.clubID=localStorage.getItem("cludId");
+    this.router.navigate(['/event-planner-home',this.clubID,'event', id]);
   }
 
 }

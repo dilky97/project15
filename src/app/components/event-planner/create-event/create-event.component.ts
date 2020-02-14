@@ -60,9 +60,10 @@ export class CreateEventComponent implements OnInit {
     this.newEvent.endTime = formData.endTime;
     this.newEvent.venue = formData.venue;
     this.newEvent.description = formData.description;
-    this.newEvent.startTimeStamp =  new Date(this.newEvent.startDate).getTime();
-    this.newEvent.endTimeStamp =  new Date(this.newEvent.endDate).getTime();
-    this.newEvent.image = 'https://miro.medium.com/max/3200/1*supQ92uykNElEfyYf7UgHw.png';
+
+    this.newEvent.startTimeStamp = new Date(this.newEvent.startDate).getTime();
+    this.newEvent.endTimeStamp = new Date(this.newEvent.endDate).getTime();
+    this.newEvent.image = "https://www.stlucianewsonline.com/wp-content/uploads/2019/05/hackathon-1024x575.png";
     this.newEvent.status = 0;
 
 
@@ -83,10 +84,18 @@ export class CreateEventComponent implements OnInit {
 
 
     this.newEvent.id = this.returnedId;
-    this.dbstore.collection('events').doc(this.returnedId).update(this.newEvent);
+    if(this.dbstore.collection('events').doc(this.returnedId).update(this.newEvent)){
+      this.toastr.success('Submitted Successfully', 'Event Created');
+    }
+    else{
+      this.toastr.error('Error! Event Creation Failed');
+    };
 
-    this.router.navigate(['/event-planner-home',this.selectedClubId,'event', this.returnedId]);
 
+    // this.router.navigate(['/event-planner-home',this.selectedClubId,'event', this.returnedId]);
+
+
+    this.router.navigate(['/event-planner-home',this.selectedClubId]);
 
   }
 
