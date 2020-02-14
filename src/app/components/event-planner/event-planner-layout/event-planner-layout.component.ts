@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventPlannerLayoutComponent implements OnInit {
 
+  currentEventID: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.currentEventID = localStorage.getItem("curEventId");
   }
 
 }

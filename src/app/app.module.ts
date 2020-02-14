@@ -55,6 +55,8 @@ import { NoAccessComponent } from './components/no-access/no-access.component';
 import { StudentEventCardComponent } from './components/student-dashbord/student-event-card/student-event-card.component';
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
 import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
+import { EditEventComponent } from './components/event-planner/edit-event/edit-event.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,9 @@ import { EventsListComponent } from './components/event-planner/events-list/even
     NoAccessComponent,
     StudentEventCardComponent,
     CreateClubComponent,
-    EventsListComponent
+    EventsListComponent,
+    EditEventComponent,
+    SearchComponent
   ],
   imports: [
     HttpClientModule,

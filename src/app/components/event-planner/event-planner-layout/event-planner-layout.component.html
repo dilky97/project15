@@ -10,17 +10,19 @@
   <div class="row">
     <div class="col-md-12">
       <ngb-tabset>
-        <ngb-tab title="Create Event">
-          <ng-template ngbTabContent>
-            <app-create-event></app-create-event></ng-template>
+        <ngb-tab title="Edit Event Details">
+          <ng-template ngbTabContent> <app-edit-event></app-edit-event></ng-template>
         </ngb-tab>
-        <ngb-tab>
-          <ng-template ngbTabTitle>Event Photo</ng-template>
+        <ngb-tab title="Event Photo">
+          <!-- <ng-template ngbTabTitle>Event Photo</ng-template> -->
           <ng-template ngbTabContent><app-file-uploader></app-file-uploader></ng-template>
         </ngb-tab>
         <ngb-tab title="Event Sponsors">
           <ng-template ngbTabContent> <app-sponsors></app-sponsors> </ng-template>
         </ngb-tab>
+        <!-- <ngb-tab title="Search">
+          <ng-template ngbTabContent> <app-search></app-search> </ng-template>
+        </ngb-tab> -->
       </ngb-tabset>
     </div>
   </div>
