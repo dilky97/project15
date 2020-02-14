@@ -1,5 +1,5 @@
 
-
+<app-navbar></app-navbar>
 <section class="dashboard">
   <!-- Container Start -->
       <div class="container">
@@ -21,11 +21,11 @@
                   <!-- Dashboard Links -->
                   <div class="widget user-dashboard-menu">
                       <ul>
-                      <li class="active"><a href="#"><i class="fa fa-user"></i> My Events</a></li>
-                      <li><a href="#"><i class="fa fa-bookmark-o"></i> Favourite Ads <span>5</span></a></li>
-                      <li><a href="#"><i class="fa fa-file-archive-o"></i>Archived Ads <span>12</span></a></li>
-                      <li><a href="#"><i class="fa fa-bolt"></i> Pending Approval<span>23</span></a></li>
-                      <li><a href="#"><i class="fa fa-cog"></i> Logout</a></li>
+                      <li class="active"><a [routerLink]="['/event-planner-home',this.selectedClubId]"><i class="fa fa-user"></i> My Events</a></li>
+                      <li><a href="#"><i class="fa fa-bookmark-o"></i> Favourite Events <span>5</span></a></li>
+                      <li><a href="#"><i class="fa fa-file-archive-o"></i>Archived Events <span>12</span></a></li>
+                      <li><a href="#"><i class="fa fa-bolt"></i> Pending Approvals<span>23</span></a></li>
+                      <!-- <li><a href="#"><i class="fa fa-cog"></i> Logout</a></li> -->
                       <li><a href="" data-toggle="modal" data-target="#deleteaccount"><i class="fa fa-power-off"></i>Delete
                           Account</a></li>
                       </ul>

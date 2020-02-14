@@ -16,6 +16,7 @@ export class EventCardComponent implements OnInit {
   @Input('tempEndTime') endTime: string;
   @Input('tempVenue') venue: string;
   @Input('tempDescription') description: string;
+  @Input('tempImage') image: string;
  
 
  clubID:string;

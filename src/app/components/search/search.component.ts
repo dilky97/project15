@@ -32,8 +32,8 @@ export class SearchComponent implements OnInit {
       this.eventlist = events;
     })
 
-    Observable.combineLatest(this.startObservable,this.endObservable).subscribe((value)
-    )
+    // Observable.combineLatest(this.startObservable,this.endObservable).subscribe((value)
+    // )
 
 
   }

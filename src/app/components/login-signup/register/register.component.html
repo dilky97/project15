@@ -85,16 +85,16 @@
                           <div class="form-group">
                             <label>Select Your Faculty :</label>
                             <select [class.is-invalid]="StudentRegisterForm.get('faculty').invalid && StudentRegisterForm.get('faculty').touched" class="form-control" formControlName="faculty">
-                              <option>University of colombo school of computing</option>
+                              <option>University of Colombo School of Computing</option>
                               <option>Faculty of Science</option>
                               <option>Faculty of Management</option>
                               <option>Faculty of Arts</option>
-                              <option>Faculty of Low</option>
+                              <option>Faculty of Law</option>
                               <option>Faculty of Nursing</option>
                               <option>Faculty of Medicine</option>
                               <option>Faculty of Technology</option>
                               <option>Faculty of Education</option>
-                              <option>Faculty of Ayurvedhic</option>
+        
                             </select>
                             <small class="text-danger" *ngIf="StudentRegisterForm.get('faculty').invalid && StudentRegisterForm.get('faculty').touched">*Select your faculty !</small>
                           </div>

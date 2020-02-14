@@ -450,6 +450,7 @@ button {
 .btn-main-sm {
   padding: 6px 20px;
   font-size: 12px;
+  margin: 6px;
 }
 
 .btn-secondary {

@@ -57,6 +57,7 @@ import { CreateClubComponent } from './components/student-dashbord/create-club/c
 import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
 import { EditEventComponent } from './components/event-planner/edit-event/edit-event.component';
 import { SearchComponent } from './components/search/search.component';
+import { AttendeeListComponent } from './components/attendee-list/attendee-list.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { SearchComponent } from './components/search/search.component';
     CreateClubComponent,
     EventsListComponent,
     EditEventComponent,
-    SearchComponent
+    SearchComponent,
+    AttendeeListComponent
   ],
   imports: [
     HttpClientModule,
