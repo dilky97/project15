@@ -8,6 +8,7 @@ import { StudentDetails } from 'src/app/models/student-details.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClient } from '@angular/common/http';
 import { unregisteredEmailValidator } from 'src/app/helpers/must-registered.validator';
+import { MustLecturer } from 'src/app/helpers/must-lecturer.validator';
 
 @Component({
   selector: 'app-create-club',
@@ -32,7 +33,7 @@ export class CreateClubComponent implements OnInit {
 
   ClubRegisterForm = this.formBuilder.group({
     name: ['', Validators.required],
-    advisor: ['', [Validators.email, Validators.required]],
+    advisor: ['', [MustLecturer, Validators.email, Validators.required]],
     president: [''],
     eventPlanner: ['', [Validators.email, Validators.required, unregisteredEmailValidator('students')]],
     des: ['', Validators.required]

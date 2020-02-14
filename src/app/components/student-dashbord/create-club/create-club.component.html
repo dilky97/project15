@@ -35,6 +35,7 @@
                   <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.required">*Advisor is required !</small>
                   <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.unRegisteredEmail">*This isn't registered user in Events Hub Uoc !</small>
                   <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.email">*Email is badly formatted !</small>
+                  <small class="text-danger" *ngIf="!(ClubRegisterForm.get('advisor').errors.email) && ClubRegisterForm.get('advisor').errors.invalidLecture">*Please use academic Email !</small>
                 </div>
               </div>
 
@@ -78,7 +79,7 @@
                 <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
               </div>
 
-              <button type="submit" (click)="tryClubRegister(ClubRegisterForm.value)" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Create Club</button>
+              <button [disabled]="ClubRegisterForm.invalid" type="submit" (click)="tryClubRegister(ClubRegisterForm.value)" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Create Club</button>
 
             </fieldset>
           </form>
