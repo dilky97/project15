@@ -190,7 +190,6 @@ export class RegisterComponent implements OnInit {
     const filePath = `images/${this.selectedImage.name}_${new Date().getTime()}`;
     const task = this.storage.upload(filePath, this.selectedImage);
     this.uploadPercentage = task.percentageChanges();
-    console.log(this.uploadPercentage);
     const fileRef = this.storage.ref(filePath);
     task.snapshotChanges().pipe(
       finalize(() => {

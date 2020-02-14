@@ -61,12 +61,12 @@ export class CreateClubComponent implements OnInit {
     this.club.president = this.student.email ;
 
     this.clubDetailsService.createClubDatabase(this.club).then(
-      resDb => {
+      async resDb => {
         this.returnedId = resDb.id;
 
         this.student.presidentIn.push({id: this.returnedId , name: this.club.name});
+        await this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
         localStorage.setItem('user', JSON.stringify(this.student));
-        this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
 
         this.errorMessage = 'temp';
         this.successMessage = 'Club created Successfully';

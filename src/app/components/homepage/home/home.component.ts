@@ -57,6 +57,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(JSON.parse(localStorage.getItem('user')));
+    console.log(localStorage.getItem('displayName'));
+    console.log(localStorage.getItem('uid'));
+
 ////////// getting all event details - start //////////
 
     // set the all events list to find all clubs that has created events

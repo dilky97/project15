@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   user: any;
   displayName = localStorage.getItem('displayName');
-  profilePicture = '../../../assets/profile.jpg'; timeLoop: any;
+  profilePicture = '../../../assets/profile.jpg';
 
   isLogged: number;
 
@@ -33,7 +33,6 @@ export class NavbarComponent implements OnInit {
     } else {
       this.isLogged = 0;
     }
-
   }
 
   logOut() {

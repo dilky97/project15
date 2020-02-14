@@ -41,18 +41,18 @@ export class ViewEventComponent implements OnInit {
     }
   }
 
-  changeGoing() {
-        if (this.isGoing === 0) {
-          this.student.participatingEvents.push(this.selectedEventId);
-          localStorage.setItem('user', JSON.stringify(this.student));
-          this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
-          this.isGoing = 1 ;
-        } else if (this.isGoing === 1) {
-          this.student.participatingEvents.splice( this.student.participatingEvents.indexOf(this.selectedEventId), 1 );
-          localStorage.setItem('user', JSON.stringify(this.student));
-          this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
-          this.isGoing = 0 ;
-        }
+  async changeGoing() {
+    if (this.isGoing === 0) {
+      this.student.participatingEvents.push(this.selectedEventId);
+      await this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
+      localStorage.setItem('user', JSON.stringify(this.student));
+      this.isGoing = 1 ;
+    } else if (this.isGoing === 1) {
+      this.student.participatingEvents.splice( this.student.participatingEvents.indexOf(this.selectedEventId), 1 );
+      await this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
+      localStorage.setItem('user', JSON.stringify(this.student));
+      this.isGoing = 0 ;
+    }
   }
 
 }

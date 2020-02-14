@@ -37,6 +37,7 @@
 
                           <!-- /////////////// image uploader - start /////////////// -->
                           <div class="form-group">
+                            <label>Profile picrure :</label>
                             <div class="card" style="width: 15rem;" >
                               <div class="card-body">
                                 <form [formGroup]="imageForm">
@@ -44,7 +45,7 @@
                                     <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
                                   </div>
                                   <div class="form-group">
-                                    <label> Select File to upload:- ({{uploadPercentage | async}})</label>
+                                    <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
                                     <input type="file"
                                            class="form-control"
                                            formControlName="imageUrl"
@@ -174,6 +175,32 @@
                   <form [formGroup]="AdvisorRegisterForm">
                       <fieldset class="p-4">
 
+                        <!-- /////////////// image uploader - start /////////////// -->
+                        <div class="form-group">
+                          <label>Profile picrure :</label>
+                          <div class="card" style="width: 15rem;" >
+                            <div class="card-body">
+                              <form [formGroup]="imageForm">
+                                <div class="text-center">
+                                  <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
+                                </div>
+                                <div class="form-group">
+                                  <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                  <input type="file"
+                                         class="form-control"
+                                         formControlName="imageUrl"
+                                         (change) = "showPreview($event,imageForm.value)"
+                                         accept="image/*"
+                                         #fileUploader
+                                  >
+                                  <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /////////////// image uploader - end /////////////// -->
+
                         <div class="form-group">
                           <label>Title :</label>
                           <select class="form-control" formControlName="title">
@@ -270,6 +297,32 @@
                   </div>
                   <form [formGroup]="ServiceProviderRegisterForm">
                       <fieldset class="p-4">
+
+                        <!-- /////////////// image uploader - start /////////////// -->
+                        <div class="form-group">
+                          <label>Profile picrure :</label>
+                          <div class="card" style="width: 15rem;" >
+                            <div class="card-body">
+                              <form [formGroup]="imageForm">
+                                <div class="text-center">
+                                  <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
+                                </div>
+                                <div class="form-group">
+                                  <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                  <input type="file"
+                                         class="form-control"
+                                         formControlName="imageUrl"
+                                         (change) = "showPreview($event,imageForm.value)"
+                                         accept="image/*"
+                                         #fileUploader
+                                  >
+                                  <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /////////////// image uploader - end /////////////// -->
 
                         <div class="form-group">
                           <label>First Name :</label>
