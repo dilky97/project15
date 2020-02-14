@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
 })
 export class NewSponsorComponent implements OnInit {
 
-  sponsorModel = new Sponsor(); 
-
+  sponsorModel:Sponsor = {} as Sponsor ;
 
   // sponsorForm = new FormGroup({
   //     companyName: new FormControl('',Validators.required),
@@ -54,6 +53,20 @@ export class NewSponsorComponent implements OnInit {
 
 
   ngOnInit() {
+
+     this.sponsorModel.name = '';
+     this.sponsorModel.email = '';
+     this.sponsorModel.address = '';
+     this.sponsorModel.logo = '';
+     this.sponsorModel.categories = [] as Array<string>;
+     this.sponsorModel.sponsoredEvents = [] as Array<string>;
+     this.sponsorModel.websiteUrl = '';
+     this.sponsorModel.locationUrl = '';
+     this.sponsorModel.telephoneNo = [] as Array<string>;
+     this.sponsorModel.receivedProposals = [] as Array<string>;
+     this.sponsorModel.acceptedProposals = [] as Array<string>;
+     this.sponsorModel.maxBudgetLimit = 0;
+     this.sponsorModel.availability = true;
    
   }
 
@@ -61,14 +74,8 @@ export class NewSponsorComponent implements OnInit {
 
     console.log(this.sponsorModel);
 
-    this.firestore.collection('sponsors').add({
-      name:this.sponsorModel.name,
-      email:this.sponsorModel.email,
-      address: this.sponsorModel.address,
-      websiteUrl:this.sponsorModel.websiteUrl,
-      telephoneNo:this.sponsorModel.telephoneNo,
-      maxBudgetLimit:this.sponsorModel.maxBudgetLimit
-    }).then(doc=>{
+
+    this.firestore.collection('sponsors').add(this.sponsorModel).then(doc=>{
       this.router.navigate(['./event-planner-home'])
     }
       
@@ -81,15 +88,5 @@ export class NewSponsorComponent implements OnInit {
     
   }
 
-  
-
-
-
- 
-
- 
-
-
-  
   
 }

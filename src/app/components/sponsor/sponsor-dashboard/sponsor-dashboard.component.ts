@@ -57,4 +57,14 @@ export class SponsorDashboardComponent implements OnInit {
    
   }
 
+  available(){
+    this.data.availability=true;
+    this.firestore.collection("sponsors").doc(this.id).update({'availability':this.data.availability=true});
+  }
+
+  unavailable(){
+    this.data.availability=true;
+    this.firestore.collection("sponsors").doc(this.id).update({'availability':this.data.availability=false});
+  }
+
 }

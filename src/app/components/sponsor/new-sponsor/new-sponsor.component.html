@@ -56,7 +56,9 @@
 							
 							<div class="form-group">
 								<label>Telephone No</label>	
-								<input name="telephoneNo" class="form-control" [(ngModel)]="sponsorModel.telephoneNo">
+								<input name="phone" type="tel" #phone="ngModel"
+									pattern="^\d{10}$" class="form-control" [class.is-invalid]="phone.invalid && phone.touched" [(ngModel)]="sponsorModel.telephoneNo">
+								<small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Number invalid</small>
 							</div>
 							
 							<div class="form-group">
@@ -69,6 +71,15 @@
 								<input name="websiteUrl" class="form-control" [(ngModel)]="sponsorModel.websiteUrl">
 							</div>
 							
+							<div class="form-group">
+								<label>Password</label>	
+								<input name="password" class="form-control"> 
+							</div>
+
+							<div class="form-group">
+								<label>Confirm Password</label>	
+								<input name="confirmPassword" class="form-control">
+							</div>
 						
 							
 							<!-- Submit button -->

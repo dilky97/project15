@@ -9,7 +9,8 @@
             <td>{{spo.name}}</td>
             <td>{{spo.address}}</td>
             <td>{{spo.email}}</td>
-            <td><a class="btn text-danger"><i class="fa fa-trash"></i></a></td>
+            <td *ngIf="spo.availability"><button type="button" (click)="request(spo.id)" class="btn btn-info">Request</button></td>
+            <td *ngIf="!spo.availability"><button type="button" [disabled]="!validate" class="btn btn-info">Request</button></td>
         </tr>
     </tbody>
 </table>

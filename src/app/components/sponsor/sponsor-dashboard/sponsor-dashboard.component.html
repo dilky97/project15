@@ -23,10 +23,13 @@
                 <div class="widget user-dashboard-menu">
                     <!-- {{data.name}} -->
                     <ul>
-                    <li class="active"><a href="#"><i class="fa fa-user"></i>Sponsored Events</a></li>
-                    <li><a href="#"><i class="fa fa-bookmark-o"></i>Received Proposals<span>5</span></a></li>
+                    <li class="active"><a href="#"><i class="fa fa-bookmark-o"></i>Received Proposals<span>5</span></a></li>
+                    <li><a href="#"><i class="fa fa-user"></i>Sponsored Events</a></li>
                     <li><a href="#"><i class="fa fa-file-archive-o"></i>Accepted Proposals<span>12</span></a></li>  
                     <li><a href="#"><i class="fa fa-cog"></i> Logout</a></li>
+                    <li><button *ngIf="!data.availability" type="button" (click)="available()" class="btn btn-success btn-rounded">Make Available</button>
+                        <button *ngIf="data.availability" type="button" (click)="unavailable()" class="btn btn-warning btn-rounded">Make Unavailable</button>
+                    </li>
                     <li><a href="" data-toggle="modal" data-target="#deleteaccount"><i class="fa fa-power-off"></i>Delete
                         Account</a></li>
                     </ul>
