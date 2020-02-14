@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { Router } from '@angular/router';
 import { StudentDetails } from 'src/app/models/student-details.model';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { UserDetailsService } from 'src/app/services/user-details.service';
+import { Router } from '@angular/router';
+import { AdvisorDetails } from 'src/app/models/advisor-details.model';
+import { ServiceProviderDetails } from 'src/app/models/service-provider-details.model';
 
 @Component({
   selector: 'app-navbar',
@@ -12,32 +13,32 @@ import { UserDetailsService } from 'src/app/services/user-details.service';
 })
 export class NavbarComponent implements OnInit {
 
-  email: string;
-  student: StudentDetails;
+  user: any;
+  displayName = localStorage.getItem('displayName');
+  profilePicture = '../../../assets/profile.jpg';
 
-  isLogged = false;
+  isLogged: number;
 
-  constructor(private router: Router, private userDetails: UserDetailsService) { }
+  constructor(private userDetails: UserDetailsService, private router: Router) { }
 
   ngOnInit() {
+    console.log(JSON.parse(localStorage.getItem('user')));
 
-    firebase.auth().onAuthStateChanged( user => {
-      if (user) {
-        this.userDetails.readStudentDatabase(user.uid).subscribe( temp => {
-          this.student = temp as StudentDetails;
-          console.log(this.student);
-          this.isLogged = true;
-        });
-      } else {
-        this.isLogged = false;
+    if (JSON.parse(localStorage.getItem('user'))) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      if ((localStorage.getItem('profilePicture')) !== 'null' ) {
+        this.profilePicture = localStorage.getItem('profilePicture');
       }
-    });
-
+      this.isLogged = 1;
+    } else {
+      this.isLogged = 0;
+    }
   }
 
   logOut() {
+    localStorage.clear();
     firebase.auth().signOut();
-    this.router.navigate(['/home']);
+    location.reload();
   }
 
 }

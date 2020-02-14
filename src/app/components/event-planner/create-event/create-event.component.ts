@@ -41,11 +41,13 @@ export class CreateEventComponent implements OnInit {
 
   constructor(
     public eventService: EventPlannerService, private clubIDService : EventPlannerService, private clubDataService : ClubDetailsService,
-    private dbstore: AngularFirestore, 
-    private toastr: ToastrService, 
+
+    private dbstore: AngularFirestore,
+    private toastr: ToastrService,
     private router: Router) {}
 
   ngOnInit() {
+
     this.selectedClubId = this.clubIDService.getClubId();
     //this.resetForm();
   }
@@ -58,6 +60,7 @@ export class CreateEventComponent implements OnInit {
     this.newEvent.endTime = formData.endTime;
     this.newEvent.venue = formData.venue;
     this.newEvent.description = formData.description;
+
     this.newEvent.startTimeStamp = new Date(this.newEvent.startDate).getTime();
     this.newEvent.endTimeStamp = new Date(this.newEvent.endDate).getTime();
     this.newEvent.image = "https://www.stlucianewsonline.com/wp-content/uploads/2019/05/hackathon-1024x575.png";
@@ -87,7 +90,9 @@ export class CreateEventComponent implements OnInit {
     else{
       this.toastr.error('Error! Event Creation Failed');
     };
-    
+
+
+    // this.router.navigate(['/event-planner-home',this.selectedClubId,'event', this.returnedId]);
 
 
     this.router.navigate(['/event-planner-home',this.selectedClubId]);

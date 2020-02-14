@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { ClubDetails } from '../models/club-details.model';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -18,4 +19,3 @@ export class ClubDetailsService {
   }
 
 }
-

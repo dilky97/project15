@@ -25,7 +25,9 @@ const routes: Routes = [
   { path: 'events/:id' , component: ViewEventComponent },
   { path: 'student-dashboard' , component: StudentHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
   { path: 'no-access' , component: NoAccessComponent },
+
   { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent, children:[
+
     {
       path: '',
       redirectTo : 'all-events',
@@ -37,19 +39,23 @@ const routes: Routes = [
       component: EventsListComponent
     },
 
-    { 
-      path: 'create-event' , 
-      component: CreateEventComponent 
+    {
+      path: 'create-event' ,
+      component: CreateEventComponent
     },
 
    {
      path: 'event/:eventId',
      component:EventPlannerLayoutComponent
    },
-   
+
 
   ]},
+
   { path: 'create-club' , component: CreateClubComponent },
+
+  { path: 'event-planner' , component: EventPlannerLayoutComponent },
+  { path: 'event-planner-home' , component: EventPlannerHomeComponent },
 ];
 
 export const routingComponents = [ ViewEventComponent , HomeComponent , EventPlannerLayoutComponent, CreateEventComponent ] ;

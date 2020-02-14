@@ -14,7 +14,7 @@
   <div class="card-des">
     by <br>
     <p>{{ club | uppercase }}</p>
-    <div class="date-up" ><p> {{ tempDate.toDate() | date: 'medium' }} </p></div>
+    <div class="date-up" ><p> {{ startDate | date: 'medium' }} </p></div>
     <div *ngIf="eventDone; then IfDone; else IfPending" > </div>
   </div>
 

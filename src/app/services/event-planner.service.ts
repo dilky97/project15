@@ -8,7 +8,7 @@ import { eventData } from '../models/event-details.model';
 })
 export class EventPlannerService {
 
-  
+
   eventInfo: eventData;
   loggedInClub : string;
 
@@ -56,5 +56,3 @@ export class EventPlannerService {
   }
 
 }
-
-
