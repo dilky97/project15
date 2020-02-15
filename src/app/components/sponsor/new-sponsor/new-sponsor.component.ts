@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class NewSponsorComponent implements OnInit {
 
   sponsorModel:Sponsor = {} as Sponsor ;
+  
 
   // sponsorForm = new FormGroup({
   //     companyName: new FormControl('',Validators.required),

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Sponsor } from "src/app/models/sponsor.model";
 
 @Component({
   selector: 'app-sponsor-event-card',
@@ -26,4 +27,10 @@ export class SponsorEventCardComponent implements OnInit {
     
     });
   } 
+
+  showInterestedd(){
+    var arr=this.eventdata.acceptedProposals;
+    console.log(arr);
+  }
+
 }

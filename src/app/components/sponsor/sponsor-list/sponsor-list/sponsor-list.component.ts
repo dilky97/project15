@@ -27,14 +27,28 @@ export class SponsorListComponent implements OnInit {
   eid = "dbtfMUuefHSQkdam0zJ0";
 
   ngOnInit() {
-    this.service.getsponsors().subscribe(actionArray =>{
-      this.list = actionArray.map(item =>{
-        return {
-          id:item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as Sponsor;
+    
+      this.firestore.collection("events").doc(this.eid).get().subscribe(data=>{
+        var already=data.data().requestedSponsors;
+        this.service.getsponsors().subscribe(actionArray =>{
+          this.list = actionArray.map(item =>{
+            return {
+              id:item.payload.doc.id,
+              status:true,
+              ...item.payload.doc.data()
+            } as Sponsor;  
+          })
+          for(var j=0;j<this.list.length;j++){
+            for(var i=0;i<already.length;i++){
+              if(already[i] ==this.list[j].id){
+                this.list[j].status=false;
+
+              }
+            }
+          }
+          })
       })
-    }); 
+    // }); 
 
     this.proposalModel.event = '';
     this.proposalModel.sponsor = '';
@@ -54,7 +68,13 @@ export class SponsorListComponent implements OnInit {
       this.firestore.collection('sponsors').doc(id).get().subscribe(data=>{
         var arr=data.data().receivedProposals;
         arr.push(doc.id);
-        this.firestore.collection("sponsors").doc(id).update({receivedProposals:arr});
+        this.firestore.collection("sponsors").doc(id).update({receivedProposals:arr}).then(b=>{
+          this.firestore.collection('events').doc(this.eid).get().subscribe(d=>{
+            var ab=d.data().requestedSponsors;
+            ab.push(id);
+            this.firestore.collection("events").doc(this.eid).update({requestedSponsors:ab});
+          })
+        });        
       })
       doc.id
       this.router.navigate(['./sponsor-list'])

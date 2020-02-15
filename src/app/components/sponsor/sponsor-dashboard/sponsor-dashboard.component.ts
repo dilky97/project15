@@ -85,8 +85,6 @@ export class SponsorDashboardComponent implements OnInit {
     this.firestore.collection("sponsors").doc(this.id).update({'availability':this.data.availability=false});
   }
 
-  getReceivedEvents(){
-
-  }
+  
 
 }
