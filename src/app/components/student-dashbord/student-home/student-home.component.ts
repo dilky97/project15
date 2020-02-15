@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { EventDetailsService } from 'src/app/services/event-details.service';
-import { EventDetails } from 'src/app/models/event-details.model';
+import { eventData } from 'src/app/models/event-details.model';
 
 @Component({
   selector: 'app-student-home',
@@ -21,68 +21,42 @@ export class StudentHomeComponent implements OnInit {
              ) { }
 
   student: StudentDetails = {} as StudentDetails;
-  isPresident = false;
-  isEventplanner = false;
-  allEventList: EventDetails[] ;
-  participatingEventList: EventDetails[] = [] as EventDetails[];
+  allEventList: eventData[] = [] as eventData[];
+  participatingEventList: eventData[] = [] as eventData[];
 
   studentObservable: Observable<StudentDetails>;
 
+  profilePicture = '../../../../assets/images/account/Account.png';
+
   ngOnInit() {
 
-    firebase.auth().onAuthStateChanged( user => {
-      if (user.displayName === 'student') {
+    if (JSON.parse(localStorage.getItem('user'))) {
 
-        this.studentObservable = this.studentDetailsService.readStudentDatabase( user.uid ) as Observable<StudentDetails> ;
-
-        this.studentObservable.subscribe( temp => {
-
-          this.student = temp as StudentDetails ;
-
-          if ( this.student.presidentIn.length > 0) {this.isPresident = true; }
-          if ( this.student.eventPlannerIn.length > 0) {this.isEventplanner = true; }
-
-          this.getParticipatingEvents(this.student.participatingEvents);
-
-        });
-
-      } else {
-        this.router.navigate(['/no-access']);
+      if ( localStorage.getItem('displayName') === 'student' ) {
+        this.student = JSON.parse(localStorage.getItem('user')) as StudentDetails ;
       }
-    });
 
-    this.eventDetails.getAllEvents().subscribe( actionArray => {
+      if ( localStorage.getItem('profilePicture') !== 'null' ) {
+        this.profilePicture = localStorage.getItem('profilePicture');
+      }
 
-      this.allEventList = actionArray.map( item => {
-        return {
-          id: item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as EventDetails ;
+      this.eventDetails.getAllEvents().subscribe( actionArray => {
+        this.allEventList = actionArray as unknown as eventData[] ;
+        this.getParticipatingEvents(this.student.participatingEvents);
       });
 
-    });
+    } else {
+      this.router.navigate(['/no-access']);
+    }
 
   }
 
   getParticipatingEvents(participatingEventIds: Array<string>) {
-
-    this.eventDetails.getAllEvents().subscribe( actionArray => {
-
-      this.allEventList = actionArray.map( item => {
-        return {
-          id: item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as EventDetails ;
-      });
-
-    });
-
     this.allEventList.forEach(element => {
       if (participatingEventIds.includes(element.id)) {
         this.participatingEventList.push(element);
       }
     });
-
   }
 
   openEvent(id) {

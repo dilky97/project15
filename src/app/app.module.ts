@@ -6,6 +6,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
                                // from dilky
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { ToastrModule } from 'ngx-toastr';
@@ -65,6 +66,15 @@ import { SponsorEventCardComponent } from './components/sponsor/sponsor-event-ca
 
 
 
+import { HttpClientModule } from '@angular/common/http';
+                            // from dilky
+
+import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
+import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
+import { EditEventComponent } from './components/event-planner/edit-event/edit-event.component';
+import { SearchComponent } from './components/search/search.component';
+import { AttendeeListComponent } from './components/event-planner/attendee-list/attendee-list.component';
+import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home/advisor-home.component';
 
 @NgModule({
   declarations: [
@@ -95,12 +105,18 @@ import { SponsorEventCardComponent } from './components/sponsor/sponsor-event-ca
     SponsorListComponent,
     SponsorDashboardComponent,
     EditSponsorComponent,
-    SponsorEventCardComponent
-    
-    
+    SponsorEventCardComponent,
+    CreateClubComponent,
+    EventsListComponent,
+    EditEventComponent,
+    SearchComponent,
+    AttendeeListComponent,
+    AdvisorHomeComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
@@ -111,8 +127,7 @@ import { SponsorEventCardComponent } from './components/sponsor/sponsor-event-ca
     AngularFireStorageModule,
     ToastrModule.forRoot()
   ],
-  providers: [EventDetailsService, LoginRegisterAuthService, UserDetailsService, RouteGuardService, EventPlannerService,SponsorService],
-
+  providers: [EventDetailsService, LoginRegisterAuthService,SponsorService, UserDetailsService, RouteGuardService, EventPlannerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

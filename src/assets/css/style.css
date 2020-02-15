@@ -450,6 +450,7 @@ button {
 .btn-main-sm {
   padding: 6px 20px;
   font-size: 12px;
+  margin: 6px;
 }
 
 .btn-secondary {
@@ -508,7 +509,11 @@ button {
 }
 
 .btn-active {
-  color: #e6b322;
+  background: #e6b322;
+  color: #fff;
+  padding: 6px 20px;
+  font-size: 12px;
+  margin: 6px;
 }
 
 .btn:focus {
@@ -1137,7 +1142,7 @@ ul.pagination .active a {
   color: #59d659;
 }
 
-.dashboard-container .product-category {
+.dashboard-container .check-in {
   width: 15%;
   text-align: center;
 }

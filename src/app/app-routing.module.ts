@@ -16,18 +16,52 @@ import { EditSponsorComponent } from './components/sponsor/edit-sponsor/edit-spo
 import { SponsorDashboardComponent } from './components/sponsor/sponsor-dashboard/sponsor-dashboard.component';
 import { SponsorListComponent } from './components/sponsor/sponsor-list/sponsor-list/sponsor-list.component';
 import { NewSponsorComponent } from './components/sponsor/new-sponsor/new-sponsor.component';
+import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
+import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
+import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home/advisor-home.component';
+
 
 const routes: Routes = [
-
   { path: '' , redirectTo: 'home' , pathMatch: 'full' },
-  { path: 'test' , component: TestComponent , canActivate: [RouteGuardService] , data: {role: 'eventPlanner'}},
+  { path: 'test' , component: TestComponent },
   { path: 'login' , component: LoginComponent },
   { path: 'register' , component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'events/:id' , component: ViewEventComponent },
-  { path: 'student-dashboard' , component: StudentHomeComponent },
+  { path: 'student-dashboard' , component: StudentHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
+  { path: 'advisor-dashboard' , component: AdvisorHomeComponent, canActivate: [RouteGuardService], data: {role: 'advisor'}},
   { path: 'no-access' , component: NoAccessComponent },
   { path: 'sponsor-dashboard' ,component:SponsorDashboardComponent},
+
+  { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent,canActivate: [RouteGuardService], data: {role: 'student'},
+   children:[
+
+    {
+      path: '',
+      redirectTo : 'all-events',
+      pathMatch : 'full'
+
+    },
+    {
+      path : 'all-events',
+      component: EventsListComponent
+    },
+
+    {
+      path: 'create-event' ,
+      component: CreateEventComponent
+    },
+
+   {
+     path: 'event/:eventId',
+     component:EventPlannerLayoutComponent
+   },
+
+
+  ]},
+
+  { path: 'create-club' , component: CreateClubComponent },
+
   { path: 'event-planner' , component: EventPlannerLayoutComponent },
   { path: 'event-planner-home' , component: EventPlannerHomeComponent },
   { path: 'edit-sponsor', component: EditSponsorComponent },

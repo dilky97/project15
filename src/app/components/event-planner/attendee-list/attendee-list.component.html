@@ -1,0 +1,51 @@
+<div class="col-md-12">
+    <div class="card card-body" >
+        <div class="header">
+            <h4 class="title"> Registered Participants</h4>
+        </div>
+        <div class="content">
+            <table class="table table-responsive-md">
+                <thead style="width: 100%;">
+                    <tr>
+                        <th class="text-center" >Name</th>
+                        <th class="text-center" >E-mail</th>
+                        <th class="text-center" >Check-In</th>
+                        <th class="text-center" >Action</th>
+                    </tr>
+                </thead>
+                <tbody style="width: 100%;">
+                    
+                    <tr *ngFor="let attendee of attendeeDetailsArr">
+            
+                        <td>{{attendee.firstName}} {{attendee.lastName}}</td>
+                        <td > {{attendee.email}}</td>
+                        <td class="check-in"> 
+                            <button name="check-in" [ngClass]="[btnStyle]" (click)="onCheckIn()">Check-In</button></td>
+                        <td class="action" data-title="Action">
+                            <div class="">
+                                <ul class="list-inline justify-content-center">
+                                    <li class="list-inline-item">
+                                        <a data-toggle="tooltip" data-placement="top" title="View" class="view" href="category.html">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a data-toggle="tooltip" data-placement="top" title="Edit" class="edit" href="">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a data-toggle="tooltip" data-placement="top" title="Delete" class="delete" href="">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+        </div>
+    </div>
+</div>
+        
