@@ -64,7 +64,7 @@ const routes: Routes = [
   ]},
 
   { path: 'create-club' , component: CreateClubComponent },
-  {path:'serviceprovider-dashboard' ,component:ServiceproviderHomeComponent,canActivate: [RouteGuardService], data: {role: 'serviceProvider'}},
+  {path:'serviceProvider-dashboard' ,component:ServiceproviderHomeComponent,canActivate: [RouteGuardService], data: {role: 'serviceProvider'}},
   {path:'Edit-serviceprovider',component:EditServiceproviderComponent},
 
   { path: 'event-planner' , component: EventPlannerLayoutComponent },
