@@ -127,7 +127,7 @@ export class RegisterComponent implements OnInit {
     this.advisor.lastName = formData.lastName;
     this.advisor.email = formData.email;
     this.advisor.advisorIn = [] as Array<{id: string, name: string}>;
-    this.advisor.newClubRequests = [] as Array<string>;
+    this.advisor.newClubRequests = [] as Array<{id: string, name: string}>;
 
     this.registerService.doRegisterAdvisor(formData).then(
       resAuth => {
