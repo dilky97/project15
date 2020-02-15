@@ -71,7 +71,10 @@
                 <h3 class="widget-header">My Events</h3>
     
                 <div class="ad-listing-list mt-20">
-                    <app-event-card></app-event-card>
+                    <div *ngFor="let i of proposalData">   
+                        <app-sponsor-event-card [eventId]="i" ></app-sponsor-event-card>
+                    </div>
+                    <!-- <app-event-card></app-event-card> -->
                 </div>
     
                 

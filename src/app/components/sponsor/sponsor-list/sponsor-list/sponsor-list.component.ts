@@ -13,14 +13,18 @@ import { ProposalDetails } from 'src/app/models/proposal-details.model';
 export class SponsorListComponent implements OnInit {
 
   proposalModel:ProposalDetails = {} as ProposalDetails ;
-
+  sponsorModel:Sponsor = {} as Sponsor;
 
   list:Sponsor[];
   constructor(
     private service:SponsorService,
     private firestore : AngularFirestore,
     private router:Router
-    ) { }
+    ) {
+      // this.id = localStorage.getItem("eid");
+     }
+
+  eid = "dbtfMUuefHSQkdam0zJ0";
 
   ngOnInit() {
     this.service.getsponsors().subscribe(actionArray =>{
@@ -45,7 +49,14 @@ export class SponsorListComponent implements OnInit {
     //need to add relevant sponsorId and relevant eventId to the proposals array 
     //optional - also send the senderId
     this.proposalModel.sponsor=id;
+    this.proposalModel.event=this.eid;
     this.firestore.collection('proposals').add(this.proposalModel).then(doc=>{
+      this.firestore.collection('sponsors').doc(id).get().subscribe(data=>{
+        var arr=data.data().receivedProposals;
+        arr.push(doc.id);
+        this.firestore.collection("sponsors").doc(id).update({receivedProposals:arr});
+      })
+      doc.id
       this.router.navigate(['./sponsor-list'])
     })
   }

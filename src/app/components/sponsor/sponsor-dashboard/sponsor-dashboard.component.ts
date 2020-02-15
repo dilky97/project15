@@ -10,6 +10,8 @@ import { Sponsor } from "src/app/models/sponsor.model";
 })
 export class SponsorDashboardComponent implements OnInit {
 
+  rprop;
+  proposalData =[]=[];
   list:Sponsor[];
   constructor(
     private firestore:AngularFirestore,
@@ -17,7 +19,7 @@ export class SponsorDashboardComponent implements OnInit {
     ) { }
   
   data;
-  id = 'HHG0vJGCTBWway00UItl';
+  id = '4uteDIGFwq1opxYo4jtl';
 
   ngOnInit() {
     this.getData();
@@ -41,7 +43,23 @@ export class SponsorDashboardComponent implements OnInit {
     this.firestore.collection('sponsors').doc(this.id).valueChanges().subscribe(val=>{
       this.data=val;
       console.log(val);
+      this.rprop = this.data["receivedProposals"];
+      console.log(this.rprop);
+
+      this.rprop.forEach(element => {
+        this.firestore.collection("proposals").doc(element).valueChanges().subscribe(val=>{
+          this.proposalData.push(val["event"]);
+
+           console.log(val["event"] + " this is the event id"); 
+           console.log(this.proposalData + "this is proposalData")
+        })
+      })
     })
+
+
+
+    
+
   //   var data = this.firestore.firestore.collection("sponsors").doc("this.id").get().then(function(doc) {
   //     if (doc.exists) {
   //         this.data = doc.data()
@@ -65,6 +83,10 @@ export class SponsorDashboardComponent implements OnInit {
   unavailable(){
     this.data.availability=true;
     this.firestore.collection("sponsors").doc(this.id).update({'availability':this.data.availability=false});
+  }
+
+  getReceivedEvents(){
+
   }
 
 }
