@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClubDetails } from 'src/app/models/club-details.model';
-import { eventData, EventDetails } from "src/app/models/event-details.model";
+import { eventData } from "src/app/models/event-details.model";
 import { EventPlannerService } from 'src/app/services/event-planner.service';
 import { ClubDetailsService } from 'src/app/services/club-details.service';
 

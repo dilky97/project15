@@ -16,10 +16,14 @@ export class EventPlannerHomeComponent implements OnInit {
 
   clubObservable : Observable<ClubDetails>;
 
-  constructor(private route: ActivatedRoute, private CreateEventRoute: Router,private ClubIDService: EventPlannerService,private ClubDataService:ClubDetailsService) { }
+  constructor(private route: ActivatedRoute, private CreateEventRoute: Router,private ClubIDService: EventPlannerService,private ClubDataService:ClubDetailsService) {
+    this.selectedClubId = this.route.snapshot.paramMap.get('id');
+    localStorage.setItem("cludId",this.selectedClubId);
+    console.log(localStorage.getItem("cludId"));
+  }
 
   ngOnInit() {
-    this.selectedClubId = this.route.snapshot.paramMap.get('id');
+    // this.selectedClubId = this.route.snapshot.paramMap.get('id');
 
     console.log(this.selectedClubId);
 
@@ -32,6 +36,7 @@ export class EventPlannerHomeComponent implements OnInit {
       console.log(this.club);
 
       localStorage.setItem("cludId",this.selectedClubId);
+      console.log(localStorage.getItem("cludId"));
 
     });
 

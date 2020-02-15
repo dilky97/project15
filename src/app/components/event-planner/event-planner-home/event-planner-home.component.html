@@ -22,7 +22,7 @@
                   <div class="widget user-dashboard-menu">
                       <ul>
                       <li class="active"><a [routerLink]="['/event-planner-home',this.selectedClubId]"><i class="fa fa-user"></i> My Events</a></li>
-                      <li><a href="#"><i class="fa fa-bookmark-o"></i> Favourite Events <span>5</span></a></li>
+                      <li><a [routerLink]="['/event-planner-home',this.selectedClubId]"><i class="fa fa-bookmark-o"></i> Favourite Events <span>5</span></a></li>
                       <li><a href="#"><i class="fa fa-file-archive-o"></i>Archived Events <span>12</span></a></li>
                       <li><a href="#"><i class="fa fa-bolt"></i> Pending Approvals<span>23</span></a></li>
                       <!-- <li><a href="#"><i class="fa fa-cog"></i> Logout</a></li> -->
@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-md-3">
                         <!-- <a [routerLink]="['create-event']" class="btn text-white add-button pull-right">Create Event</a> -->
-                        <button (click)="goToCreateEvent()" class="btn text-white add-button pull-right"><i class="fa fa-plus-circle"></i>Create Event</button>
+                        <button [disabled]="!club.isActivated" (click)="goToCreateEvent()" class="btn text-white add-button pull-right"><i class="fa fa-plus-circle"></i>Create Event</button>
                     </div>
 
                 </div>
