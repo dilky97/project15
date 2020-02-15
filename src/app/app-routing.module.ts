@@ -15,6 +15,7 @@ import { NoAccessComponent } from './components/no-access/no-access.component';
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
 import{ EditServiceproviderComponent } from './components/service-provider/edit-serviceprovider/edit-serviceprovider.component';
 import { ServiceproviderListComponent } from './components/service-provider/serviceprovider-list/serviceprovider-list.component';
+import{ ViewspComponent} from './components/service-provider/viewsp/viewsp.component';
 const routes: Routes = [
   { path: '' , redirectTo: 'home' , pathMatch: 'full' },
   { path: 'test' , component: TestComponent, canActivate: [RouteGuardService], data: {role: 'eventPlanner'}},
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'event-planner' , component: EventPlannerLayoutComponent },
   { path: 'event-planner-home' , component: EventPlannerHomeComponent },
   { path:'splist' , component:ServiceproviderListComponent},
+  { path:'viewsp',component:ViewspComponent},
 ];
 
 export const routingComponents = [ ViewEventComponent , HomeComponent , EventPlannerLayoutComponent, CreateEventComponent ] ;

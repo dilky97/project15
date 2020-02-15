@@ -56,6 +56,7 @@ import { CreateClubComponent } from './components/student-dashbord/create-club/c
 import { ServiceproviderHomeComponent } from './components/serviceprovider-dashboard/serviceprovider-home/serviceprovider-home.component';
 import { EditServiceproviderComponent } from './components/service-provider/edit-serviceprovider/edit-serviceprovider.component';
 import { ServiceproviderListComponent } from './components/service-provider/serviceprovider-list/serviceprovider-list.component';
+import { ViewspComponent } from './components/service-provider/viewsp/viewsp.component';
 //import {CreateClubComponent } from './components/serviceprovider-dashboard/create-club/create-club.component';
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { ServiceproviderListComponent } from './components/service-provider/serv
     ServiceproviderHomeComponent,
     EditServiceproviderComponent,
     ServiceproviderListComponent,
+    ViewspComponent,
     
   ],
   imports: [

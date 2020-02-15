@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classimax</title>
+  
+ 
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body class="body-wrapper">
+
+
+
+<!--===================================
+=            Store Section            =
+====================================-->
+<section class="section bg-gray">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<!-- Left sidebar -->
+			<div class="col-md-8">
+				<div class="product-details">
+					<h1 class="product-title">{{ServiceproviderData.firstName}} {{ServiceproviderData.lastName}}</h1>
+					<div class="product-meta">
+						<ul class="list-inline">
+							<li class="list-inline-item"><i class="fa fa-user-o"></i> By <a href="">Andrew</a></li>
+							<li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Category<a href="">Electronics</a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> Location<a href="">Dhaka Bangladesh</a></li>
+						</ul>
+					</div>
+
+					<!-- product slider -->
+					
+					<!-- product slider -->
+
+					<div class="content mt-5 pt-5">
+						<ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
+								 aria-selected="true">Serviceprovider Details</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
+								 aria-selected="false">Past events</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
+								 aria-selected="false">Reviews</a>
+							</li>
+						</ul>
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+								
+                                <label>Name:</label>{{ServiceproviderData.firstName}} {{ServiceproviderData.lastName}}<br><br>
+                                <label >Email:</label>{{ServiceproviderData.email}}<br><br>  
+                                <label>Service:</label>{{ServiceproviderData.service}}<br><br>
+                                <label>Service description:</label>{{ServiceproviderData.serviceDes}}
+
+                                
+
+
+                                <!-- product slider -->
+					
+                                
+                                
+
+							</div>
+							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                
+                                <div class="product-slider" >
+                                <ul *ngFor="let im of images | async">
+                                    <div *ngIf="im.email == ServiceproviderData.email">
+                                         <div class="product-slider-item my-4" >
+                                        <img
+                                            id="image"
+                                            src="{{ im.url }}"
+                                            style="max-width:250px;"
+                                          />
+                                        
+                                          </div>
+                                        </div>
+                                        
+                                        
+                                    
+                                    
+                                        </ul>
+                                    </div>
+
+								
+							</div>
+							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+								<h3 class="tab-title">Product Review</h3>
+								
+									
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="sidebar">
+					
+					<!-- User Profile widget -->
+					<div class="widget user text-center">
+						<img class="rounded-circle img-fluid mb-5 px-5" src="images/user/user-thumb.jpg" alt="">
+						<h4>{{ServiceproviderData.firstName}} {{ServiceproviderData.lastName}}</h4>
+						<p class="member-time">Member Since Jun 27, 2017</p>
+						<a href="">See all ads</a>
+						<ul class="list-inline mt-20">
+							<li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Contact</a></li>
+							<li class="list-inline-item"><a href="" class="btn btn-offer d-inline-block btn-primary ml-n1 my-1 px-lg-4 px-md-3">Make an
+									offer</a></li>
+						</ul>
+					</div>
+					<!-- Map Widget -->
+					
+					<!-- Rate Widget -->
+				
+					<!-- Safety tips widget -->
+					
+					<!-- Coupon Widget -->
+					
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
+<!--============================
+=            Footer            =
+=============================-->
+
+
+<!-- Footer Bottom -->
+
+
+
+</body>
+
+</html>

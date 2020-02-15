@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore,AngularFirestoreDocument } from '@angular/fire/firestore';
+import { FormBuilder, Validators } from '@angular/forms';
 import {Observable} from "rxjs";
 import { ServiceProviderDetails } from 'src/app/models/service-provider-details.model';
 
@@ -15,7 +16,8 @@ export class EditServiceproviderComponent implements OnInit {
   ServiceproviderData: ServiceProviderDetails = {} as ServiceProviderDetails ;
 
   constructor(
-    private firestore:AngularFirestore
+    private firestore:AngularFirestore,
+    private formBuilder: FormBuilder
     ) { 
       this.id = localStorage.getItem("id");
 
@@ -25,6 +27,17 @@ export class EditServiceproviderComponent implements OnInit {
     data;
     
     id;
+
+
+    ServiceProviderEditForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      // email: ['', [Validators.email, Validators.required]],
+      // service: ['', Validators.required],
+       serviceDes: ['', Validators.required],
+      // password: ['', [Validators.required, Validators.minLength(6)]],
+      // confirmPassword: ['', Validators.required],
+    },);
 
   ngOnInit() {
     console.log(this.id);

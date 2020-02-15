@@ -14,19 +14,29 @@
                
                 <div class="widget personal-info">
                     
-                    <form #serviceproviderForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+                    <form [formGroup]="ServiceProviderEditForm" #serviceproviderForm="ngForm" novalidate (ngSubmit)="onSubmit()">
 
                         <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" name="name" value="{{ServiceproviderData.firstName}}" required #name="ngModel" class="form-control" [class.is-invalid]="name.invalid && name.touched" 
-                            [(ngModel)]="ServiceproviderData.firstName"><small class="text-danger" [class.d-none]="name.valid || name.untouched"> Name is required</small>
+                            <input type="text"  value="{{ServiceproviderData.firstName}}"   class="form-control"  [class.is-invalid]="ServiceProviderEditForm.get('firstName').invalid && ServiceProviderEditForm.get('firstName').touched"
+                           
+                            formControlName="firstName"
+                          
+                            required 
+                            [(ngModel)]="ServiceproviderData.firstName"><small *ngIf="ServiceProviderEditForm.get('firstName').invalid && ServiceProviderEditForm.get('firstName').touched"
+                            class="text-danger">*First Name is required !</small>
                             
                         </div>
                         
                         <div class="form-group">
                             <label>Last Name</label>
                             
-                            <input name="serviceproviderlname" class="form-control" [(ngModel)]="ServiceproviderData.lastName" value="{{ServiceproviderData.lastName}}">
+                            <input type="text"   class="form-control" [(ngModel)]="ServiceproviderData.lastName" value="{{ServiceproviderData.lastName}}" [class.is-invalid]="ServiceProviderEditForm.get('lastName').invalid && ServiceProviderEditForm.get('lastName').touched"
+                           
+                            formControlName="lastName"
+                          
+                            required ><small *ngIf="ServiceProviderEditForm.get('lastName').invalid && ServiceProviderEditForm.get('lastName').touched"
+                            class="text-danger">*Last Name is required !</small>
                         </div>
 
                         <div class="form-group">
@@ -47,7 +57,12 @@
                         <div class="form-group">
                             <label>Service Description</label>
                          
-                            <input name="serviceproviderservicedes" class="form-control" [(ngModel)]="ServiceproviderData.serviceDes" value="{{ServiceproviderData.serviceDes}}">
+                            <input type="text" class="form-control" [(ngModel)]="ServiceproviderData.serviceDes" value="{{ServiceproviderData.serviceDes}}" [class.is-invalid]="ServiceProviderEditForm.get('serviceDes').invalid && ServiceProviderEditForm.get('serviceDes').touched"
+                           
+                            formControlName="serviceDes"
+                          
+                            required ><small *ngIf="ServiceProviderEditForm.get('serviceDes').invalid && ServiceProviderEditForm.get('serviceDes').touched"
+                            class="text-danger">*Description is required !</small>
                         </div>
 
                       

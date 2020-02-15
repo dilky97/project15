@@ -7,6 +7,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { EventDetailsService } from 'src/app/services/event-details.service';
 import { EventDetails } from 'src/app/models/event-details.model';
+import {
+  AngularFireStorage,
+  AngularFireStorageReference,
+  AngularFireUploadTask
+} from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-serviceprovider-home',
@@ -14,13 +21,32 @@ import { EventDetails } from 'src/app/models/event-details.model';
   styleUrls: ['./serviceprovider-home.component.scss']
 })
 export class ServiceproviderHomeComponent implements OnInit {
+  files: File[] = [];
+  file: Observable<any>;
+  isHovering: boolean;
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  task: AngularFireUploadTask;
+  percentage: Observable<number>;
+  snapshot: Observable<any>;
+  ref: AngularFireStorageReference;
+ images: Observable<any[]>;
+
 
   constructor(
                private firestore:AngularFirestore,
+               private afStorage: AngularFireStorage,
                private ServiceProviderDetails: UserDetailsService,
                public router: Router,
-               private eventDetails: EventDetailsService
-  ) { }
+               private eventDetails: EventDetailsService,
+               private toastr: ToastrService
+  ) {
+    
+    this.images = this.firestore.collection('spEvents', ref => ref.orderBy('date')).valueChanges({idField:'id'});
+    this.id = localStorage.getItem("id");
+   }
+
+   id;
   serviceProvider: ServiceProviderDetails = {} as ServiceProviderDetails;
   // allEventList: EventDetails[] ;
   // participatingEventList: EventDetails[] = [] as EventDetails[];
@@ -61,34 +87,49 @@ export class ServiceproviderHomeComponent implements OnInit {
 
   }
   
+  uploadFile(event) {
   
+    const file = event.target.files[0];
+    const filePath = '/spEvents/' + Date.now() + '-' + this.files[0];
+    const fileRef = this.afStorage.ref(filePath);
+    const task = this.afStorage.upload(filePath, file);
+    this.ref = this.afStorage.ref(filePath);
+    this.uploadPercent = task.percentageChanges();
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(async () => {
+          this.downloadURL = await this.ref.getDownloadURL().toPromise();
+          this.firestore.collection('spEvents').add({
+            type: 'file',
+            time: Date.now(),
+            date: new Date(),
+            sender: this.serviceProvider.firstName,
+            email: this.serviceProvider.email,
+            url: this.downloadURL
+          });
+        })
+      )
+      .subscribe();
+  }
+ 
+  delete(Id) {
+    if (confirm('Are you sure to delete this event?')) {
+    this.firestore.doc('spEvents/' + Id).delete();
+    this.toastr.warning('Event was removed successfully');
+   }
+  }
+
+  deleteAcc(id){
+    this.firestore.doc('serviceProviders/' + id).delete();
+    this.router.navigate(['/home']);
+  }
    
   }
 
-  // getParticipatingEvents(participatingEventIds: Array<string>) {
+  
 
-  //   this.eventDetails.getAllEvents().subscribe( actionArray => {
-
-  //     this.allEventList = actionArray.map( item => {
-  //       return {
-  //         id: item.payload.doc.id,
-  //         ...item.payload.doc.data()
-  //       } as EventDetails ;
-  //     });
-
-  //   });
-
-  //   this.allEventList.forEach(element => {
-  //     if (participatingEventIds.includes(element.id)) {
-  //       this.participatingEventList.push(element);
-  //     }
-  //   });
-
-  // }
-
-  // openEvent(id) {
-  //   this.router.navigate(['/events' , id]);
-  // }
+  
 
 
     

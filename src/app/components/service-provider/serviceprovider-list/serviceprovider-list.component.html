@@ -2,8 +2,8 @@
     <thead>
         <th>First name</th>
         <th>Last name</th>
-        <th>Your service</th>
-        <th>Service Description</th>
+        <th>Email</th>
+        <th>Service</th>
         
     </thead>
     <tbody>
@@ -11,11 +11,10 @@
           
           <td  >{{ser. firstName}}</td>
           <td  >{{ser.lastName}}</td>
+          <td> {{ser.email}} </td>
           <td  >{{ser.service}}</td>
-          <td  >{{ser.serviceDes}}</td>
-          <td> <button class="btn btn-outline-primary"  type="button">
-                <i style="font-size:24px" class="fa">&#xf0a9;</i>
-              </button></td>
+          <!-- <td  >{{ser.serviceDes}}</td> -->
+          <td> <button type="button" (click)="vieww(ser.id)" class="btn btn-danger">view</button></td>
         </tr>
     </tbody>
 </table>
