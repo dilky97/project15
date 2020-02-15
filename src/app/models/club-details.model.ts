@@ -1,4 +1,5 @@
 export class ClubDetails {
+  id: string;
   name: string;
   advisor: string;
   president: string;

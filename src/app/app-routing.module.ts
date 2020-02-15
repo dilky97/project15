@@ -14,16 +14,18 @@ import { EventPlannerHomeComponent } from './components/event-planner/event-plan
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
 import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
+import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home/advisor-home.component';
 
 
 const routes: Routes = [
   { path: '' , redirectTo: 'home' , pathMatch: 'full' },
-  { path: 'test' , component: TestComponent, canActivate: [RouteGuardService], data: {role: 'eventPlanner'}},
+  { path: 'test' , component: TestComponent },
   { path: 'login' , component: LoginComponent },
   { path: 'register' , component: RegisterComponent },
   { path: 'home' , component: HomeComponent },
   { path: 'events/:id' , component: ViewEventComponent },
   { path: 'student-dashboard' , component: StudentHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
+  { path: 'advisor-dashboard' , component: AdvisorHomeComponent, canActivate: [RouteGuardService], data: {role: 'advisor'}},
   { path: 'no-access' , component: NoAccessComponent },
 
   { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent,canActivate: [RouteGuardService], data: {role: 'student'},

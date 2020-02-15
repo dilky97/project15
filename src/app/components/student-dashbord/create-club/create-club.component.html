@@ -32,9 +32,10 @@
                        formControlName="advisor"
                        class="form-control">
                 <div *ngIf="ClubRegisterForm.get('advisor').invalid && ClubRegisterForm.get('advisor').touched">
-                  <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.required">*Advisor is required !</small>
-                  <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.unRegisteredEmail">*This isn't registered user in Events Hub Uoc !</small>
-                  <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.email">*Email is badly formatted !</small>
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.required">*Advisor is required ! </small>
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.unRegisteredEmail">*This isn't registered Lecturer in Events Hub Uoc ! </small>
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.email">*Email is badly formatted ! </small>
+                  <small class="text-danger" *ngIf="!(ClubRegisterForm.get('advisor').errors.email) && ClubRegisterForm.get('advisor').errors.invalidLecture">*Please use academic Email(xxx@xxx.cmb.ac.lk) ! </small>
                 </div>
               </div>
 
@@ -58,7 +59,7 @@
                        formControlName="eventPlanner"
                        class="form-control">
                 <div *ngIf="ClubRegisterForm.get('eventPlanner').invalid && ClubRegisterForm.get('eventPlanner').touched">
-                  <small class="text-danger" *ngIf="ClubRegisterForm.get('eventPlanner').errors.unRegisteredEmail">*This isn't registered user in Events Hub Uoc !</small>
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('eventPlanner').errors.unRegisteredEmail">*This isn't registered Student in Events Hub Uoc !</small>
                 </div>
               </div>
 
@@ -78,7 +79,7 @@
                 <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
               </div>
 
-              <button type="submit" (click)="tryClubRegister(ClubRegisterForm.value)" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Create Club</button>
+              <button [disabled]="ClubRegisterForm.invalid" type="submit" (click)="tryClubRegister(ClubRegisterForm.value)" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Create Club</button>
 
             </fieldset>
           </form>

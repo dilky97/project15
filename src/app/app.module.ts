@@ -58,6 +58,7 @@ import { EventsListComponent } from './components/event-planner/events-list/even
 import { EditEventComponent } from './components/event-planner/edit-event/edit-event.component';
 import { SearchComponent } from './components/search/search.component';
 import { AttendeeListComponent } from './components/event-planner/attendee-list/attendee-list.component';
+import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home/advisor-home.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { AttendeeListComponent } from './components/event-planner/attendee-list/
     EventsListComponent,
     EditEventComponent,
     SearchComponent,
-    AttendeeListComponent
+    AttendeeListComponent,
+    AdvisorHomeComponent
   ],
   imports: [
     HttpClientModule,

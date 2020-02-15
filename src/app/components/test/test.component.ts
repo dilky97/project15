@@ -18,13 +18,7 @@ import { EventDetailsService } from 'src/app/services/event-details.service';
 
 export class TestComponent implements OnInit {
 
-  userId: string;
-  userEmail: string;
-  userDisplayName: string;
-  dp: string;
-
-  student: StudentDetails = {} as StudentDetails;
-  name: string;
+  a = [] as Array<{id: string, name: string}>;
 
   constructor( private studentDetailsService: UserDetailsService,
                private firestore: AngularFirestore,
@@ -36,22 +30,11 @@ export class TestComponent implements OnInit {
 
   ngOnInit() {
 
-    this.authService.getUser().subscribe(
-      user => {
-        this.userId = user.uid;
-        this.userDisplayName = user.displayName;
-        this.userEmail = user.email;
-      }
-    );
+    this.a.push({id: '7', name: 'priyashan'});
+    this.a.push({id: '7', name: 'priyashan'});
+    console.log( this.a.findIndex(i => i.id === '7'));
 
   }
 
-  logOut() {
-    this.authService.logOut();
-  }
-
-  addUser() {
-    return this.firestore.collection('test').add(this.student);
-  }
 
 }
