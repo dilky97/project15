@@ -65,11 +65,13 @@ export class CreateClubComponent implements OnInit {
     this.club.des = formData.des;
     this.club.events = [] as Array<string>;
     this.club.isActivated = false;
-    this.club.president = this.student.email ;
+    this.club.president = this.student.email;
+    this.club.id = '';
 
     this.clubDetailsService.createClubDatabase(this.club).then(
       async resDb => {
         this.returnedId = resDb.id;
+        await this.firestore.collection('clubs').doc(this.returnedId).update({id: this.returnedId});
 
         const promise = firebase.firestore().collection('advisors').where( 'email', '==', this.club.advisor ).get();
         promise.then( async res => {
@@ -77,7 +79,7 @@ export class CreateClubComponent implements OnInit {
             this.advisor = doc.data() as AdvisorDetails;
             this.advisorId = doc.id;
           });
-          this.advisor.newClubRequests.push(this.returnedId);
+          this.advisor.newClubRequests.push({id: this.returnedId, name: this.club.name});
           await this.firestore.collection('advisors').doc(this.advisorId).update(this.advisor);
         });
 
