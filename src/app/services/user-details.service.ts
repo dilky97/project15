@@ -18,7 +18,7 @@ export class UserDetailsService {
   }
 
   createAdvisorDatabase(advisor: AdvisorDetails , id: string ) {
-    return this.firestore.collection('students').doc(id).set(advisor);
+    return this.firestore.collection('advisors').doc(id).set(advisor);
   }
 
   readStudentDatabase(id: string) {
@@ -29,7 +29,11 @@ export class UserDetailsService {
     return this.firestore.collection('serviceProviders').doc(id).set(serviceProvider);
   }
   
-  readServiceProviderDatabase(id: string){
+  readAdvisorDatabase(id: string) {
+    return this.firestore.collection('advisors').doc(id).valueChanges();
+  }
+
+  readServiceProviderDatabase(id: string) {
     return this.firestore.collection('serviceProviders').doc(id).valueChanges();
   }
 

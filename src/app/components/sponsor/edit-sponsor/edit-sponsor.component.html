@@ -1,0 +1,82 @@
+<section class="user-profile section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
+                <div class="sidebar">
+                    <!-- User Widget -->
+                    <div class="widget user-dashboard-profile">
+                        <!-- User Image -->
+                        <!-- <div class="profile-thumb">
+                            <img src="images/user/user-thumb.jpg" alt="" class="rounded-circle">
+                        </div> -->
+                        <!-- User Name -->
+                        <!-- <h5 class="text-center">Samanta Doe</h5>
+                        <p>Joined February 06, 2017</p> -->
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
+                <!-- Edit Personal Info -->
+                <div class="widget personal-info">
+                    <!-- <h3 class="widget-header user">Add Company Information</h3> -->
+                    <form #sponsorForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+
+
+                        <!-- Company Name -->
+                        <!-- <input type="hidden" name="id"  class="form-control" [(ngModel)]="data.id"> -->
+
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text" name="sponsorName" value="{{sponsorData.name}}" required #name="ngModel" class="form-control" [class.is-invalid]="name.invalid && name.touched" 
+                            [(ngModel)]="sponsorData.name"><small class="text-danger" [class.d-none]="name.valid || name.untouched"> Name is required</small>
+                            
+                        </div>
+                        <!-- Email Address -->
+                        <div class="form-group">
+                            <label>Address</label>
+                            <!-- {{data.sponsorAddress}} -->
+                            <input name="sponsorAddress" class="form-control" [(ngModel)]="sponsorData.address" value="{{sponsorData.address}}">
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-group">
+                            <label>E mail</label>	
+                            <input name="sponsorEmail" class="form-control" [(ngModel)]="sponsorData.email" value="{{sponsorData.email}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Telephone No</label>	
+                            <input name="sponsorTelephoneNo" class="form-control" [(ngModel)]="sponsorData.telephoneNo" value="{{sponsorData.telephoneNo}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Interested Catogories</label>	
+                            <input name="sponsorcategories" class="form-control" [(ngModel)]="sponsorData.categories" value="{{sponsorData.categories}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Maximum Budget Limit</label>	
+                            <input name="sponsormaxBudgetLimit" class="form-control" [(ngModel)]="sponsorData.maxBudgetLimit" value="{{sponsorData.maxBudgetLimit}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Web Site Url</label>	
+                            <input name="sponsorwebsiteUrl" class="form-control" [(ngModel)]="sponsorData.websiteUrl" value="{{sponsorData.websiteUrl}}">
+                        </div>
+
+                        
+                        <!-- <div class="form-group">
+                            <label>Upload Company logo</label>
+                            <div class="col-md-7">
+                                <app-file-uploader (messageEvent)="receiveMessage($event)"></app-file-uploader>
+                            </div>
+                        </div> -->
+                        <button class="btn btn-transparent" type="submit">Update Profile</button>
+                    </form>  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

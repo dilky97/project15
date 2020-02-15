@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <section class="login py-5 border-top-1">
   <div class="container">
       <div class="row justify-content-center">
@@ -34,6 +35,32 @@
                     <form [formGroup]="StudentRegisterForm">
                         <fieldset class="p-4">
 
+                          <!-- /////////////// image uploader - start /////////////// -->
+                          <div class="form-group">
+                            <label>Profile picrure :</label>
+                            <div class="card" style="width: 15rem;" >
+                              <div class="card-body">
+                                <form [formGroup]="imageForm">
+                                  <div class="text-center">
+                                    <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
+                                  </div>
+                                  <div class="form-group">
+                                    <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                    <input type="file"
+                                           class="form-control"
+                                           formControlName="imageUrl"
+                                           (change) = "showPreview($event,imageForm.value)"
+                                           accept="image/*"
+                                           #fileUploader
+                                    >
+                                    <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- /////////////// image uploader - end /////////////// -->
+
                           <div class="form-group">
                             <label>First Name :</label>
                             <input [class.is-invalid]="StudentRegisterForm.get('firstName').invalid && StudentRegisterForm.get('firstName').touched"
@@ -58,16 +85,16 @@
                           <div class="form-group">
                             <label>Select Your Faculty :</label>
                             <select [class.is-invalid]="StudentRegisterForm.get('faculty').invalid && StudentRegisterForm.get('faculty').touched" class="form-control" formControlName="faculty">
-                              <option>University of colombo school of computing</option>
+                              <option>University of Colombo School of Computing</option>
                               <option>Faculty of Science</option>
                               <option>Faculty of Management</option>
                               <option>Faculty of Arts</option>
-                              <option>Faculty of Low</option>
+                              <option>Faculty of Law</option>
                               <option>Faculty of Nursing</option>
                               <option>Faculty of Medicine</option>
                               <option>Faculty of Technology</option>
                               <option>Faculty of Education</option>
-                              <option>Faculty of Ayurvedhic</option>
+        
                             </select>
                             <small class="text-danger" *ngIf="StudentRegisterForm.get('faculty').invalid && StudentRegisterForm.get('faculty').touched">*Select your faculty !</small>
                           </div>
@@ -102,10 +129,10 @@
                                    type="password"
                                    formControlName="password"
                                    class="form-control">
-                                  <div *ngIf="StudentRegisterForm.get('password').invalid && StudentRegisterForm.get('password').touched">
-                                    <small class="text-danger" *ngIf="StudentRegisterForm.get('password').errors.required">*Enter a password !</small>
-                                    <small class="text-danger" *ngIf="StudentRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
-                                  </div>
+                            <div *ngIf="StudentRegisterForm.get('password').invalid && StudentRegisterForm.get('password').touched">
+                              <small class="text-danger" *ngIf="StudentRegisterForm.get('password').errors.required">*Enter a password !</small>
+                              <small class="text-danger" *ngIf="StudentRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
+                            </div>
                           </div>
 
                           <div class="form-group">
@@ -114,10 +141,10 @@
                                    type="password"
                                    formControlName="confirmPassword"
                                    class="form-control">
-                                   <div *ngIf="StudentRegisterForm.get('confirmPassword').invalid && StudentRegisterForm.get('confirmPassword').touched">
-                                    <small class="text-danger" *ngIf="StudentRegisterForm.get('confirmPassword').errors.required">*Re-Enter the password !</small>
-                                    <small class="text-danger" *ngIf="StudentRegisterForm.get('confirmPassword').errors.mustMatch">*Passwords doesn't match !</small>
-                                  </div>
+                            <div *ngIf="StudentRegisterForm.get('confirmPassword').invalid && StudentRegisterForm.get('confirmPassword').touched">
+                              <small class="text-danger" *ngIf="StudentRegisterForm.get('confirmPassword').errors.required">*Re-Enter the password !</small>
+                              <small class="text-danger" *ngIf="StudentRegisterForm.get('confirmPassword').errors.mustMatch">*Passwords doesn't match !</small>
+                            </div>
                           </div>
 
                           <div class="form-group">
@@ -148,6 +175,42 @@
                   <form [formGroup]="AdvisorRegisterForm">
                       <fieldset class="p-4">
 
+                        <!-- /////////////// image uploader - start /////////////// -->
+                        <div class="form-group">
+                          <label>Profile picrure :</label>
+                          <div class="card" style="width: 15rem;" >
+                            <div class="card-body">
+                              <form [formGroup]="imageForm">
+                                <div class="text-center">
+                                  <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
+                                </div>
+                                <div class="form-group">
+                                  <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                  <input type="file"
+                                         class="form-control"
+                                         formControlName="imageUrl"
+                                         (change) = "showPreview($event,imageForm.value)"
+                                         accept="image/*"
+                                         #fileUploader
+                                  >
+                                  <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /////////////// image uploader - end /////////////// -->
+
+                        <div class="form-group">
+                          <label>Title :</label>
+                          <select class="form-control" formControlName="title">
+                            <option>Hon.</option>
+                            <option>Mr.</option>
+                            <option>Mrs.</option>
+                            <option>Miss.</option>
+                          </select>
+                        </div>
+
                         <div class="form-group">
                           <label>First Name :</label>
                           <input [class.is-invalid]="AdvisorRegisterForm.get('firstName').invalid && AdvisorRegisterForm.get('firstName').touched"
@@ -170,14 +233,15 @@
                         </div>
 
                         <div class="form-group">
-                          <label>Email :</label>
+                          <label>Email :</label> <br>
+                          <small>&#9673; Use your academic Email. (xxxx@cmb.ac.lk)</small>
                           <input [class.is-invalid]="AdvisorRegisterForm.get('email').invalid && AdvisorRegisterForm.get('email').touched"
                                  type="email"
                                  formControlName="email"
                                  class="form-control"
                                  required>
                           <div *ngIf="AdvisorRegisterForm.get('email').invalid && AdvisorRegisterForm.get('email').touched">
-                            <small class="text-danger" *ngIf="AdvisorRegisterForm.get('email').errors.required">*Email is required !</small>
+                            <small class="text-danger" *ngIf="!(AdvisorRegisterForm.get('email').errors.email) && AdvisorRegisterForm.get('email').errors.invalidLecture">*Please use your academic Email !</small>
                             <small class="text-danger" *ngIf="AdvisorRegisterForm.get('email').errors.email">*Email is badly formatted !</small>
                           </div>
                         </div>
@@ -233,6 +297,32 @@
                   </div>
                   <form [formGroup]="ServiceProviderRegisterForm">
                       <fieldset class="p-4">
+
+                        <!-- /////////////// image uploader - start /////////////// -->
+                        <div class="form-group">
+                          <label>Profile picrure :</label>
+                          <div class="card" style="width: 15rem;" >
+                            <div class="card-body">
+                              <form [formGroup]="imageForm">
+                                <div class="text-center">
+                                  <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
+                                </div>
+                                <div class="form-group">
+                                  <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                  <input type="file"
+                                         class="form-control"
+                                         formControlName="imageUrl"
+                                         (change) = "showPreview($event,imageForm.value)"
+                                         accept="image/*"
+                                         #fileUploader
+                                  >
+                                  <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /////////////// image uploader - end /////////////// -->
 
                         <div class="form-group">
                           <label>First Name :</label>
@@ -296,10 +386,10 @@
                                  type="password"
                                  formControlName="password"
                                  class="form-control">
-                                <div *ngIf="ServiceProviderRegisterForm.get('password').invalid && ServiceProviderRegisterForm.get('password').touched">
-                                  <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.required">*Enter a password !</small>
-                                  <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
-                                </div>
+                          <div *ngIf="ServiceProviderRegisterForm.get('password').invalid && ServiceProviderRegisterForm.get('password').touched">
+                            <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.required">*Enter a password !</small>
+                            <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
+                          </div>
                         </div>
 
                         <div class="form-group">
@@ -308,10 +398,10 @@
                                  type="password"
                                  formControlName="confirmPassword"
                                  class="form-control">
-                                 <div *ngIf="ServiceProviderRegisterForm.get('confirmPassword').invalid && ServiceProviderRegisterForm.get('confirmPassword').touched">
-                                  <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('confirmPassword').errors.required">*Re-Enter the password !</small>
-                                  <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('confirmPassword').errors.mustMatch">*Passwords doesn't match !</small>
-                                </div>
+                          <div *ngIf="ServiceProviderRegisterForm.get('confirmPassword').invalid && ServiceProviderRegisterForm.get('confirmPassword').touched">
+                            <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('confirmPassword').errors.required">*Re-Enter the password !</small>
+                            <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('confirmPassword').errors.mustMatch">*Passwords doesn't match !</small>
+                          </div>
                         </div>
 
                         <div class="form-group">

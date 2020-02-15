@@ -8,6 +8,8 @@ import { StudentDetails } from 'src/app/models/student-details.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClient } from '@angular/common/http';
 import { unregisteredEmailValidator } from 'src/app/helpers/must-registered.validator';
+import { MustLecturer } from 'src/app/helpers/must-lecturer.validator';
+import { AdvisorDetails } from 'src/app/models/advisor-details.model';
 
 @Component({
   selector: 'app-create-club',
@@ -24,29 +26,24 @@ export class CreateClubComponent implements OnInit {
 
   student: StudentDetails = {} as StudentDetails;
 
+  advisor: AdvisorDetails = {} as AdvisorDetails;
+  advisorId: string;
+
   userEmail: string;
 
   studentObservable: Observable<StudentDetails>;
 
   returnedId: string;
 
-  x: File;
+  xx: any;
 
   ClubRegisterForm = this.formBuilder.group({
     name: ['', Validators.required],
-    advisor: ['', [Validators.email, Validators.required]],
+    advisor: ['', [MustLecturer, Validators.email, Validators.required, unregisteredEmailValidator('advisors')]],
     president: [''],
     eventPlanner: ['', [Validators.email, Validators.required, unregisteredEmailValidator('students')]],
     des: ['', Validators.required]
   });
-
-  // ClubRegisterForm = this.formBuilder.group({
-  //   name: [''],
-  //   advisor: [''],
-  //   president: [''],
-  //   eventPlanner: ['', unregisteredEmailValidator('students')],
-  //   des: [''],
-  // });
 
   constructor(
               private formBuilder: FormBuilder,
@@ -54,16 +51,10 @@ export class CreateClubComponent implements OnInit {
               private clubDetailsService: ClubDetailsService ,
               private http: HttpClient
              ) {
-    firebase.auth().onAuthStateChanged( user => {
-
-      this.userEmail = user.email;
-
-    });
   }
 
   ngOnInit() {
-    console.log(this.x);
-    this.http.get( 'https://us-central1-testing-1de9d.cloudfunctions.net/sendMail?dest=priyashanshell@gmail.com&msg=cdhscvdhcd' );
+    this.student = JSON.parse(localStorage.getItem('user'));
   }
 
   tryClubRegister(formData) {
@@ -72,35 +63,38 @@ export class CreateClubComponent implements OnInit {
     this.club.advisor = formData.advisor;
     this.club.eventPlanner = formData.eventPlanner;
     this.club.des = formData.des;
-    this.club.events = {} as string[];
+    this.club.events = [] as Array<string>;
     this.club.isActivated = false;
+    this.club.president = this.student.email;
+    this.club.id = '';
 
-    firebase.auth().onAuthStateChanged(async user => {
+    this.clubDetailsService.createClubDatabase(this.club).then(
+      async resDb => {
+        this.returnedId = resDb.id;
+        await this.firestore.collection('clubs').doc(this.returnedId).update({id: this.returnedId});
 
-      this.club.president = user.email ;
-
-      this.clubDetailsService.createClubDatabase(this.club).then(
-        resDb => {
-          this.returnedId = resDb.id;
-          console.log(resDb.id);
-
-          const promise = this.firestore.firestore.collection('students').doc(user.uid).get();
-          promise.then( snapshot => {
-            this.student =  snapshot.data() as StudentDetails;
-            this.student.presidentIn.push({id: this.returnedId , name: this.club.name});
-            this.firestore.collection('students').doc(user.uid).update(this.student);
+        const promise = firebase.firestore().collection('advisors').where( 'email', '==', this.club.advisor ).get();
+        promise.then( async res => {
+          res.forEach( doc => {
+            this.advisor = doc.data() as AdvisorDetails;
+            this.advisorId = doc.id;
           });
+          this.advisor.newClubRequests.push({id: this.returnedId, name: this.club.name});
+          await this.firestore.collection('advisors').doc(this.advisorId).update(this.advisor);
+        });
 
-          this.errorMessage = 'temp';
-          this.successMessage = 'database added Succesfully';
-        },
-        errDb => {
-          this.errorMessage = 'database ERROR(' + errDb.message + ')';
-          this.successMessage = 'temp';
-        }
-      );
+        this.student.presidentIn.push({id: this.returnedId , name: this.club.name});
+        await this.firestore.collection('students').doc(localStorage.getItem('uid')).update(this.student);
+        localStorage.setItem('user', JSON.stringify(this.student));
 
-    });
+        this.errorMessage = 'temp';
+        this.successMessage = 'Club created Successfully';
+      },
+      errDb => {
+        this.errorMessage = 'database ERROR(' + errDb.message + ')';
+        this.successMessage = 'temp';
+      }
+    );
 
   }
 

@@ -9,13 +9,18 @@ export class StudentEventCardComponent implements OnInit {
 
   constructor() { }
 
-  @Input( 'tempId' ) id: string ;
-  @Input( 'tempTitle' ) title: string ;
-  @Input( 'tempDes' ) des: string ;
-  @Input( 'tempImg' ) img: string ;
-  @Input( 'tempClub' ) club: string ;
-  @Input( 'tempDate' ) tempDate: any ;
-  @Input( 'tempStatus' )status: number ;
+  @Input( 'tempId' ) id: string ;           //////////////////////////////////////////////
+  @Input( 'tempTitle' ) title: string ;     ////////////                    //////////////
+  @Input( 'tempImg' ) img: string ;         ////////////    inputs from     //////////////
+  @Input( 'tempClub' ) club: string ;       ////////////   home component   //////////////
+  @Input( 'tempStatus' ) status: number ;   //////////////////////////////////////////////
+  @Input( 'tempStartDate' ) startDate: any ;
+  @Input( 'tempStartTime' ) startTime: any ;
+  @Input( 'tempStartTimeStamp' ) startTimeStamp: number ;
+  @Input( 'tempEndDate' ) endDate: any ;
+  @Input( 'tempEndTime' ) endTime: any ;
+  @Input( 'tempEndTimeStamp' ) endTimeStamp: number ;
+  @Input( 'tempDescription' ) des: string ;
 
   ngOnInit() {
   }

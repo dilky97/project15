@@ -12,25 +12,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-10">
-            <!-- <li class="nav-item">
-              <a class="nav-link login-button" (click)="logOut()">LogOut</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link login-button" href="login">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link login-button" href="student-dashboard">Student</a>
-            </li> -->
             <ul class="navbar-nav ml-auto main-nav ">
-
-              <li *ngIf="isLogged" class="nav-item dropdown dropdown-slide">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=""> <small>Logged as:</small><b> {{user.firstName}} {{user.lastName}} </b><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle"
-                    alt="avatar image">
+              <li *ngIf="isLogged == 1" class="nav-item dropdown dropdown-slide">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=""> <small>Logged as:</small><b> {{user.firstName}} {{user.lastName}} </b><img src="{{profilePicture}}" class="rounded-circle">
                   </a>
 
                   <!-- Dropdown list -->
                   <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
-                      <a class="dropdown-item" routerLink="/student-dashboard"><i class="fa fa-columns"></i> Dashboard</a>
+                      <a class="dropdown-item" routerLink="/{{displayName}}-dashboard"><i class="fa fa-columns"></i> Dashboard</a>
                       <hr>
                       <a class="dropdown-item" href="#"><i class="fa fa-bell"></i> Notifications</a>
                       <hr>

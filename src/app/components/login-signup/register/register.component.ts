@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 import { LoginRegisterAuthService } from 'src/app/services/login-register-auth.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 import { StudentDetails } from 'src/app/models/student-details.model';
@@ -7,6 +7,10 @@ import { AdvisorDetails } from 'src/app/models/advisor-details.model';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
 import { ServiceProviderDetails } from 'src/app/models/service-provider-details.model';
 import * as firebase from 'firebase/app';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { MustLecturer } from 'src/app/helpers/must-lecturer.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +18,16 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+
+  ///////// IMAGE UPLOADER - variables //////////
+  imgSrc = '../../../../assets/profile.jpg';
+  selectedImage: any = null;
+  uploadPercentage: any;
+
+  imageForm = new FormGroup({
+    imageUrl: new FormControl('', Validators.required)
+  });
+  ///////////////////////////////////////////////
 
   errorMessage = 'temp';
   successMessage = 'temp';
@@ -39,9 +53,10 @@ export class RegisterComponent implements OnInit {
   });
 
   AdvisorRegisterForm = this.formBuilder.group({
+    title: ['Mr.'],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    email: ['', [Validators.email, Validators.required]],
+    email: ['', [MustLecturer, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', Validators.required],
   }, {
@@ -63,7 +78,9 @@ export class RegisterComponent implements OnInit {
   constructor(
               private formBuilder: FormBuilder,
               private registerService: LoginRegisterAuthService,
-              private userDetailsService: UserDetailsService
+              private userDetailsService: UserDetailsService,
+              private storage: AngularFireStorage,
+              private router: Router,
              ) { }
 
   ngOnInit() {
@@ -76,7 +93,7 @@ export class RegisterComponent implements OnInit {
     this.student.email = formData.email;
     this.student.faculty = formData.faculty;
     this.student.academicYear = formData.year;
-    this.student.participatingEvents = [] as string[] ;
+    this.student.participatingEvents = [] as Array<string> ;
     this.student.presidentIn = [] as Array<{id: string, name: string}> ;
     this.student.eventPlannerIn = [] as Array<{id: string, name: string}> ;
 
@@ -86,6 +103,7 @@ export class RegisterComponent implements OnInit {
           resDb => {
             this.errorMessage = 'temp';
             this.successMessage = 'Authentification And database added Succesfully';
+            this.router.navigate(['/login']);
           },
           errDb => {
             firebase.auth().currentUser.delete().then( resDel => {
@@ -104,16 +122,20 @@ export class RegisterComponent implements OnInit {
 
   tryAdvisorRegister(formData) {
 
+    this.advisor.title = formData.title;
     this.advisor.firstName = formData.firstName;
     this.advisor.lastName = formData.lastName;
     this.advisor.email = formData.email;
+    this.advisor.advisorIn = [] as Array<{id: string, name: string}>;
+    this.advisor.newClubRequests = [] as Array<{id: string, name: string}>;
 
     this.registerService.doRegisterAdvisor(formData).then(
       resAuth => {
-        this.userDetailsService.createAdvisorDatabase(this.student, resAuth.user.uid ).then(
+        this.userDetailsService.createAdvisorDatabase(this.advisor, resAuth.user.uid ).then(
           resDb => {
             this.errorMessage = 'temp';
             this.successMessage = 'Authentification And database added Succesfully';
+            this.router.navigate(['/login']);
           },
           errDb => {
             firebase.auth().currentUser.delete().then( resDel => {
@@ -128,6 +150,7 @@ export class RegisterComponent implements OnInit {
         this.successMessage = 'temp';
       }
     );
+
   }
 
   tryServiceProviderRegister(formData) {
@@ -144,6 +167,7 @@ export class RegisterComponent implements OnInit {
           resDb => {
             this.errorMessage = 'temp';
             this.successMessage = 'Authentification And database added Succesfully';
+            this.router.navigate(['/login']);
           },
           errDb => {
             firebase.auth().currentUser.delete().then( resDel => {
@@ -158,6 +182,41 @@ export class RegisterComponent implements OnInit {
         this.successMessage = 'temp';
       }
     );
+
   }
+
+  /////////////////// image uploader functions - start //////////////////////
+  onSubmit(formData) {
+    const filePath = `images/${this.selectedImage.name}_${new Date().getTime()}`;
+    const task = this.storage.upload(filePath, this.selectedImage);
+    this.uploadPercentage = task.percentageChanges();
+    const fileRef = this.storage.ref(filePath);
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe( url => {
+          console.log(url);
+          localStorage.setItem('tempURL', url);
+          formData.imageUrl = url ;
+          // this.resetForm();
+        });
+      })
+    ).subscribe();
+  }
+
+  showPreview(event: any, temp: any) {
+    if ( event.target.files && event.target.files[0] ) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imgSrc = e.target.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    } else {
+      this.imgSrc = '../../../../assets/profile.jpg';
+      this.selectedImage = null;
+    }
+    this.onSubmit(temp);
+  }
+  /////////////////// image uploader functions - end //////////////////////
 
 }
