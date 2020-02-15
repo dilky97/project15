@@ -1,4 +1,4 @@
-import { EventDetails } from './../../../models/event-details.model';
+import { EventDetails, eventData } from '../../../models/event-details.model';
 import { EventDetailsService } from '../../../services/event-details.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,8 +11,10 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit {
 
-  allEventList: EventDetails[];
-  showingEventList: EventDetails[];
+  // allEventList: EventDetails[];
+  // showingEventList: EventDetails[];
+  allEventList: eventData[];
+  showingEventList: eventData[];
 
   clubs = [] ;
 
@@ -41,16 +43,10 @@ export class HomeComponent implements OnInit {
     this.setViewList();
   }
 
-  setViewList() {
+  setViewList() { // set the showing events list according to selected status ans club
 
     this.eventDetails.getShowingEvents( this.selectedStatus, this.selectedClub ).subscribe( actionArray => {
-
-      this.showingEventList = actionArray.map( item => {    //////////////////////////////////////////////////////
-        return {                                            //                                                  //
-          id: item.payload.doc.id,                          //     set the showing events list according to     //
-          ...item.payload.doc.data()                        //             selected status ans club             //
-        } as EventDetails ;                                 //                                                  //
-      });                                                   //////////////////////////////////////////////////////
+      this.showingEventList = actionArray as unknown as eventData[];
     });
 
   }
@@ -61,20 +57,20 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(JSON.parse(localStorage.getItem('user')));
+    console.log(localStorage.getItem('displayName'));
+    console.log(localStorage.getItem('uid'));
+
 ////////// getting all event details - start //////////
 
+    // set the all events list to find all clubs that has created events
     this.eventDetails.getAllEvents().subscribe( actionArray => {
 
-      this.allEventList = actionArray.map( item => {    ////////////////////////////////////////////////
-        return {                                        //                                            //
-          id: item.payload.doc.id,                      //         set the all events list to         //
-          ...item.payload.doc.data()                    //   find all clubs that has created events   //
-        } as EventDetails ;                             //                                            //
-      });                                               ////////////////////////////////////////////////
+      this.allEventList = actionArray as unknown as eventData[] ;
 
-      for ( const item  of this.allEventList ) {        ////////////////////////////////////////////////
-        if ( !( this.clubs.includes(item.club) ) ) {    //        pushing clubs to clubs array        //
-          this.clubs.push(item.club);                   ////////////////////////////////////////////////
+      for ( const item  of this.allEventList ) {          ////////////////////////////////////////////////
+        if ( !( this.clubs.includes(item.clubID) ) ) {    //        pushing clubs to clubs array        //
+          this.clubs.push(item.clubID);                   ////////////////////////////////////////////////
         }
       }
 
@@ -83,7 +79,5 @@ export class HomeComponent implements OnInit {
     });
 
 ////////// getting all event details - end //////////
-
   }
-
 }

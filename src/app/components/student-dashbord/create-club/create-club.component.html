@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+<section class="login py-5 border-top-1">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-16 align-item-center">
+        <div class="border border">
+          <div class="bg-gray p-4">
+            <h2>Register Now !</h2> as Student
+          </div>
+          <form [formGroup]="ClubRegisterForm">
+            <fieldset class="p-4">
+
+              <div class="form-group">
+                <label>Name of the Club :</label>
+                <input [class.is-invalid]="ClubRegisterForm.get('name').invalid && ClubRegisterForm.get('name').touched"
+                       type="text"
+                       formControlName="name"
+                       class="form-control">
+                <div *ngIf="ClubRegisterForm.get('name').invalid && ClubRegisterForm.get('name').touched">
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('name').errors.required">*Club name is required !</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Advisor :</label> <br>
+                <small>&#9673; You need to choose a "lecturer in UOC" as the Advisor for your club. <br>
+                       &#9673; your club will be published after the advisor accept these details.
+                </small>
+                <input [class.is-invalid]="ClubRegisterForm.get('advisor').invalid && ClubRegisterForm.get('advisor').touched"
+                       type="email"
+                       placeholder="E-mail"
+                       formControlName="advisor"
+                       class="form-control">
+                <div *ngIf="ClubRegisterForm.get('advisor').invalid && ClubRegisterForm.get('advisor').touched">
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.required">*Advisor is required ! </small>
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.unRegisteredEmail">*This isn't registered Lecturer in Events Hub Uoc ! </small>
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('advisor').errors.email">*Email is badly formatted ! </small>
+                  <small class="text-danger" *ngIf="!(ClubRegisterForm.get('advisor').errors.email) && ClubRegisterForm.get('advisor').errors.invalidLecture">*Please use academic Email(xxx@xxx.cmb.ac.lk) ! </small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>President :</label> <br>
+                <small>&#9673; You are the initial President of this club.</small>
+                <input readonly type="text"
+                       value="{{student.email}}"
+                       formControlName="president"
+                       class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label>Event Planner :</label> <br>
+                <small>&#9673; You need to choose a "Student in UOC" as the Event Planner of your club. <br>
+                       &#9673; This person can publish Events from your club.
+                </small>
+                <input [class.is-invalid]="ClubRegisterForm.get('eventPlanner').invalid && ClubRegisterForm.get('eventPlanner').touched"
+                       type="email"
+                       placeholder="E-mail"
+                       formControlName="eventPlanner"
+                       class="form-control">
+                <div *ngIf="ClubRegisterForm.get('eventPlanner').invalid && ClubRegisterForm.get('eventPlanner').touched">
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('eventPlanner').errors.unRegisteredEmail">*This isn't registered Student in Events Hub Uoc !</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Description :</label>
+                <input [class.is-invalid]="ClubRegisterForm.get('des').invalid && ClubRegisterForm.get('des').touched"
+                       type="text"
+                       formControlName="des"
+                       class="form-control">
+                <div *ngIf="ClubRegisterForm.get('des').invalid && ClubRegisterForm.get('des').touched">
+                  <small class="text-danger" *ngIf="ClubRegisterForm.get('des').errors.required">*Club Description is required !</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label *ngIf="errorMessage != 'temp'" class="text-danger">{{errorMessage}}</label>
+                <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
+              </div>
+
+              <button [disabled]="ClubRegisterForm.invalid" type="submit" (click)="tryClubRegister(ClubRegisterForm.value)" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Create Club</button>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,79 @@
+<div class="col-md-12 ">
+    <div class="card card-body">
+        <div class="header">
+            <h4 class="title">Create a new event {{selectedClubId}} </h4>
+            <p>Please tell us the about your event</p> <hr>
+        </div>
+        <div class="content">
+            <form [formGroup]="CreateEventForm">
+                <input type="hidden" name="clubid" formControlName="clubId">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Event Name</label>
+                            <input type="text" name="EventName" formControlName="eventName" class="form-control" placeholder="Event Name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input type = "date" name ="startDate" formControlName="startDate" class="form-control" placeholder="Start Date" >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type = "date" name="endDate"  formControlName="endDate" class="form-control" placeholder="End Date" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Start Time</label>
+                            <input type="time" name="startTime" formControlName="startTime" class="form-control" placeholder="Start Time" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>End Time</label>
+                            <input type="time" name="endTime" formControlName="endTime" class="form-control" placeholder="End Time" >
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Venue</label>
+                            <input type = "text" name="venue" formControlName="venue" class="form-control" placeholder="Venue" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Event Description</label>
+                            <input type="text" rows="8" class="form-control" formControlName="description" placeholder="Here can be your description" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" (click)="createEventSubmit(CreateEventForm.value)" class="btn btn-info btn-fill pull-right">Create Event</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
