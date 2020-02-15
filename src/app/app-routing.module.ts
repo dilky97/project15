@@ -18,7 +18,7 @@ import { EventsListComponent } from './components/event-planner/events-list/even
 
 const routes: Routes = [
   { path: '' , redirectTo: 'home' , pathMatch: 'full' },
-  { path: 'test' , component: TestComponent, canActivate: [RouteGuardService], data: {role: 'eventPlanner'}},
+  { path: 'test' , component: TestComponent },
   { path: 'login' , component: LoginComponent },
   { path: 'register' , component: RegisterComponent },
   { path: 'home' , component: HomeComponent },
