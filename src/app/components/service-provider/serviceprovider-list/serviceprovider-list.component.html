@@ -1,0 +1,20 @@
+<table class="table table-hover ">
+    <thead>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Service</th>
+        
+    </thead>
+    <tbody>
+        <tr *ngFor="let ser of list">
+          
+          <td  >{{ser. firstName}}</td>
+          <td  >{{ser.lastName}}</td>
+          <td> {{ser.email}} </td>
+          <td  >{{ser.service}}</td>
+          <!-- <td  >{{ser.serviceDes}}</td> -->
+          <td> <button type="button" (click)="vieww(ser.id)" class="btn btn-danger">view</button></td>
+        </tr>
+    </tbody>
+</table>

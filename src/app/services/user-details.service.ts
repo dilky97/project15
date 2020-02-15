@@ -21,14 +21,14 @@ export class UserDetailsService {
     return this.firestore.collection('advisors').doc(id).set(advisor);
   }
 
-  createServiceProviderDatabase(serviceProvider: ServiceProviderDetails , id: string ) {
-    return this.firestore.collection('serviceProviders').doc(id).set(serviceProvider);
-  }
-
   readStudentDatabase(id: string) {
     return this.firestore.collection('students').doc(id).valueChanges();
   }
 
+  createServiceProviderDatabase(serviceProvider: ServiceProviderDetails ,id: string){
+    return this.firestore.collection('serviceProviders').doc(id).set(serviceProvider);
+  }
+  
   readAdvisorDatabase(id: string) {
     return this.firestore.collection('advisors').doc(id).valueChanges();
   }

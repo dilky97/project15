@@ -70,6 +70,11 @@ import { HttpClientModule } from '@angular/common/http';
                             // from dilky
 
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
+import { ServiceproviderHomeComponent } from './components/serviceprovider-dashboard/serviceprovider-home/serviceprovider-home.component';
+import { EditServiceproviderComponent } from './components/service-provider/edit-serviceprovider/edit-serviceprovider.component';
+import { ServiceproviderListComponent } from './components/service-provider/serviceprovider-list/serviceprovider-list.component';
+import { ViewspComponent } from './components/service-provider/viewsp/viewsp.component';
+//import {CreateClubComponent } from './components/serviceprovider-dashboard/create-club/create-club.component';
 import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
 import { EditEventComponent } from './components/event-planner/edit-event/edit-event.component';
 import { SearchComponent } from './components/search/search.component';
@@ -101,6 +106,10 @@ import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home
     StudentHomeComponent,
     NoAccessComponent,
     StudentEventCardComponent,
+    ServiceproviderHomeComponent,
+    EditServiceproviderComponent,
+    ServiceproviderListComponent,
+    ViewspComponent,
     NewSponsorComponent,
     SponsorListComponent,
     SponsorDashboardComponent,
