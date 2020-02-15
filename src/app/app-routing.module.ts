@@ -22,6 +22,7 @@ import { ServiceproviderListComponent } from './components/service-provider/serv
 import{ ViewspComponent} from './components/service-provider/viewsp/viewsp.component';
 import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
 import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home/advisor-home.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'advisor-dashboard' , component: AdvisorHomeComponent, canActivate: [RouteGuardService], data: {role: 'advisor'}},
   { path: 'no-access' , component: NoAccessComponent },
   { path: 'sponsor-dashboard' ,component:SponsorDashboardComponent},
+  { path: 'search' ,component:SearchComponent},
 
   { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent,canActivate: [RouteGuardService], data: {role: 'student'},
    children:[

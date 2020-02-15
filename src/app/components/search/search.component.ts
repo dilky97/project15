@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
-import { Subject,Observable,combineLatest } from "rxjs";
+import * as _ from "lodash";
 
 
 import { eventData } from "../../models/event-details.model";
@@ -13,37 +13,32 @@ import { eventData } from "../../models/event-details.model";
 export class SearchComponent implements OnInit {
 
   searchTerm : string;
-
-  eventlist;
-  events;
-  eventObservable: Observable<eventData>;
-
-  startAt  = new Subject();
-  endAt= new Subject();
-
-  startObservable = this.startAt.asObservable();
-  endObservable = this.endAt.asObservable();
+  results:any;
+  filteredNames : any[] = [];
+  filters = {};
 
   constructor(private searchStore:AngularFirestore) { }
 
   ngOnInit() {
 
-    this.getAllEvents().subscribe((events)=>{
-      this.eventlist = events;
-    });
-
-    // Observable.combineLatest(this.startObservable,this.endObservable).subscribe((value)
-    // )
-
-
+    this.searchStore.collection('events',ref=>ref.limit(5)).valueChanges().subscribe(results =>{
+      this.results = results;
+      this.applyFilter()
+    })
+   
   }
 
-  getAllEvents(){
-    return this.searchStore.collection('events', ref => ref.orderBy('eventName')).valueChanges();
+  private applyFilter(){
+    this.filteredNames = _.filter(this.results,_.conforms(this.filters))
   }
 
-  searchQuery(start,end){
-    return this.searchStore.collection('events',ref=>ref.limit(5).orderBy('eventName').startAt(start).endAt(end)).valueChanges();
+  filterName(property: string,rule:string){
+    this.filters[property] = val=> val.toLowerCase().includes(rule.toLowerCase())
+    this.applyFilter()
   }
+
+  
+
+
 
 }

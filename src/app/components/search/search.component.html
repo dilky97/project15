@@ -1,7 +1,7 @@
 
-<input type="text" [(ngModel)]="searchterm" (keydown)="search($event)">
-<ul *ngFor="let event of events">
-  <li>{{events.eventName}}</li>
+<input type="text" [(ngModel)]="searchterm" (change)="filterName('eventName',searchterm)">
+<ul *ngFor="let event of filteredNames">
+  <li>{{event.eventName}}</li>
 
 </ul>
 <div *ngIf="clubs?.length < 1">
