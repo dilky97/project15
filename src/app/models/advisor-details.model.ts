@@ -4,5 +4,5 @@ export class AdvisorDetails {
   lastName: string;
   email: string;
   advisorIn: Array<{id: string, name: string}>;
-  newClubRequests: Array<{id: string, name: string}>;
+  newClubRequests: Array<string>;
 }

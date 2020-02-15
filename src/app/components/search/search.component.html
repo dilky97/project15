@@ -2,7 +2,7 @@
 <input type="text" [(ngModel)]="searchterm" (keydown)="search($event)">
 <ul *ngFor="let event of events">
   <li>{{events.eventName}}</li>
-  
+
 </ul>
 <div *ngIf="clubs?.length < 1">
   <p>Sorry, no clubs found</p>
