@@ -57,6 +57,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import { SponsorDashboardComponent } from './components/sponsor/sponsor-dashboard/sponsor-dashboard.component';
 import { EditSponsorComponent } from './components/sponsor/edit-sponsor/edit-sponsor.component';
+import { SponsorEventCardComponent } from './components/sponsor/sponsor-event-card/sponsor-event-card.component';
 
 
 
@@ -93,7 +94,8 @@ import { EditSponsorComponent } from './components/sponsor/edit-sponsor/edit-spo
     NewSponsorComponent,
     SponsorListComponent,
     SponsorDashboardComponent,
-    EditSponsorComponent
+    EditSponsorComponent,
+    SponsorEventCardComponent
     
     
   ],

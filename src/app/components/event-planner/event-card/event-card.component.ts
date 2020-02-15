@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
@@ -10,16 +10,20 @@ export class EventCardComponent implements OnInit {
 
   constructor(private firestore:AngularFirestore) { }
 
+  @Input('eventId') eventId;
+
   ngOnInit() {
     this.getevent();
   }
   eventdata;
-  eventId = 'F5soMVw1hiPc11Sl00gp';
+ 
+  
 
   getevent(){  
 
     this.firestore.collection('events').doc(this.eventId).valueChanges().subscribe(eventdata=>{
       this.eventdata=eventdata;
+    
     });
   } 
 }

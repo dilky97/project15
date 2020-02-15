@@ -1,4 +1,5 @@
 export class Sponsor {
+   id:string;
    name:string;
    email:string;
    address:string;
@@ -12,4 +13,5 @@ export class Sponsor {
    acceptedProposals:Array<string>;
    maxBudgetLimit:number;
    availability:boolean;
+   status:boolean;
 }
