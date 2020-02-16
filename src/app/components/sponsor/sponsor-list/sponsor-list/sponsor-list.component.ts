@@ -84,18 +84,19 @@ export class SponsorListComponent implements OnInit {
     this.firestore.collection('sponsors').doc(id).get().subscribe(data=>{
         var arr=data.data().receivedProposals;
         arr.push(doc.id);
+        this.firestore.collection('proposals').doc(doc.id).update({'proposalId':doc.id});
         this.firestore.collection("sponsors").doc(id).update({receivedProposals:arr}).then(b=>{
           this.firestore.collection('events').doc(this.eid).get().subscribe(d=>{
             var ab=d.data().requestedSponsors;
             ab.push(id);
-            this.firestore.collection("events").doc(this.eid).update({requestedSponsors:ab}).then(a=>{
+            this.firestore.collection("events").doc(this.eid).update({'requestedSponsors':ab}).then(a=>{
               this.ngOnInit();
             });
           })
         });        
       })
       doc.id
-      // window.location.reload;
+      // location.reload();s
     })
   }
 }

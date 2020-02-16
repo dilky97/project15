@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Sponsor } from "src/app/models/sponsor.model";
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-sponsor-event-card',
@@ -32,7 +33,7 @@ export class SponsorEventCardComponent implements OnInit {
     });
   } 
 
-  // showInterestedd(){
+  showInterestedd(){
   //   var arr;
   //   this.
   //   console.log(arr);
@@ -53,8 +54,43 @@ export class SponsorEventCardComponent implements OnInit {
   //   })
 
   //   // arr.push(id)
-
+  
+  var proId;
+  var arr = [];
+  var newarr = []=[];
+  // if(confirm("Are you sure to reject this event?")){
+  //   this.firestore.collection("sponsors").doc(this.spoId).update({receivedProposals:firestore.FieldValue.arrayRemove()});
   // }
+  this.firestore.collection("proposals",ref=>ref.where('event', '==', this.eventId)).valueChanges().subscribe(a=>{
+    proId=a[0]["proposalId"];
+
+    console.log("a " +a[0]['proposalId']);
+    console.log("proId " +proId);
+    
+    this.firestore.collection("sponsors").doc(this.spoId).get().subscribe(c=>{
+      arr=c.data().acceptedProposals;
+      arr.push(this.eventId);
+
+      // arr.forEach(element => {
+      //   console.log("element " +element)
+      //   if(element!=proId){
+      //     newarr.push(element)
+      //   }
+      // });
+
+      // console.log("this is newarr " +newarr)
+      //remove id from receivedProposals array
+      this.firestore.collection("sponsors").doc(this.spoId).update({acceptedProposals:
+        arr});
+
+      
+
+    })
+  })
+
+  
+
+  }
 
   reject(){
     var proId;
@@ -65,23 +101,37 @@ export class SponsorEventCardComponent implements OnInit {
     // }
     this.firestore.collection("proposals",ref=>ref.where('event', '==', this.eventId)).valueChanges().subscribe(a=>{
       proId=a[0]["proposalId"];
+      console.log(a[0]);
 
       console.log("a " +a[0]['proposalId']);
       console.log("proId " +proId);
       
-      this.firestore.collection("sponsors").doc(this.spoId).get().subscribe(c=>{
+      this.firestore.collection("sponsors").doc(this.spoId).get().subscribe( async c=>{
         arr=c.data().receivedProposals;
 
-        arr.forEach(element => {
-          console.log("element " +element)
-          if(element!=proId){
-            newarr.push(element)
-          }
-        });
+        console.log(arr);
 
-        console.log("this is newarr " +newarr)
+
+        arr.splice(arr.indexOf(proId),1);
+
+        await this.firestore.collection("sponsors").doc(this.spoId).update({receivedProposals: arr});
+
+        location.reload();
+        
+
+
+        
+
+        // arr.forEach(element => {
+        //   console.log("element " +element)
+        //   if(element!=proId){
+        //     newarr.push(element)
+        //   }
+        // });
+
+        // console.log("this is newarr " +newarr)
         //remove id from receivedProposals array
-        this.firestore.collection("sponsors").doc(this.spoId).update({receivedProposals:newarr});
+        // this.firestore.collection("sponsors").doc(this.spoId).update({receivedProposals:newarr});
 
         
 
