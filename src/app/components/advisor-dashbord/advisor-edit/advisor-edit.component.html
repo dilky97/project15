@@ -1,0 +1,85 @@
+<div>
+  <section class="login py-5 border-top-1">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-16 align-item-center">
+                <div class="border border">
+                  <div class="bg-gray p-4">
+                    <h2>Register Now !</h2> as Lecturer
+                  </div>
+                  <form [formGroup]="AdvisorUpdateForm">
+                      <fieldset class="p-4">
+
+                        <!-- /////////////// image uploader - start /////////////// -->
+                        <div class="form-group">
+                          <label>Profile picture :</label>
+                          <div class="card" style="width: 15rem;" >
+                            <div class="card-body">
+                              <form [formGroup]="imageForm">
+                                <div class="text-center">
+                                  <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
+                                </div>
+                                <div class="form-group">
+                                  <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                  <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
+                                  <input type="file"
+                                         class="form-control-file d-none"
+                                         formControlName="imageUrl"
+                                         (change) = "showPreview($event,imageForm.value)"
+                                         accept="image/*"
+                                         #fileUploader
+                                  >
+                                  <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /////////////// image uploader - end /////////////// -->
+
+                        <div class="form-group">
+                          <label>Title :</label>
+                          <select class="form-control" formControlName="title">
+                            <option [value]=1 >Hon.</option>
+                            <option [value]=2 >Mr.</option>
+                            <option [value]=3 >Mrs.</option>
+                            <option [value]=4 >Miss.</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label>First Name :</label>
+                          <input [class.is-invalid]="AdvisorUpdateForm.get('firstName').invalid && AdvisorUpdateForm.get('firstName').touched"
+                                 type="text"
+                                 formControlName="firstName"
+                                 class="form-control"
+                                 required>
+                          <small *ngIf="AdvisorUpdateForm.get('firstName').invalid && AdvisorUpdateForm.get('firstName').touched"
+                                 class="text-danger">*First Name is required !</small>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Last Name :</label>
+                          <input [class.is-invalid]="AdvisorUpdateForm.get('lastName').invalid && AdvisorUpdateForm.get('lastName').touched"
+                                 type="text"
+                                 formControlName="lastName"
+                                 class="form-control"
+                                 required>
+                          <small class="text-danger" *ngIf="AdvisorUpdateForm.get('lastName').invalid && AdvisorUpdateForm.get('lastName').touched">*Last Name is required !</small>
+                        </div>
+
+                        <div class="form-group">
+                        <label *ngIf="errorMessage != 'temp'" class="text-danger">{{errorMessage}}</label>
+                        <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
+                        </div>
+
+                        <button [disabled]="AdvisorUpdateForm.invalid" type="submit" (click)="updateAdvisor(AdvisorUpdateForm.value)" class="btn btn-primary" >Update</button>
+
+                      </fieldset>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+</div>

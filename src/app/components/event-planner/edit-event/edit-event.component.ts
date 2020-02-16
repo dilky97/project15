@@ -29,7 +29,6 @@ export class EditEventComponent implements OnInit {
     endTime: new FormControl(),
     venue: new FormControl(),
     description: new FormControl(),
-    
   });
 
   constructor(private eventStore: AngularFirestore, private eventService:EventPlannerService, private editBuilder:FormBuilder, private toastr:ToastrService) {
@@ -44,8 +43,8 @@ export class EditEventComponent implements OnInit {
       console.log(this.currentEventData);
       this.setDefault(this.currentEventData);
     })
-    
-    
+
+
   }
 
   setDefault(currentEventData){
@@ -90,10 +89,10 @@ export class EditEventComponent implements OnInit {
       this.toastr.error("Update Failed");
     };
 
-    
 
 
-    
+
+
 
   }
 

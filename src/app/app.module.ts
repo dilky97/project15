@@ -59,6 +59,8 @@ import { EditEventComponent } from './components/event-planner/edit-event/edit-e
 import { SearchComponent } from './components/search/search.component';
 import { AttendeeListComponent } from './components/event-planner/attendee-list/attendee-list.component';
 import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home/advisor-home.component';
+import { StudentEditComponent } from './components/student-dashbord/student-edit/student-edit.component';
+import { AdvisorEditComponent } from './components/advisor-dashbord/advisor-edit/advisor-edit.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home
     EditEventComponent,
     SearchComponent,
     AttendeeListComponent,
-    AdvisorHomeComponent
+    AdvisorHomeComponent,
+    StudentEditComponent,
+    AdvisorEditComponent
   ],
   imports: [
     HttpClientModule,

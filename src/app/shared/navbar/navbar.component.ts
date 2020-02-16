@@ -22,9 +22,11 @@ export class NavbarComponent implements OnInit {
   constructor(private userDetails: UserDetailsService, private router: Router) { }
 
   ngOnInit() {
-    console.log(JSON.parse(localStorage.getItem('user')));
+    // console.log(JSON.parse(localStorage.getItem('user')));
 
-    if (JSON.parse(localStorage.getItem('user'))) {
+    // localStorage.clear();
+
+    if ( localStorage.getItem('displayName')) {
       this.user = JSON.parse(localStorage.getItem('user'));
       if ((localStorage.getItem('profilePicture')) !== 'null' ) {
         this.profilePicture = localStorage.getItem('profilePicture');

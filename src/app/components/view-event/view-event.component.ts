@@ -28,7 +28,7 @@ export class ViewEventComponent implements OnInit {
       this.event = temp as eventData ;
     });
 
-    if (JSON.parse(localStorage.getItem('user'))) {
+    if ( localStorage.getItem('displayName')) {
       if ( localStorage.getItem('displayName') === 'student' ) {
 
         this.student = JSON.parse(localStorage.getItem('user'));

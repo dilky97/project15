@@ -15,6 +15,8 @@ import { NoAccessComponent } from './components/no-access/no-access.component';
 import { CreateClubComponent } from './components/student-dashbord/create-club/create-club.component';
 import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
 import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home/advisor-home.component';
+import { StudentEditComponent } from './components/student-dashbord/student-edit/student-edit.component';
+import { AdvisorEditComponent } from './components/advisor-dashbord/advisor-edit/advisor-edit.component';
 
 
 const routes: Routes = [
@@ -26,9 +28,11 @@ const routes: Routes = [
   { path: 'events/:id' , component: ViewEventComponent },
   { path: 'student-dashboard' , component: StudentHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
   { path: 'advisor-dashboard' , component: AdvisorHomeComponent, canActivate: [RouteGuardService], data: {role: 'advisor'}},
+  { path: 'student-update' , component: StudentEditComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
+  { path: 'advisor-update' , component: AdvisorEditComponent, canActivate: [RouteGuardService], data: {role: 'advisor'}},
   { path: 'no-access' , component: NoAccessComponent },
 
-  { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent,canActivate: [RouteGuardService], data: {role: 'student'},
+  { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'},
    children:[
 
     {
@@ -49,13 +53,13 @@ const routes: Routes = [
 
    {
      path: 'event/:eventId',
-     component:EventPlannerLayoutComponent
+     component: EventPlannerLayoutComponent
    },
 
 
   ]},
 
-  { path: 'create-club' , component: CreateClubComponent },
+  { path: 'create-club' , component: CreateClubComponent, canActivate: [RouteGuardService], data: {role: 'student'} },
 
   { path: 'event-planner' , component: EventPlannerLayoutComponent },
   { path: 'event-planner-home' , component: EventPlannerHomeComponent },

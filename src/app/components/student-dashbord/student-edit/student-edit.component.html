@@ -1,0 +1,103 @@
+<div>
+  <section class="login py-5 border-top-1">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-16 align-item-center">
+                <div class="border border">
+                    <div class="bg-gray p-4">
+                      <h2>Edit Your Profile</h2>
+                    </div>
+                    <form [formGroup]="StudentUpdateForm">
+                        <fieldset class="p-4">
+
+                          <!-- /////////////// image uploader - start /////////////// -->
+                          <div class="form-group">
+                            <label>Profile picture :</label>
+                            <div class="card" style="width: 15rem;" >
+                              <div class="card-body">
+                                <form [formGroup]="imageForm">
+                                  <div class="text-center">
+                                    <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
+                                  </div>
+                                  <div class="form-group">
+                                    <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                    <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
+                                    <input type="file"
+                                           class="form-control-file d-none"
+                                           formControlName="imageUrl"
+                                           (change) = "showPreview($event,imageForm.value)"
+                                           accept="image/*"
+                                           #fileUploader
+                                    >
+                                    <!-- <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div> -->
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- /////////////// image uploader - end /////////////// -->
+
+                          <div class="form-group">
+                            <label>First Name :</label>
+                            <input [class.is-invalid]="StudentUpdateForm.get('firstName').invalid && StudentUpdateForm.get('firstName').touched"
+                                   type="text"
+                                   formControlName="firstName"
+                                   class="form-control"
+                                   required>
+                            <small *ngIf="StudentUpdateForm.get('firstName').invalid && StudentUpdateForm.get('firstName').touched"
+                                   class="text-danger">*First Name is required !</small>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Last Name :</label>
+                            <input [class.is-invalid]="StudentUpdateForm.get('lastName').invalid && StudentUpdateForm.get('lastName').touched"
+                                   type="text"
+                                   formControlName="lastName"
+                                   class="form-control"
+                                   required>
+                            <small class="text-danger" *ngIf="StudentUpdateForm.get('lastName').invalid && StudentUpdateForm.get('lastName').touched">*Last Name is required !</small>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Select Your Faculty :</label>
+                            <select [class.is-invalid]="StudentUpdateForm.get('faculty').invalid && StudentUpdateForm.get('faculty').touched" class="form-control" formControlName="faculty">
+                              <option [value]=1 >University of Colombo School of Computing</option>
+                              <option [value]=2 >Faculty of Science</option>
+                              <option [value]=3 >Faculty of Management</option>
+                              <option [value]=4 >Faculty of Arts</option>
+                              <option [value]=5 >Faculty of Law</option>
+                              <option [value]=6 >Faculty of Nursing</option>
+                              <option [value]=7 >Faculty of Medicine</option>
+                              <option [value]=8 >Faculty of Technology</option>
+                              <option [value]=9 >Faculty of Education</option>
+
+                            </select>
+                            <small class="text-danger" *ngIf="StudentUpdateForm.get('faculty').invalid && StudentUpdateForm.get('faculty').touched">*Select your faculty !</small>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Academic Year :</label>
+                            <select [class.is-invalid]="StudentUpdateForm.get('year').invalid && StudentUpdateForm.get('year').touched" class="form-control" formControlName="year" >
+                              <option [value]=1 >1st Year</option>
+                              <option [value]=2 >2nd year</option>
+                              <option [value]=3 >3rd Year</option>
+                              <option [value]=4 >4th Year</option>
+                            </select>
+                            <small class="text-danger" *ngIf="StudentUpdateForm.get('year').invalid && StudentUpdateForm.get('year').touched">*Select your academic year!</small>
+                          </div>
+
+                          <div class="form-group">
+                            <label *ngIf="errorMessage != 'temp'" class="text-danger">{{errorMessage}}</label>
+                            <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
+                          </div>
+
+                          <button [disabled]="StudentUpdateForm.invalid" type="submit" (click)="updateStudent(StudentUpdateForm.value)" class="btn btn-primary" >Update</button>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+</div>

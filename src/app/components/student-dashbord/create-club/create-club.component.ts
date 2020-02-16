@@ -42,6 +42,9 @@ export class CreateClubComponent implements OnInit {
   advisor: AdvisorDetails = {} as AdvisorDetails;
   advisorId: string;
 
+  eventPlanner: StudentDetails = {} as StudentDetails;
+  eventPlannerId: string;
+
   userEmail: string;
 
   studentObservable: Observable<StudentDetails>;
@@ -88,14 +91,24 @@ export class CreateClubComponent implements OnInit {
         this.returnedId = resDb.id;
         await this.firestore.collection('clubs').doc(this.returnedId).update({id: this.returnedId});
 
-        const promise = firebase.firestore().collection('advisors').where( 'email', '==', this.club.advisor ).get();
-        promise.then( async res => {
+        const promise1 = firebase.firestore().collection('advisors').where( 'email', '==', this.club.advisor ).get();
+        promise1.then( async res => {
           res.forEach( doc => {
             this.advisor = doc.data() as AdvisorDetails;
             this.advisorId = doc.id;
           });
           this.advisor.newClubRequests.push({id: this.returnedId, name: this.club.name});
           await this.firestore.collection('advisors').doc(this.advisorId).update(this.advisor);
+        });
+
+        const promise2 = firebase.firestore().collection('students').where( 'email', '==', this.club.eventPlanner ).get();
+        promise2.then( async res => {
+          res.forEach( doc => {
+            this.eventPlanner = doc.data() as StudentDetails;
+            this.eventPlannerId = doc.id;
+          });
+          this.eventPlanner.eventPlannerIn.push({id: this.returnedId, name: this.club.name});
+          await this.firestore.collection('students').doc(this.eventPlannerId).update(this.eventPlanner);
         });
 
         this.student.presidentIn.push({id: this.returnedId , name: this.club.name});
