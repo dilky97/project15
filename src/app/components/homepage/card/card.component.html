@@ -1,7 +1,7 @@
 
 <!-- /////// card body - start /////// -->
 
-  <!-- <div class="card">
+<div class="card">
 
   <div class="card-image">
       <img src={{img}}>
@@ -14,17 +14,17 @@
   <div class="card-des">
     by <br>
     <p>{{ club | uppercase }}</p>
-    <div class="date-up" ><p> {{ startDate | date: 'longDate' }} at {{startTime}}</p></div>
+    <div class="date-up" ><p> {{ startDate | date: 'medium' }} </p></div>
     <div *ngIf="eventDone; then IfDone; else IfPending" > </div>
   </div>
 
-</div> 
+</div>
+
+<!-- /////// card body - end /////// -->
 
 
 
-
-
- <ng-template #IfDone>   
+<ng-template #IfDone>    <!-- /////// this tempalete works for ended events , instead of time countdown /////// -->
 
     <div class="card-done-cell" > <p>event</p>
       <div class="card-done-cell-box">
@@ -35,7 +35,7 @@
 
 </ng-template>
 
-<ng-template #IfPending>    
+<ng-template #IfPending>    <!-- /////// this tempalete works for pending events time countdown /////// -->
 
     <div class="card-time-cell" > <p>Days <br> </p>
       <div class="card-time-cell-box">
@@ -62,4 +62,4 @@
     </div>
     <p class="date-down" >Remaining</p>
 
-</ng-template>   -->
+</ng-template>
