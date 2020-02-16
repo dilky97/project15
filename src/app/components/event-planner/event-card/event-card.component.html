@@ -14,7 +14,7 @@
                         <a href="single.html" class="font-weight-bold">{{eventName}}</a>
                     </div>
                     <ul class="list-inline mt-2 mb-3">
-                        <li class="list-inline-item"><a href=""> <i class="fa fa-folder-open-o"></i> {{startDate}}</a></li>
+                        <li class="list-inline-item"><a href=""> <i class="fa fa-folder-open-o"></i> {{startDate | date: 'longDate'}}</a></li>
                         <li class="list-inline-item"><a href=""> <i class="fa fa-clock-o"></i> {{startTime}}</a></li>
                     </ul>
                     <p class="pr-5">{{description}}</p>

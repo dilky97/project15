@@ -13,6 +13,7 @@
                         <div class="form-group">
                             <label>Event Name</label>
                             <input type="text" name="EventName" formControlName="eventName" class="form-control" placeholder="Event Name">
+                            <small class="text-danger" *ngIf="CreateEventForm.get('eventName').invalid && CreateEventForm.get('eventName').touched">Event Name is required!</small>
                         </div>
                     </div>
                 </div>
@@ -21,13 +22,16 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Start Date</label>
-                            <input type = "date" name ="startDate" formControlName="startDate" class="form-control" placeholder="Start Date" >
+                            <!-- <input type = "date" name ="startDate" formControlName="startDate" class="form-control" placeholder="Start Date" > -->
+                            <input class="form-control" ngbDatepicker [minDate]="minDate" (click)="datePicker1.toggle()" #datePicker1="ngbDatepicker" formControlName="startDate" placeholder="yyyy-mm-dd">
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>End Date</label>
-                            <input type = "date" name="endDate"  formControlName="endDate" class="form-control" placeholder="End Date" >
+                            <!-- <input type = "date" max="{{this.currentDate}}" name="endDate"  formControlName="endDate" class="form-control" placeholder="End Date" > -->
+                            <input class="form-control" ngbDatepicker [minDate]="minDate" (click)="datePicker2.toggle()" #datePicker2="ngbDatepicker" formControlName="endDate" placeholder="yyyy-mm-dd">
                         </div>
                     </div>
                 </div>

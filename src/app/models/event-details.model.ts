@@ -13,8 +13,8 @@ export class EventDetails {
 export class eventData {
   id: string;
   eventName: string;
-  startDate: Date;
-  endDate: string;
+  startDate: any;
+  endDate: any;
   startTime: any;
   endTime: string;
   venue: string;

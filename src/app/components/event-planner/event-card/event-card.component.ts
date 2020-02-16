@@ -10,8 +10,8 @@ export class EventCardComponent implements OnInit {
 
   @Input('tempEventId') id: string;
   @Input('tempEventName') eventName: string;
-  @Input('tempStartDate') startDate: string;
-  @Input('tempEndDate') endDate: string;
+  @Input('tempStartDate') startDate: Date;
+  @Input('tempEndDate') endDate: Date;
   @Input('tempStartTime') startTime: string;
   @Input('tempEndTime') endTime: string;
   @Input('tempVenue') venue: string;

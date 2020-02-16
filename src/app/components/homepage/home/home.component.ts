@@ -1,4 +1,4 @@
-import { EventDetails, eventData } from '../../../models/event-details.model';
+import { eventData } from '../../../models/event-details.model';
 import { EventDetailsService } from '../../../services/event-details.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';

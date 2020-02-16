@@ -21,13 +21,17 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Start Date</label>
-                            <input type = "date" name ="startDate" formControlName="startDate" class="form-control" >
+                            <!-- <input type = "date" name ="startDate" formControlName="startDate" class="form-control" > -->
+                            <input class="form-control" ngbDatepicker [minDate]="minDate" (click)="datePicker1.toggle()" #datePicker1="ngbDatepicker" name="startDate" formControlName="startDate">
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>End Date</label>
-                            <input type = "date" name="endDate"  formControlName="endDate" class="form-control" >
+                            <!-- <input type = "date" name="endDate"  formControlName="endDate" class="form-control" > -->
+                            <input class="form-control" ngbDatepicker [minDate]="minDate" (click)="datePicker2.toggle()" #datePicker2="ngbDatepicker" name = "endDate" formControlName="endDate">
+
                         </div>
                     </div>
                 </div>
