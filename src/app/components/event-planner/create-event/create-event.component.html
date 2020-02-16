@@ -1,7 +1,7 @@
 <div class="col-md-12 ">
     <div class="card card-body">
         <div class="header">
-            <h4 class="title">Create a new event {{selectedClubId}} </h4>
+            <h4 class="title">Create a new event </h4>
             <p>Please tell us the about your event</p> <hr>
         </div>
         <div class="content">
@@ -24,7 +24,7 @@
                             <label>Start Date</label>
                             <!-- <input type = "date" name ="startDate" formControlName="startDate" class="form-control" placeholder="Start Date" > -->
                             <input class="form-control" ngbDatepicker [minDate]="minDate" (click)="datePicker1.toggle()" #datePicker1="ngbDatepicker" formControlName="startDate" placeholder="yyyy-mm-dd">
-
+                            <small class="text-danger" *ngIf="CreateEventForm.get('startDate').invalid && CreateEventForm.get('startDate').touched">Start Date is required!</small>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -41,6 +41,7 @@
                         <div class="form-group">
                             <label>Start Time</label>
                             <input type="time" name="startTime" formControlName="startTime" class="form-control" placeholder="Start Time" required>
+                            <small class="text-danger" *ngIf="CreateEventForm.get('startTime').invalid && CreateEventForm.get('startTime').touched">Start Time is required!</small>
                         </div>
                     </div>
                     <div class="col-md-6">

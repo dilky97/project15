@@ -13,6 +13,7 @@ import { eventData } from "src/app/models/event-details.model";
 import { ThrowStmt } from '@angular/compiler';
 
 
+
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
@@ -36,9 +37,9 @@ export class CreateEventComponent implements OnInit {
   CreateEventForm = new FormGroup({
     clubId: new FormControl(),
     eventName: new FormControl('', [ Validators.required ]),
-    startDate: new FormControl(),
+    startDate: new FormControl('',[Validators.required]),
     endDate: new FormControl(),
-    startTime: new FormControl(),
+    startTime: new FormControl('',[Validators.required]),
     endTime: new FormControl(),
     venue: new FormControl(),
     description: new FormControl()
@@ -94,7 +95,7 @@ export class CreateEventComponent implements OnInit {
 
     this.newEvent.startTimeStamp = new Date(this.newEvent.startDate).getTime();
     this.newEvent.endTimeStamp = new Date(this.newEvent.endDate).getTime();
-    this.newEvent.image = "https://www.stlucianewsonline.com/wp-content/uploads/2019/05/hackathon-1024x575.png";
+    this.newEvent.image = "./../../../assets/images/no-image-icon-21.png"
     this.newEvent.status = 0;
     this.newEvent.registeredStudents = [] as Array<string>;
     this.newEvent.participatedStudent = [] as Array<string>;
