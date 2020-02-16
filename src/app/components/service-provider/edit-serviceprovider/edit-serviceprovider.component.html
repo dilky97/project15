@@ -15,7 +15,20 @@
                 <div class="widget personal-info">
                     
                     <form [formGroup]="ServiceProviderEditForm" #serviceproviderForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+                        
 
+
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text"  value="{{ServiceproviderData.companyName}}"   class="form-control"  [class.is-invalid]="ServiceProviderEditForm.get('companyName').invalid && ServiceProviderEditForm.get('companyName').touched"
+                           
+                            formControlName="companyName"
+                          
+                            required 
+                            [(ngModel)]="ServiceproviderData.companyName"><small *ngIf="ServiceProviderEditForm.get('companyName').invalid && ServiceProviderEditForm.get('companyName').touched"
+                            class="text-danger">*Company Name is required !</small>
+                            
+                        </div>
                         <div class="form-group">
                             <label>First Name</label>
                             <input type="text"  value="{{ServiceproviderData.firstName}}"   class="form-control"  [class.is-invalid]="ServiceProviderEditForm.get('firstName').invalid && ServiceProviderEditForm.get('firstName').touched"
@@ -40,11 +53,48 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Your Service</label>
+                            <label>Address</label>
+                            
+                            <input type="text"   class="form-control" [(ngModel)]="ServiceproviderData.address" value="{{ServiceproviderData.address}}" [class.is-invalid]="ServiceProviderEditForm.get('address').invalid && ServiceProviderEditForm.get('address').touched"
+                           
+                            formControlName="address"
+                          
+                            required ><small *ngIf="ServiceProviderEditForm.get('address').invalid && ServiceProviderEditForm.get('address').touched"
+                            class="text-danger">*Address is required !</small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Telephone No</label>
+                            
+                            <input type="text"   class="form-control" [(ngModel)]="ServiceproviderData.telephoneNo" value="{{ServiceproviderData.telephoneNo}}" [class.is-invalid]="ServiceProviderEditForm.get('telephoneNo').invalid && ServiceProviderEditForm.get('telephoneNo').touched"
+                           
+                            formControlName="telephoneNo"
+                            pattern="^\d{10}$"
+                          
+                            required ><small *ngIf="ServiceProviderEditForm.get('telephoneNo').invalid && ServiceProviderEditForm.get('telephoneNo').touched"
+                            class="text-danger">*number is required !</small>
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <label>Reservation fee</label>
+                            
+                            <input type="text"   class="form-control" [(ngModel)]="ServiceproviderData.price" value="{{ServiceproviderData.price}}" [class.is-invalid]="ServiceProviderEditForm.get('price').invalid && ServiceProviderEditForm.get('price').touched"
+                           
+                            formControlName="price"
+                          
+                            required ><small *ngIf="ServiceProviderEditForm.get('price').invalid && ServiceProviderEditForm.get('price').touched"
+                            class="text-danger">*price is required !</small>
+                        </div>
+                        
                             
 
                             
                             
+                        
+                        <!-- <div class="form-group">
+                            <label>Your Service</label>
                             <select class="form-control" [(ngModel)]="ServiceproviderData.service" value="{{ServiceproviderData.service}}" >
                             <option>Video & Photography</option>
                             <option>Restaurants and Catering</option>
@@ -52,16 +102,16 @@
                             <option>Dancing & Music</option>
                           
                             </select>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label>Service Description</label>
                          
-                            <input type="text" class="form-control" [(ngModel)]="ServiceproviderData.serviceDes" value="{{ServiceproviderData.serviceDes}}" [class.is-invalid]="ServiceProviderEditForm.get('serviceDes').invalid && ServiceProviderEditForm.get('serviceDes').touched"
+                            <textarea class="form-control" [(ngModel)]="ServiceproviderData.serviceDes" value="{{ServiceproviderData.serviceDes}}" [class.is-invalid]="ServiceProviderEditForm.get('serviceDes').invalid && ServiceProviderEditForm.get('serviceDes').touched"
                            
                             formControlName="serviceDes"
                           
-                            required ><small *ngIf="ServiceProviderEditForm.get('serviceDes').invalid && ServiceProviderEditForm.get('serviceDes').touched"
+                            required ></textarea><small *ngIf="ServiceProviderEditForm.get('serviceDes').invalid && ServiceProviderEditForm.get('serviceDes').touched"
                             class="text-danger">*Description is required !</small>
                         </div>
 

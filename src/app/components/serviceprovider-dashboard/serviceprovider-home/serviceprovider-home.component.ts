@@ -44,9 +44,11 @@ export class ServiceproviderHomeComponent implements OnInit {
     
     this.images = this.firestore.collection('spEvents', ref => ref.orderBy('date')).valueChanges({idField:'id'});
     this.id = localStorage.getItem("id");
+    this.profilePicture = localStorage.getItem('profilePicture');
    }
 
    id;
+   profilePicture ;
   serviceProvider: ServiceProviderDetails = {} as ServiceProviderDetails;
   // allEventList: EventDetails[] ;
   // participatingEventList: EventDetails[] = [] as EventDetails[];
@@ -122,6 +124,7 @@ export class ServiceproviderHomeComponent implements OnInit {
 
   deleteAcc(id){
     this.firestore.doc('serviceProviders/' + id).delete();
+    this.toastr.warning('Account was removed successfully');
     this.router.navigate(['/home']);
   }
    

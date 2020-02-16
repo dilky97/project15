@@ -30,8 +30,12 @@ export class EditServiceproviderComponent implements OnInit {
 
 
     ServiceProviderEditForm = this.formBuilder.group({
+      companyName: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      address: ['', Validators.required],
+      telephoneNo: ['', Validators.required],
+      price: ['', Validators.required],
       // email: ['', [Validators.email, Validators.required]],
       // service: ['', Validators.required],
        serviceDes: ['', Validators.required],

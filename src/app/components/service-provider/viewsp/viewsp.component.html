@@ -1,3 +1,5 @@
+
+<!-- <app-navbar></app-navbar>  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,16 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Classimax</title>
-  
  
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 
 </head>
 
@@ -33,14 +26,10 @@
 			<!-- Left sidebar -->
 			<div class="col-md-8">
 				<div class="product-details">
-					<h1 class="product-title">{{ServiceproviderData.firstName}} {{ServiceproviderData.lastName}}</h1>
-					<div class="product-meta">
-						<ul class="list-inline">
-							<li class="list-inline-item"><i class="fa fa-user-o"></i> By <a href="">Andrew</a></li>
-							<li class="list-inline-item"><i class="fa fa-folder-open-o"></i> Category<a href="">Electronics</a></li>
-							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> Location<a href="">Dhaka Bangladesh</a></li>
-						</ul>
-					</div>
+                    <h1 class="product-title">{{ServiceproviderData.companyName}} </h1>
+                    <h4>{{ServiceproviderData.address}}</h4>
+                    <!-- <h2>{{ServiceproviderData.address}}</h2> -->
+				
 
 					<!-- product slider -->
 					
@@ -54,20 +43,51 @@
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
-								 aria-selected="false">Past events</a>
+								 aria-selected="false">More photoes</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
-								 aria-selected="false">Reviews</a>
-							</li>
+							
 						</ul>
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 								
-                                <label>Name:</label>{{ServiceproviderData.firstName}} {{ServiceproviderData.lastName}}<br><br>
+                                <!-- <label>Name:</label>{{ServiceproviderData.firstName}} {{ServiceproviderData.lastName}}<br><br>
                                 <label >Email:</label>{{ServiceproviderData.email}}<br><br>  
-                                <label>Service:</label>{{ServiceproviderData.service}}<br><br>
-                                <label>Service description:</label>{{ServiceproviderData.serviceDes}}
+                                <label>Service:</label>{{ServiceproviderData.service}}<br><br> -->
+								<!-- <label>Service description:</label> -->
+								{{ServiceproviderData.serviceDes}}
+								<br><br>
+								<h3>Service areas</h3>
+
+								
+								<ul>
+									<li>Central Province </li> 
+									<li>Western Province </li> 
+									<li>Southern Province  </li>
+									<li>Uva Province</li> 
+									<li>Sabaragamuwa Province </li> 
+									<li>North Western Province</li>  
+									<li>North Central Province</li>
+								    <li>Nothern Province </li> 
+									<li>Eastern Province</li> 
+								
+								</ul>
+								<br><br>
+								<h3>Contact us</h3>
+								{{ServiceproviderData.telephoneNo}}
+								<br><br>
+								<h3>Reservation fee</h3>
+                                
+								{{ServiceproviderData.price}}
+								<br><br>
+								<h3>Payment conditions</h3>
+								Pay an advance fee to reserve the date. Full payment must be made before the event.
+                                
+								<br><br>
+
+								<h3>Cancellation terms</h3>
+								Non-refundable Reservation Fee<br>
+									The reservation fee as listed in the box on the right with your payment details will not be refundable, any other payment made will be refundable if cancellation is made 2 weeks (14 days) prior to the (your event’s) scheduled time of commencement.
+									Example: If event starts on 31st December at 9AM (local time of Vendor), cancel before 9AM (local time of Vendor) on 17th December for a refund of any payments made excluding the reservation fee
 
                                 
 
@@ -80,33 +100,27 @@
 							</div>
 							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                 
-                                <div class="product-slider" >
+                                <div class="product-slider row"  >
+									
                                 <ul *ngFor="let im of images | async">
-                                    <div *ngIf="im.email == ServiceproviderData.email">
-                                         <div class="product-slider-item my-4" >
-                                        <img
-                                            id="image"
-                                            src="{{ im.url }}"
-                                            style="max-width:250px;"
-                                          />
-                                        
-                                          </div>
+                                    <div *ngIf="im.email == ServiceproviderData.email" >
+                                        <div class="product-slider-item my-4 col-5"  >
+											<img
+												id="image"
+												src="{{ im.url }}"
+												style="max-width:320px;"
+											/>
+											
                                         </div>
-                                        
-                                        
-                                    
-                                    
-                                        </ul>
+                                    </div>                    
+                                      
+                                </ul>
+									
                                     </div>
 
 								
 							</div>
-							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-								<h3 class="tab-title">Product Review</h3>
-								
-									
-								
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -116,9 +130,9 @@
 					
 					<!-- User Profile widget -->
 					<div class="widget user text-center">
-						<img class="rounded-circle img-fluid mb-5 px-5" src="images/user/user-thumb.jpg" alt="">
-						<h4>{{ServiceproviderData.firstName}} {{ServiceproviderData.lastName}}</h4>
-						<p class="member-time">Member Since Jun 27, 2017</p>
+						<img class="rounded-circle img-fluid mb-5 px-5" src="{{profilePicture}}" alt="">
+						<h4>{{ServiceproviderData.companyName}} </h4>
+						<p class="member-time">provide service Since Jun 27, 2015</p>
 						<a href="">See all ads</a>
 						<ul class="list-inline mt-20">
 							<li class="list-inline-item"><a href="" class="btn btn-contact d-inline-block  btn-primary px-lg-5 my-1 px-md-3">Contact</a></li>
