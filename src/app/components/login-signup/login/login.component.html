@@ -15,9 +15,9 @@
                           </div>
                           <label *ngIf="errorMessage != 'temp'" class="error">{{errorMessage}}</label>
                           <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
-                          <button type="submit" (click)="tryLogin(registerForm.value)" class="d-block py-3 px-5 bg-primary text-white border-0 rounded font-weight-bold mt-3">Log in</button>
+                          <button type="submit" (click)="tryLogin(registerForm.value)" class="d-block py-3 px-5 bg-primary text-white border-0 rounded font-weight-bold mt-3"><a routerLink='/serviceprovider-dashboard'>Log in</a></button>
                           <a class="mt-3 d-block  text-primary" href="#">Forget Password?</a>
-                          <a class="mt-3 d-inline-block text-primary" routerLink="/register">Register Now</a>
+                          <a class="mt-3 d-inline-block text-primary" routerLink='/register'>Register Now</a>
                       </fieldset>
                   </form>
               </div>
@@ -25,3 +25,7 @@
       </div>
   </div>
 </section>
+
+
+<!-- 
+routerLink=' /register' -->

@@ -1,0 +1,78 @@
+<section class="user-profile section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
+                <div class="sidebar">
+                  
+                    <div class="widget user-dashboard-profile">
+                        
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
+               
+                <div class="widget personal-info">
+                    
+                    <form [formGroup]="ServiceProviderEditForm" #serviceproviderForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text"  value="{{ServiceproviderData.firstName}}"   class="form-control"  [class.is-invalid]="ServiceProviderEditForm.get('firstName').invalid && ServiceProviderEditForm.get('firstName').touched"
+                           
+                            formControlName="firstName"
+                          
+                            required 
+                            [(ngModel)]="ServiceproviderData.firstName"><small *ngIf="ServiceProviderEditForm.get('firstName').invalid && ServiceProviderEditForm.get('firstName').touched"
+                            class="text-danger">*First Name is required !</small>
+                            
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            
+                            <input type="text"   class="form-control" [(ngModel)]="ServiceproviderData.lastName" value="{{ServiceproviderData.lastName}}" [class.is-invalid]="ServiceProviderEditForm.get('lastName').invalid && ServiceProviderEditForm.get('lastName').touched"
+                           
+                            formControlName="lastName"
+                          
+                            required ><small *ngIf="ServiceProviderEditForm.get('lastName').invalid && ServiceProviderEditForm.get('lastName').touched"
+                            class="text-danger">*Last Name is required !</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Your Service</label>
+                            
+
+                            
+                            
+                            <select class="form-control" [(ngModel)]="ServiceproviderData.service" value="{{ServiceproviderData.service}}" >
+                            <option>Video & Photography</option>
+                            <option>Restaurants and Catering</option>
+                            <option>Transportation</option>
+                            <option>Dancing & Music</option>
+                          
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Service Description</label>
+                         
+                            <input type="text" class="form-control" [(ngModel)]="ServiceproviderData.serviceDes" value="{{ServiceproviderData.serviceDes}}" [class.is-invalid]="ServiceProviderEditForm.get('serviceDes').invalid && ServiceProviderEditForm.get('serviceDes').touched"
+                           
+                            formControlName="serviceDes"
+                          
+                            required ><small *ngIf="ServiceProviderEditForm.get('serviceDes').invalid && ServiceProviderEditForm.get('serviceDes').touched"
+                            class="text-danger">*Description is required !</small>
+                        </div>
+
+                      
+                        
+                       
+                        <button class="btn btn-transparent" type="submit">Update Profile</button>
+                    </form>  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

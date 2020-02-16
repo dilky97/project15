@@ -36,6 +36,7 @@ export class EventPlannerHomeComponent implements OnInit {
       console.log(this.club);
 
       localStorage.setItem("cludId",this.selectedClubId);
+      localStorage.setItem("clubName",this.club.name);
       console.log(localStorage.getItem("cludId"));
 
     });
