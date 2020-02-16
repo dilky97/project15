@@ -1,16 +1,5 @@
 
-<!-- <app-navbar></app-navbar>  -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-  <!-- SITE TITTLE -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-
-</head>
+<app-navbar></app-navbar>
 
 <body class="body-wrapper">
 
@@ -29,10 +18,10 @@
                     <h1 class="product-title">{{ServiceproviderData.companyName}} </h1>
                     <h4>{{ServiceproviderData.address}}</h4>
                     <!-- <h2>{{ServiceproviderData.address}}</h2> -->
-				
+
 
 					<!-- product slider -->
-					
+
 					<!-- product slider -->
 
 					<div class="content mt-5 pt-5">
@@ -45,43 +34,43 @@
 								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
 								 aria-selected="false">More photoes</a>
 							</li>
-							
+
 						</ul>
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-								
+
                                 <!-- <label>Name:</label>{{ServiceproviderData.firstName}} {{ServiceproviderData.lastName}}<br><br>
-                                <label >Email:</label>{{ServiceproviderData.email}}<br><br>  
+                                <label >Email:</label>{{ServiceproviderData.email}}<br><br>
                                 <label>Service:</label>{{ServiceproviderData.service}}<br><br> -->
 								<!-- <label>Service description:</label> -->
 								{{ServiceproviderData.serviceDes}}
 								<br><br>
 								<h3>Service areas</h3>
 
-								
+
 								<ul>
-									<li>Central Province </li> 
-									<li>Western Province </li> 
+									<li>Central Province </li>
+									<li>Western Province </li>
 									<li>Southern Province  </li>
-									<li>Uva Province</li> 
-									<li>Sabaragamuwa Province </li> 
-									<li>North Western Province</li>  
+									<li>Uva Province</li>
+									<li>Sabaragamuwa Province </li>
+									<li>North Western Province</li>
 									<li>North Central Province</li>
-								    <li>Nothern Province </li> 
-									<li>Eastern Province</li> 
-								
+								    <li>Nothern Province </li>
+									<li>Eastern Province</li>
+
 								</ul>
 								<br><br>
 								<h3>Contact us</h3>
 								{{ServiceproviderData.telephoneNo}}
 								<br><br>
 								<h3>Reservation fee</h3>
-                                
+
 								{{ServiceproviderData.price}}
 								<br><br>
 								<h3>Payment conditions</h3>
 								Pay an advance fee to reserve the date. Full payment must be made before the event.
-                                
+
 								<br><br>
 
 								<h3>Cancellation terms</h3>
@@ -89,19 +78,19 @@
 									The reservation fee as listed in the box on the right with your payment details will not be refundable, any other payment made will be refundable if cancellation is made 2 weeks (14 days) prior to the (your event’s) scheduled time of commencement.
 									Example: If event starts on 31st December at 9AM (local time of Vendor), cancel before 9AM (local time of Vendor) on 17th December for a refund of any payments made excluding the reservation fee
 
-                                
+
 
 
                                 <!-- product slider -->
-					
-                                
-                                
+
+
+
 
 							</div>
 							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                
+
                                 <div class="product-slider row"  >
-									
+
                                 <ul *ngFor="let im of images | async">
                                     <div *ngIf="im.email == ServiceproviderData.email" >
                                         <div class="product-slider-item my-4 col-5"  >
@@ -110,24 +99,24 @@
 												src="{{ im.url }}"
 												style="max-width:320px;"
 											/>
-											
+
                                         </div>
-                                    </div>                    
-                                      
-                                </ul>
-									
                                     </div>
 
-								
+                                </ul>
+
+                                    </div>
+
+
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="sidebar">
-					
+
 					<!-- User Profile widget -->
 					<div class="widget user text-center">
 						<img class="rounded-circle img-fluid mb-5 px-5" src="{{profilePicture}}" alt="">
@@ -141,13 +130,13 @@
 						</ul>
 					</div>
 					<!-- Map Widget -->
-					
+
 					<!-- Rate Widget -->
-				
+
 					<!-- Safety tips widget -->
-					
+
 					<!-- Coupon Widget -->
-					
+
 
 				</div>
 			</div>
@@ -167,4 +156,3 @@
 
 </body>
 
-</html>
