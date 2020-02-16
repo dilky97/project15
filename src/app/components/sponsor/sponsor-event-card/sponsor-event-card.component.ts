@@ -9,7 +9,11 @@ import { Sponsor } from "src/app/models/sponsor.model";
 })
 export class SponsorEventCardComponent implements OnInit {
 
-  constructor(private firestore:AngularFirestore) { }
+  spoId;
+
+  constructor(private firestore:AngularFirestore) {
+    this.spoId = localStorage.getItem("spoId");
+   }
 
   @Input('eventId') eventId;
 
@@ -28,9 +32,61 @@ export class SponsorEventCardComponent implements OnInit {
     });
   } 
 
-  showInterestedd(){
-    var arr=this.eventdata.acceptedProposals;
-    console.log(arr);
+  // showInterestedd(){
+  //   var arr;
+  //   this.
+  //   console.log(arr);
+
+  //   this.firestore.collection("proposal").where("event", "==", ).subscribe(a=>{
+  //     id=a.id;
+      
+  //     this.firestore.collection("sponsors").doc(sponsorid).get().subscribe(c=>{
+  //       arr=c.data().receivedProposals;
+  //       // arr.push(id)
+
+  //       //remove id from receivedProposals array
+  //       this.firestore.collection("spo").doc(this.spoId).update({receivedProposals:arr}).then(a=>{
+          
+  //       });
+
+  //     })
+  //   })
+
+  //   // arr.push(id)
+
+  // }
+
+  reject(){
+    var proId;
+    var arr = [];
+    var newarr = []=[];
+    // if(confirm("Are you sure to reject this event?")){
+    //   this.firestore.collection("sponsors").doc(this.spoId).update({receivedProposals:firestore.FieldValue.arrayRemove()});
+    // }
+    this.firestore.collection("proposals",ref=>ref.where('event', '==', this.eventId)).valueChanges().subscribe(a=>{
+      proId=a[0]["proposalId"];
+
+      console.log("a " +a[0]['proposalId']);
+      console.log("proId " +proId);
+      
+      this.firestore.collection("sponsors").doc(this.spoId).get().subscribe(c=>{
+        arr=c.data().receivedProposals;
+
+        arr.forEach(element => {
+          console.log("element " +element)
+          if(element!=proId){
+            newarr.push(element)
+          }
+        });
+
+        console.log("this is newarr " +newarr)
+        //remove id from receivedProposals array
+        this.firestore.collection("sponsors").doc(this.spoId).update({receivedProposals:newarr});
+
+        
+
+      })
+    })
   }
 
 }

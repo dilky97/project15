@@ -33,7 +33,7 @@ export class EditSponsorComponent implements OnInit {
   constructor(
     private firestore:AngularFirestore
     ) { 
-      this.id = localStorage.getItem("id");
+      this.id = localStorage.getItem("spoId");
 
       this.sponsorDoc = firestore.collection("sponsors").doc<Sponsor>(this.id);
       this.sData = this.sponsorDoc.valueChanges();

@@ -14,6 +14,7 @@ export class SponsorListComponent implements OnInit {
 
   proposalModel:ProposalDetails = {} as ProposalDetails ;
   sponsorModel:Sponsor = {} as Sponsor;
+  eid;
 
   list:Sponsor[];
   constructor(
@@ -21,15 +22,20 @@ export class SponsorListComponent implements OnInit {
     private firestore : AngularFirestore,
     private router:Router
     ) {
-      // this.id = localStorage.getItem("eid");
+      this.eid = localStorage.getItem("curEventId");
+
      }
 
-  eid = "dbtfMUuefHSQkdam0zJ0";
+    // eid = "dbtfMUuefHSQkdam0zJ0";
 
   ngOnInit() {
-    
+
+    //  
+      console.log(this.eid);
+
       this.firestore.collection("events").doc(this.eid).get().subscribe(data=>{
         var already=data.data().requestedSponsors;
+        console.log(already);
         this.service.getsponsors().subscribe(actionArray =>{
           this.list = actionArray.map(item =>{
             return {
@@ -39,17 +45,22 @@ export class SponsorListComponent implements OnInit {
             } as Sponsor;  
           })
           for(var j=0;j<this.list.length;j++){
-            for(var i=0;i<already.length;i++){
-              if(already[i] ==this.list[j].id){
-                this.list[j].status=false;
+            if(already!=undefined){
+              for(var i=0;i<already.length;i++){
 
+                if(already[i] ==this.list[j].id){
+                  this.list[j].status=false;
+  
+                }
               }
             }
+            
           }
           })
       })
     // }); 
-
+    
+    this.proposalModel.proposalId=''
     this.proposalModel.event = '';
     this.proposalModel.sponsor = '';
     this.proposalModel.sender = '';
@@ -64,20 +75,27 @@ export class SponsorListComponent implements OnInit {
     //optional - also send the senderId
     this.proposalModel.sponsor=id;
     this.proposalModel.event=this.eid;
+
+    // var ref= this.firestore.collection('proposals').doc()+"";
+    // this.firestore.collection('proposals').doc('ref').set(this.proposalModel).then(doc=>{
+    
     this.firestore.collection('proposals').add(this.proposalModel).then(doc=>{
-      this.firestore.collection('sponsors').doc(id).get().subscribe(data=>{
+    console.log("proposal " +doc)
+    this.firestore.collection('sponsors').doc(id).get().subscribe(data=>{
         var arr=data.data().receivedProposals;
         arr.push(doc.id);
         this.firestore.collection("sponsors").doc(id).update({receivedProposals:arr}).then(b=>{
           this.firestore.collection('events').doc(this.eid).get().subscribe(d=>{
             var ab=d.data().requestedSponsors;
             ab.push(id);
-            this.firestore.collection("events").doc(this.eid).update({requestedSponsors:ab});
+            this.firestore.collection("events").doc(this.eid).update({requestedSponsors:ab}).then(a=>{
+              this.ngOnInit();
+            });
           })
         });        
       })
       doc.id
-      this.router.navigate(['./sponsor-list'])
+      // window.location.reload;
     })
   }
 }

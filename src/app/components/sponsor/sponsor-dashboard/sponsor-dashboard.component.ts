@@ -23,7 +23,7 @@ export class SponsorDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-    localStorage.setItem("id",this.id);
+    localStorage.setItem("spoId",this.id);
 
     
     
