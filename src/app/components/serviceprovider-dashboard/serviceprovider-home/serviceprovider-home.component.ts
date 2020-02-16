@@ -122,6 +122,7 @@ export class ServiceproviderHomeComponent implements OnInit {
 
   deleteAcc(id){
     this.firestore.doc('serviceProviders/' + id).delete();
+    this.toastr.warning('Account was removed successfully');
     this.router.navigate(['/home']);
   }
    

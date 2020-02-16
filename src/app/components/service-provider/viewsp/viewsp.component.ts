@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 export class ViewspComponent implements OnInit {
 
   sData : Observable<ServiceProviderDetails>;
+  profilePicture: string;
 
   ServiceproviderData: ServiceProviderDetails = {} as ServiceProviderDetails ;
   images: Observable<any[]>;
@@ -27,6 +28,7 @@ export class ViewspComponent implements OnInit {
    id;
 
   ngOnInit() {
+    this.profilePicture = localStorage.getItem('profilePicture');
 
     console.log(this.id);
     this.sData.subscribe(res=>{

@@ -64,9 +64,13 @@ export class RegisterComponent implements OnInit {
   });
 
   ServiceProviderRegisterForm = this.formBuilder.group({
+    companyName:['',Validators.required],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
+    address:['',Validators.required],
+    price:['',Validators.required],
     email: ['', [Validators.email, Validators.required]],
+    telephoneNo:['', Validators.required],
     service: ['', Validators.required],
     serviceDes: ['', Validators.required],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -154,10 +158,13 @@ export class RegisterComponent implements OnInit {
   }
 
   tryServiceProviderRegister(formData) {
-
+    this.serviceProvider.companyName=formData.companyName;
     this.serviceProvider.firstName = formData.firstName;
     this.serviceProvider.lastName = formData.lastName;
     this.serviceProvider.email = formData.email;
+    this.serviceProvider.address = formData.address;
+    this.serviceProvider.telephoneNo = formData.telephoneNo;
+    this.serviceProvider.price = formData.price;
     this.serviceProvider.service = formData.service;
     this.serviceProvider.serviceDes = formData.serviceDes;
 

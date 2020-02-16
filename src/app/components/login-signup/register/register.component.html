@@ -298,8 +298,8 @@
                   <form [formGroup]="ServiceProviderRegisterForm">
                       <fieldset class="p-4">
 
-                        <!-- /////////////// image uploader - start /////////////// -->
-                        <div class="form-group">
+                         <!-- /////////////// image uploader - start /////////////// -->
+                         <div class="form-group">
                           <label>Profile picrure :</label>
                           <div class="card" style="width: 15rem;" >
                             <div class="card-body">
@@ -322,8 +322,20 @@
                             </div>
                           </div>
                         </div>
-                        <!-- /////////////// image uploader - end /////////////// -->
+                        
+                        
 
+
+                        <div class="form-group">
+                          <label>Company name :</label>
+                          <input [class.is-invalid]="ServiceProviderRegisterForm.get('companyName').invalid && ServiceProviderRegisterForm.get('companyName').touched"
+                                 type="text"
+                                 formControlName="companyName"
+                                 class="form-control"
+                                 required>
+                          <small *ngIf="ServiceProviderRegisterForm.get('companyName').invalid && ServiceProviderRegisterForm.get('companyName').touched"
+                                 class="text-danger">*Company Name is required !</small>
+                        </div>
                         <div class="form-group">
                           <label>First Name :</label>
                           <input [class.is-invalid]="ServiceProviderRegisterForm.get('firstName').invalid && ServiceProviderRegisterForm.get('firstName').touched"
@@ -346,6 +358,43 @@
                         </div>
 
                         <div class="form-group">
+                          <label>Address :</label>
+                          <input [class.is-invalid]="ServiceProviderRegisterForm.get('address').invalid && ServiceProviderRegisterForm.get('address').touched"
+                                 type="text"
+                                 formControlName="address"
+                                 class="form-control"
+                                 required>
+                          <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('address').invalid && ServiceProviderRegisterForm.get('address').touched">*Address is required !</small>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Telephone No :</label>
+                          <input [class.is-invalid]="ServiceProviderRegisterForm.get('telephoneNo').invalid && ServiceProviderRegisterForm.get('telephoneNo').touched"
+                                 type="tel"
+                                 pattern="^\d{10}$"
+                                 formControlName="telephoneNo"
+                                 class="form-control"
+                                 required>
+                          <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('telephoneNo').invalid && ServiceProviderRegisterForm.get('telephoneNo').touched">* Number is required !</small>
+                        </div>
+
+
+                        	
+							      
+							
+							    <div class="form-group">
+                          <label>Reservation fee :</label>
+                          <input [class.is-invalid]="ServiceProviderRegisterForm.get('price').invalid && ServiceProviderRegisterForm.get('price').touched"
+                                
+                                 
+                                 formControlName="price"
+                                 class="form-control"
+                                 required>
+                          <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('price').invalid && ServiceProviderRegisterForm.get('price').touched">* price is required !</small>
+                        </div>
+
+
+                        <div class="form-group">
                           <label>Your Service</label>
                           <select [class.is-invalid]="ServiceProviderRegisterForm.get('service').invalid && ServiceProviderRegisterForm.get('service').touched" class="form-control" formControlName="service">
                             <option>Video & Photography</option>
@@ -358,14 +407,16 @@
 
                         <div class="form-group">
                           <label>Service Description :</label>
-                          <input [class.is-invalid]="ServiceProviderRegisterForm.get('serviceDes').invalid && ServiceProviderRegisterForm.get('serviceDes').touched"
+                          <textarea [class.is-invalid]="ServiceProviderRegisterForm.get('serviceDes').invalid && ServiceProviderRegisterForm.get('serviceDes').touched"
                                  type="text"
                                  formControlName="serviceDes"
                                  class="form-control"
-                                 required>
+                                 required></textarea>
                           
                           <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('serviceDes').invalid && ServiceProviderRegisterForm.get('serviceDes').touched">*Description is required !</small>
                         </div>
+
+
 
                         <div class="form-group">
                           <label>Email :</label>
