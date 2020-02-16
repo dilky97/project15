@@ -83,6 +83,7 @@ export class CreateEventComponent implements OnInit {
     
 
     this.newEvent.clubID = this.selectedClubId;
+    this.newEvent.clubName = localStorage.getItem("clubName");
     this.newEvent.eventName = formData.eventName;
     this.newEvent.startDate = this.startDateStr;
     this.newEvent.endDate = this.endDateStr;

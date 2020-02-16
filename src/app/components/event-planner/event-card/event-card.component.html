@@ -16,6 +16,7 @@
                     <ul class="list-inline mt-2 mb-3">
                         <li class="list-inline-item"><a href=""> <i class="fa fa-folder-open-o"></i> {{startDate | date: 'longDate'}}</a></li>
                         <li class="list-inline-item"><a href=""> <i class="fa fa-clock-o"></i> {{startTime}}</a></li>
+                        <li class="list-inline-item"><a href=""> <i class="fa fa-clock-o"></i> {{id}}</a></li>
                     </ul>
                     <p class="pr-5">{{description}}</p>
                 </div>
@@ -27,7 +28,7 @@
                     
                         <input type="button" class="btn btn-info" value="  View Event  " (click)="openEvent(id)" /> 
                    
-                        <input type="button" class="btn btn-danger" value = "Cancel Event">
+                        <input type="button" class="btn btn-danger" value = "Cancel Event" (click)="cancelEvent(id)">
                     </div>
                 </div>
                 

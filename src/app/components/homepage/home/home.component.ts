@@ -69,8 +69,8 @@ export class HomeComponent implements OnInit {
       this.allEventList = actionArray as unknown as eventData[] ;
 
       for ( const item  of this.allEventList ) {          ////////////////////////////////////////////////
-        if ( !( this.clubs.includes(item.clubID) ) ) {    //        pushing clubs to clubs array        //
-          this.clubs.push(item.clubID);                   ////////////////////////////////////////////////
+        if ( !( this.clubs.includes(item.clubName) ) ) {    //        pushing clubs to clubs array        //
+          this.clubs.push(item.clubName);                   ////////////////////////////////////////////////
         }
       }
 

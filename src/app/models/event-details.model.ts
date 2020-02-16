@@ -20,6 +20,7 @@ export class eventData {
   venue: string;
   description: string;
   clubID: string;
+  clubName : string;
   startTimeStamp: number;
   endTimeStamp: number;
   image: string;
