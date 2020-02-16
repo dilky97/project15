@@ -21,7 +21,7 @@ export class EventCardComponent implements OnInit {
   @Input('tempVenue') venue: string;
   @Input('tempDescription') description: string;
   @Input('tempImage') image: string;
- 
+
 
   clubID:string;
 
@@ -29,7 +29,7 @@ export class EventCardComponent implements OnInit {
 
 
   ngOnInit() {
-    
+
   }
 
   openEvent(id) {
@@ -42,10 +42,11 @@ export class EventCardComponent implements OnInit {
     this.router.navigate(['/event-planner-home',this.clubID,'event', id]);
   }
 
-  cancelEvent(id){
+  async cancelEvent(id){
     this.clubID=localStorage.getItem("cludId");
-    this.dbstore.collection('clubs').doc(this.clubID).update({"events": firebase.firestore.FieldValue.arrayRemove(id)});
+    await this.dbstore.collection('clubs').doc(this.clubID).update({"events": firebase.firestore.FieldValue.arrayRemove(id)});
     this.eventService.deleteEvent(id);
+    location.reload();
   }
 
 }
