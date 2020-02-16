@@ -10,6 +10,33 @@
           <form [formGroup]="ClubRegisterForm">
             <fieldset class="p-4">
 
+              <!-- /////////////// image uploader - start /////////////// -->
+              <div class="form-group">
+                <label>Profile picrure :</label>
+                <div class="card" style="width: 15rem;" >
+                  <div class="card-body">
+                    <form [formGroup]="imageForm">
+                      <div class="text-center">
+                        <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
+                      </div>
+                      <div class="form-group">
+                        <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                        <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select Logo</span>
+                        <input type="file"
+                               class="form-control-file d-none"
+                               formControlName="imageUrl"
+                               (change) = "showPreview($event,imageForm.value)"
+                               accept="image/*"
+                               #fileUploader
+                        >
+                        <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- /////////////// image uploader - end /////////////// -->
+
               <div class="form-group">
                 <label>Name of the Club :</label>
                 <input [class.is-invalid]="ClubRegisterForm.get('name').invalid && ClubRegisterForm.get('name').touched"
@@ -23,8 +50,8 @@
 
               <div class="form-group">
                 <label>Advisor :</label> <br>
-                <small>&#9673; You need to choose a "lecturer in UOC" as the Advisor for your club. <br>
-                       &#9673; your club will be published after the advisor accept these details.
+                <small>&#10026; You need to choose a "lecturer in UOC" as the Advisor for your club. <br>
+                       &#10026; your club will be published after the advisor accept these details.
                 </small>
                 <input [class.is-invalid]="ClubRegisterForm.get('advisor').invalid && ClubRegisterForm.get('advisor').touched"
                        type="email"
@@ -41,7 +68,7 @@
 
               <div class="form-group">
                 <label>President :</label> <br>
-                <small>&#9673; You are the initial President of this club.</small>
+                <small>&#10026; You are the initial President of this club.</small>
                 <input readonly type="text"
                        value="{{student.email}}"
                        formControlName="president"
@@ -50,8 +77,8 @@
 
               <div class="form-group">
                 <label>Event Planner :</label> <br>
-                <small>&#9673; You need to choose a "Student in UOC" as the Event Planner of your club. <br>
-                       &#9673; This person can publish Events from your club.
+                <small>&#10026; You need to choose a "Student in UOC" as the Event Planner of your club. <br>
+                       &#10026; This person can publish Events from your club.
                 </small>
                 <input [class.is-invalid]="ClubRegisterForm.get('eventPlanner').invalid && ClubRegisterForm.get('eventPlanner').touched"
                        type="email"

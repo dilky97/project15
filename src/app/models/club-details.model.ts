@@ -1,6 +1,7 @@
 export class ClubDetails {
   id: string;
   name: string;
+  logo: string;
   advisor: string;
   president: string;
   eventPlanner: string;

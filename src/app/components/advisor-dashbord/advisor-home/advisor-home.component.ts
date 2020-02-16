@@ -22,7 +22,11 @@ export class AdvisorHomeComponent implements OnInit {
 
   showingEventlist: eventData[] = [] as eventData[];
 
+  showingNewClubRequest: ClubDetails = {} as ClubDetails;
+
   selectedClubName: string;
+
+  newRequestFlag: boolean;
 
   ngOnInit() {
     if (JSON.parse(localStorage.getItem('user'))) {
@@ -49,6 +53,7 @@ export class AdvisorHomeComponent implements OnInit {
   }
 
   setShowingEvents(id, name) {
+    this.newRequestFlag = false;
     this.showingEventlist = [] as eventData[] ;
     this.selectedClubName = name;
     const promise = firebase.firestore().collection('events').where( 'clubID', '==', id ).get();
@@ -57,9 +62,30 @@ export class AdvisorHomeComponent implements OnInit {
         this.showingEventlist.push(doc.data() as eventData);
       });
     });
-
     console.log(this.showingEventlist);
+  }
 
+  setShowinNewClubRequest(id, name) {
+    this.newRequestFlag = true;
+    const promise = firebase.firestore().collection('clubs').doc(id).get();
+    promise.then( async res => {
+      this.showingNewClubRequest = res.data() as ClubDetails;
+    });
+    console.log(this.showingNewClubRequest);
+  }
+
+  async response(accept, id) {
+    if (accept) {
+      await firebase.firestore().collection('clubs').doc(id).update({isActivated: true});
+      const index = this.advisor.newClubRequests.findIndex(i => i.id === id);
+      this.advisor.advisorIn.push(this.advisor.newClubRequests[index]);
+      this.advisor.newClubRequests.splice(index, 1);
+      localStorage.setItem('user', JSON.stringify(this.advisor));
+      firebase.firestore().collection('advisors').doc(localStorage.getItem('uid')).update(this.advisor);
+      this.setShowingEvents(this.advisor.advisorIn[0].id, this.advisor.advisorIn[0].name);
+    } else {
+
+    }
   }
 
   openEvent(id) {

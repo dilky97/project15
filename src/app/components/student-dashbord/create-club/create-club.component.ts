@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClubDetails } from 'src/app/models/club-details.model';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ClubDetailsService } from 'src/app/services/club-details.service';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
@@ -10,6 +10,9 @@ import { HttpClient } from '@angular/common/http';
 import { unregisteredEmailValidator } from 'src/app/helpers/must-registered.validator';
 import { MustLecturer } from 'src/app/helpers/must-lecturer.validator';
 import { AdvisorDetails } from 'src/app/models/advisor-details.model';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-create-club',
@@ -18,6 +21,16 @@ import { AdvisorDetails } from 'src/app/models/advisor-details.model';
 })
 
 export class CreateClubComponent implements OnInit {
+
+    ///////// IMAGE UPLOADER - variables //////////
+    imgSrc = '../../../../assets/profile.jpg';
+    selectedImage: any = null;
+    uploadPercentage: any;
+
+    imageForm = new FormGroup({
+      imageUrl: new FormControl('', Validators.required)
+    });
+    ///////////////////////////////////////////////
 
   errorMessage = 'temp';
   successMessage = 'temp';
@@ -49,7 +62,8 @@ export class CreateClubComponent implements OnInit {
               private formBuilder: FormBuilder,
               private firestore: AngularFirestore,
               private clubDetailsService: ClubDetailsService ,
-              private http: HttpClient
+              private http: HttpClient,
+              private storage: AngularFireStorage,
              ) {
   }
 
@@ -67,6 +81,7 @@ export class CreateClubComponent implements OnInit {
     this.club.isActivated = false;
     this.club.president = this.student.email;
     this.club.id = '';
+    this.club.logo = localStorage.getItem('tempURL');
 
     this.clubDetailsService.createClubDatabase(this.club).then(
       async resDb => {
@@ -97,5 +112,39 @@ export class CreateClubComponent implements OnInit {
     );
 
   }
+
+  /////////////////// image uploader functions - start //////////////////////
+  onSubmit(formData) {
+    const filePath = `images/${this.selectedImage.name}_${new Date().getTime()}`;
+    const task = this.storage.upload(filePath, this.selectedImage);
+    this.uploadPercentage = task.percentageChanges();
+    const fileRef = this.storage.ref(filePath);
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe( url => {
+          console.log(url);
+          localStorage.setItem('tempURL', url);
+          formData.imageUrl = url ;
+          // this.resetForm();
+        });
+      })
+    ).subscribe();
+  }
+
+  showPreview(event: any, temp: any) {
+    if ( event.target.files && event.target.files[0] ) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imgSrc = e.target.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    } else {
+      this.imgSrc = '../../../../assets/profile.jpg';
+      this.selectedImage = null;
+    }
+    this.onSubmit(temp);
+  }
+  /////////////////// image uploader functions - end //////////////////////
 
 }

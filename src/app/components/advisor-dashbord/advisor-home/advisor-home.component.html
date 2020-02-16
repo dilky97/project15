@@ -20,8 +20,8 @@
 
               <div class="widget user-dashboard-menu">
                   <ul>
-                  <li class="active"><a href="#"><i class="fa fa-user"></i>New Club Requests</a></li>
-                  <li *ngFor="let temp of advisor.newClubRequests" ><a (click)='reviewNewClub(temp.id)'><i class="fa fa-bookmark-o"></i> {{temp.name}}</a></li>
+                  <li class="active"><a href="#"><i class="fa fa-user"></i>Club Create Requests</a></li>
+                  <li *ngFor="let temp of advisor.newClubRequests" ><a (click)='setShowinNewClubRequest(temp.id, temp.name)'><i class="fa fa-bookmark-o"></i> {{temp.name}}</a></li>
                                                                                 <!-- change up -->
 
                     <li class="active"><a href="#"><i class="fa fa-user"></i>My Clubs</a></li>
@@ -71,29 +71,61 @@
           </div>
           <div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
               <!-- Recently Favorited -->
-              <div class="widget dashboard-container">
-              <h3 class="widget-header">{{selectedClubName}} - events </h3>
+              <div *ngIf="!newRequestFlag"  class="widget dashboard-container">
 
-              <div class="ad-listing-list mt-20" *ngFor="let tempEvent of showingEventlist" >
-                <div class="card">
-                  <app-student-event-card (click)='openEvent(tempEvent.id)'
-                                          [tempId]="tempEvent.id"
-                                          [tempTitle]="tempEvent.eventName"
-                                          [tempImg]="tempEvent.image"
-                                          [tempClub]="tempEvent.clubID"
-                                          [tempStartDate]="tempEvent.startDate"
-                                          [tempStartTime]="tempEvent.startTime"
-                                          [tempStartTimeStamp]="tempEvent.startTimeStamp"
-                                          [tempEndDate]="tempEvent.endDate"
-                                          [tempEndTime]="tempEvent.endTime"
-                                          [tempEndTimeStamp]="tempEvent.endTimeStamp"
-                                          [tempStatus]="tempEvent.status"
-                                          [tempDescription]="tempEvent.startDate" >
-                  </app-student-event-card>
+              <div>
+
+                <h3 class="widget-header">{{selectedClubName}} - events </h3>
+
+                <div class="ad-listing-list mt-20" *ngFor="let tempEvent of showingEventlist" >
+                  <div class="card">
+                    <app-student-event-card (click)='openEvent(tempEvent.id)'
+                                            [tempId]="tempEvent.id"
+                                            [tempTitle]="tempEvent.eventName"
+                                            [tempImg]="tempEvent.image"
+                                            [tempClub]="tempEvent.clubID"
+                                            [tempStartDate]="tempEvent.startDate"
+                                            [tempStartTime]="tempEvent.startTime"
+                                            [tempStartTimeStamp]="tempEvent.startTimeStamp"
+                                            [tempEndDate]="tempEvent.endDate"
+                                            [tempEndTime]="tempEvent.endTime"
+                                            [tempEndTimeStamp]="tempEvent.endTimeStamp"
+                                            [tempStatus]="tempEvent.status"
+                                            [tempDescription]="tempEvent.startDate" >
+                    </app-student-event-card>
+                  </div>
                 </div>
+
               </div>
 
               </div>
+
+              <article *ngIf="newRequestFlag" >
+                <!-- Post Image -->
+                <div class="image">
+                <img src="{{showingNewClubRequest.logo}}" alt="article-01">
+                </div>
+                <!-- Post Title -->
+                &#10061; Club Name:- <a class="font-weight-bold"> {{showingNewClubRequest.name}}</a> <br>
+                &#10061; Club President:- <a class="font-weight-bold"> {{showingNewClubRequest.president}}</a> <br>
+                &#10061; club Event-Planner:- <a class="font-weight-bold"> {{showingNewClubRequest.eventPlanner}}</a> <br>
+                &#10061; club Description:- <a class="font-weight-bold"> {{showingNewClubRequest.des}}</a> <br> <br>
+
+                &#10026; After you accept this, You will be the advisor of this club.
+
+                <!-- accept / reject  button -->
+                <div class="selection-button float-right " >
+                  <button (click)="response(0,showingNewClubRequest.id)" class="btn btn-danger">Reject</button>
+                </div>
+
+                <div class="selection-button float-right ">
+                  <button (click)="response(1,showingNewClubRequest.id)" class="btn btn-success">Accept</button>
+                </div>
+
+                <div> <br> </div>
+
+              </article>
+
           </div>
           </div>
           <!-- Row End -->

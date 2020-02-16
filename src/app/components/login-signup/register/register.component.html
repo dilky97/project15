@@ -37,7 +37,7 @@
 
                           <!-- /////////////// image uploader - start /////////////// -->
                           <div class="form-group">
-                            <label>Profile picrure :</label>
+                            <label>Profile picture :</label>
                             <div class="card" style="width: 15rem;" >
                               <div class="card-body">
                                 <form [formGroup]="imageForm">
@@ -46,8 +46,9 @@
                                   </div>
                                   <div class="form-group">
                                     <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                    <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
                                     <input type="file"
-                                           class="form-control"
+                                           class="form-control-file d-none"
                                            formControlName="imageUrl"
                                            (change) = "showPreview($event,imageForm.value)"
                                            accept="image/*"
@@ -94,7 +95,7 @@
                               <option>Faculty of Medicine</option>
                               <option>Faculty of Technology</option>
                               <option>Faculty of Education</option>
-        
+
                             </select>
                             <small class="text-danger" *ngIf="StudentRegisterForm.get('faculty').invalid && StudentRegisterForm.get('faculty').touched">*Select your faculty !</small>
                           </div>
@@ -177,7 +178,7 @@
 
                         <!-- /////////////// image uploader - start /////////////// -->
                         <div class="form-group">
-                          <label>Profile picrure :</label>
+                          <label>Profile picture :</label>
                           <div class="card" style="width: 15rem;" >
                             <div class="card-body">
                               <form [formGroup]="imageForm">
@@ -186,8 +187,9 @@
                                 </div>
                                 <div class="form-group">
                                   <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                  <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
                                   <input type="file"
-                                         class="form-control"
+                                         class="form-control-file d-none"
                                          formControlName="imageUrl"
                                          (change) = "showPreview($event,imageForm.value)"
                                          accept="image/*"
@@ -300,7 +302,7 @@
 
                         <!-- /////////////// image uploader - start /////////////// -->
                         <div class="form-group">
-                          <label>Profile picrure :</label>
+                          <label>Profile picture :</label>
                           <div class="card" style="width: 15rem;" >
                             <div class="card-body">
                               <form [formGroup]="imageForm">
@@ -309,8 +311,9 @@
                                 </div>
                                 <div class="form-group">
                                   <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                  <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
                                   <input type="file"
-                                         class="form-control"
+                                         class="form-control-file d-none"
                                          formControlName="imageUrl"
                                          (change) = "showPreview($event,imageForm.value)"
                                          accept="image/*"
