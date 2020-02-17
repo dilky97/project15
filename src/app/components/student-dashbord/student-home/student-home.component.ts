@@ -63,6 +63,10 @@ export class StudentHomeComponent implements OnInit {
     this.router.navigate(['/events' , id]);
   }
 
+  openClub(id) {
+    this.router.navigate(['/event-planner-home' , id]);
+  }
+
 }
 
 
