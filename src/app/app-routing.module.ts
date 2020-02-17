@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'student-update' , component: StudentEditComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
   { path: 'advisor-update' , component: AdvisorEditComponent, canActivate: [RouteGuardService], data: {role: 'advisor'}},
   { path: 'no-access' , component: NoAccessComponent },
-  { path: 'sponsor-dashboard' ,component:SponsorDashboardComponent},
+  { path: 'sponsor-dashboard' ,component:SponsorDashboardComponent, canActivate: [RouteGuardService], data: {role: 'sponsor'}},
   { path: 'search' ,component:SearchComponent},
 
   { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'},
