@@ -11,6 +11,7 @@ import { ClubDetailsService } from "../../../services/club-details.service";
 import { ClubDetails } from 'src/app/models/club-details.model';
 import { eventData } from "src/app/models/event-details.model";
 import { ThrowStmt } from '@angular/compiler';
+import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
 
 
 
@@ -99,6 +100,7 @@ export class CreateEventComponent implements OnInit {
     this.newEvent.status = 0;
     this.newEvent.registeredStudents = [] as Array<string>;
     this.newEvent.participatedStudent = [] as Array<string>;
+    this.newEvent.requestedSponsors = [] as Array<string>;
 
 
     await this.eventService.createEventDatabase(this.newEvent).then(

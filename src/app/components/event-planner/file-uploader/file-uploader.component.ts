@@ -36,7 +36,7 @@ export class FileUploaderComponent implements OnInit {
   }
 
   onSubmit(formData) {
-    const filePath = `images/${this.selectedImage.name}_${new Date().getTime()}`;
+    const filePath = `eventPhotos/${this.selectedImage.name}_${new Date().getTime()}`;
     const task = this.storage.upload(filePath, this.selectedImage);
     this.uploadPercentage = task.percentageChanges();
     const fileRef = this.storage.ref(filePath);
@@ -46,12 +46,13 @@ export class FileUploaderComponent implements OnInit {
           console.log(url);
           localStorage.setItem('tempURL', url);
           // this.resetForm();
+          this.afs.collection('events').doc(this.eventID).update({'image':localStorage.getItem("tempURL")});
           
         });
       })
     ).subscribe();
 
-    this.afs.collection('events').doc(this.eventID).update({'image':localStorage.getItem("tempURL")});
+    
 
 
   }

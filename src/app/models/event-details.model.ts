@@ -27,6 +27,7 @@ export class eventData {
   status: number;
   registeredStudents: Array<string>;
   participatedStudent: Array<string>;
+  requestedSponsors: Array<string>;
 }
 
 export class sponsorData {
