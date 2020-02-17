@@ -11,7 +11,7 @@ import { Sponsor } from "src/app/models/sponsor.model";
 export class SponsorDashboardComponent implements OnInit {
 
   rprop;
-  proposalData =[]=[];
+  eventArray =[]=[];
   list:Sponsor[];
   constructor(
     private firestore:AngularFirestore,
@@ -23,7 +23,7 @@ export class SponsorDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-    localStorage.setItem("id",this.id);
+    localStorage.setItem("spoId",this.id);
 
     
     
@@ -48,10 +48,10 @@ export class SponsorDashboardComponent implements OnInit {
 
       this.rprop.forEach(element => {
         this.firestore.collection("proposals").doc(element).valueChanges().subscribe(val=>{
-          this.proposalData.push(val["event"]);
+          this.eventArray.push(val["event"]);
 
            console.log(val["event"] + " this is the event id"); 
-           console.log(this.proposalData + "this is proposalData")
+           console.log(this.eventArray + "this is eventArray")
         })
       })
     })
