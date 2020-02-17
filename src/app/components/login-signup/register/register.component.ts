@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
   });
 
   AdvisorRegisterForm = this.formBuilder.group({
-    title: ['Mr.'],
+    title: ['2'],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     email: ['', [MustLecturer, Validators.email]],

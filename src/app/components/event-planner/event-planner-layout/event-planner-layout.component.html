@@ -17,12 +17,17 @@
           <!-- <ng-template ngbTabTitle>Event Photo</ng-template> -->
           <ng-template ngbTabContent><app-file-uploader></app-file-uploader></ng-template>
         </ngb-tab>
-        <ngb-tab title="Event Sponsors">
-          <ng-template ngbTabContent> <app-sponsors></app-sponsors> </ng-template>
-        </ngb-tab>
+        
         <ngb-tab title="Attendee Management">
           <ng-template ngbTabContent> <app-attendee-list></app-attendee-list> </ng-template>
         </ngb-tab>
+        <ngb-tab title="Event Sponsors">
+          <ng-template ngbTabContent> <app-sponsors></app-sponsors> </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Service Providers">
+          <ng-template ngbTabContent> <app-serviceprovider-list></app-serviceprovider-list> </ng-template>
+        </ngb-tab>
+        
       </ngb-tabset>
     </div>
   </div>

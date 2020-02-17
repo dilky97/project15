@@ -22,6 +22,9 @@ import { ServiceproviderListComponent } from './components/service-provider/serv
 import{ ViewspComponent} from './components/service-provider/viewsp/viewsp.component';
 import { EventsListComponent } from './components/event-planner/events-list/events-list.component';
 import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home/advisor-home.component';
+import { StudentEditComponent } from './components/student-dashbord/student-edit/student-edit.component';
+import { AdvisorEditComponent } from './components/advisor-dashbord/advisor-edit/advisor-edit.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 const routes: Routes = [
@@ -33,10 +36,13 @@ const routes: Routes = [
   { path: 'events/:id' , component: ViewEventComponent },
   { path: 'student-dashboard' , component: StudentHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
   { path: 'advisor-dashboard' , component: AdvisorHomeComponent, canActivate: [RouteGuardService], data: {role: 'advisor'}},
+  { path: 'student-update' , component: StudentEditComponent, canActivate: [RouteGuardService], data: {role: 'student'}},
+  { path: 'advisor-update' , component: AdvisorEditComponent, canActivate: [RouteGuardService], data: {role: 'advisor'}},
   { path: 'no-access' , component: NoAccessComponent },
   { path: 'sponsor-dashboard' ,component:SponsorDashboardComponent},
+  { path: 'search' ,component:SearchComponent},
 
-  { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent,canActivate: [RouteGuardService], data: {role: 'student'},
+  { path: 'event-planner-home/:id' , component: EventPlannerHomeComponent, canActivate: [RouteGuardService], data: {role: 'student'},
    children:[
 
     {
@@ -57,13 +63,13 @@ const routes: Routes = [
 
    {
      path: 'event/:eventId',
-     component:EventPlannerLayoutComponent
+     component: EventPlannerLayoutComponent
    },
 
 
   ]},
 
-  { path: 'create-club' , component: CreateClubComponent },
+  { path: 'create-club' , component: CreateClubComponent, canActivate: [RouteGuardService], data: {role: 'student'} },
   {path:'serviceProvider-dashboard' ,component:ServiceproviderHomeComponent,canActivate: [RouteGuardService], data: {role: 'serviceProvider'}},
   {path:'Edit-serviceprovider',component:EditServiceproviderComponent},
 

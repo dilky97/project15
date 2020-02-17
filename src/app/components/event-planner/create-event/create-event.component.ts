@@ -1,16 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormGroup,FormControl } from "@angular/forms";
+import { FormGroup,FormControl, Validators } from "@angular/forms";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { ToastrService } from "ngx-toastr";
+import { NgbDateStruct,NgbCalendar ,NgbDatepickerConfig,NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
 
 import { EventPlannerService } from "../../../services/event-planner.service";
 import { ClubDetailsService } from "../../../services/club-details.service";
-//import { eventData } from "../app.model";
 
 import { ClubDetails } from 'src/app/models/club-details.model';
 import { eventData } from "src/app/models/event-details.model";
 import { ThrowStmt } from '@angular/compiler';
+import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
+
+
 
 @Component({
   selector: 'app-create-event',
@@ -26,26 +29,46 @@ export class CreateEventComponent implements OnInit {
   loggedInClub : ClubDetails = {} as ClubDetails;
   newEvent : eventData = {} as eventData;
 
+  minDate = undefined;
+  dateModel: NgbDateStruct;
+  date: {day: number, month: number,year:number};
+  startDateStr : string;
+  endDateStr : string;
+
   CreateEventForm = new FormGroup({
     clubId: new FormControl(),
-    eventName: new FormControl(),
-    startDate: new FormControl(),
+    eventName: new FormControl('', [ Validators.required ]),
+    startDate: new FormControl('',[Validators.required]),
     endDate: new FormControl(),
-    startTime: new FormControl(),
+    startTime: new FormControl('',[Validators.required]),
     endTime: new FormControl(),
     venue: new FormControl(),
-    description: new FormControl(),
+    description: new FormControl()
   });
 
   //eventItem : eventData  = new eventData();
   //submitted = false;
 
   constructor(
-    public eventService: EventPlannerService, private clubIDService : EventPlannerService, private clubDataService : ClubDetailsService,
+    public eventService: EventPlannerService, 
+    private clubIDService : EventPlannerService, 
+    private clubDataService : ClubDetailsService,
 
     private dbstore: AngularFirestore,
     private toastr: ToastrService,
-    private router: Router) {}
+    private router: Router,
+    private dateConfig : NgbDatepickerConfig,
+    private calendar: NgbCalendar,
+    private parseFormatter : NgbDateParserFormatter) {
+
+      const currDate = new Date();
+      this.minDate = {
+        year: currDate.getFullYear(),
+        month: currDate.getMonth() + 1,
+        day: currDate.getDate()
+      };
+
+    }
 
   ngOnInit() {
 
@@ -53,10 +76,19 @@ export class CreateEventComponent implements OnInit {
     //this.resetForm();
   }
   async createEventSubmit(formData) {
+
+    let DELIMITER = '-';
+
+    this.startDateStr = this.parseFormatter.format(formData.startDate);
+
+    this.endDateStr = this.parseFormatter.format(formData.endDate);
+    
+
     this.newEvent.clubID = this.selectedClubId;
+    this.newEvent.clubName = localStorage.getItem("clubName");
     this.newEvent.eventName = formData.eventName;
-    this.newEvent.startDate = formData.startDate;
-    this.newEvent.endDate = formData.endDate;
+    this.newEvent.startDate = this.startDateStr;
+    this.newEvent.endDate = this.endDateStr;
     this.newEvent.startTime = formData.startTime;
     this.newEvent.endTime = formData.endTime;
     this.newEvent.venue = formData.venue;
@@ -64,10 +96,11 @@ export class CreateEventComponent implements OnInit {
 
     this.newEvent.startTimeStamp = new Date(this.newEvent.startDate).getTime();
     this.newEvent.endTimeStamp = new Date(this.newEvent.endDate).getTime();
-    this.newEvent.image = "https://www.stlucianewsonline.com/wp-content/uploads/2019/05/hackathon-1024x575.png";
+    this.newEvent.image = "./../../../assets/images/no-image-icon-21.png"
     this.newEvent.status = 0;
     this.newEvent.registeredStudents = [] as Array<string>;
     this.newEvent.participatedStudent = [] as Array<string>;
+    this.newEvent.requestedSponsors = [] as Array<string>;
 
 
     await this.eventService.createEventDatabase(this.newEvent).then(
@@ -100,6 +133,11 @@ export class CreateEventComponent implements OnInit {
 
     this.router.navigate(['/event-planner-home',this.selectedClubId]);
 
+  }
+
+
+  selectToday(){
+    this.dateModel = this.calendar.getToday();
   }
 
   // resetForm(form?: NgForm) {

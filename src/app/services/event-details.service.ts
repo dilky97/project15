@@ -23,12 +23,12 @@ export class EventDetailsService {
 
     } else if ( club !== 'all' && status === 99 ) {
         return this.firestore.collection('events', ref =>
-          ref.where( 'clubID', '==', club )  ).valueChanges();
+          ref.where( 'clubName', '==', club )  ).valueChanges();
 
     } else {
       return this.firestore.collection('events', ref =>
         ref.where( 'status', '==', status )
-           .where( 'clubID', '==', club )  ).valueChanges();
+           .where( 'clubName', '==', club )  ).valueChanges();
     }
   }
 

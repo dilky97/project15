@@ -4,7 +4,7 @@ import { EventDetailsService } from 'src/app/services/event-details.service';
 import * as firebase from 'firebase/app';
 import { StudentDetails } from 'src/app/models/student-details.model';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { EventDetails, eventData } from 'src/app/models/event-details.model';
+import { eventData } from 'src/app/models/event-details.model';
 
 @Component({
   selector: 'app-view-event',
@@ -28,7 +28,7 @@ export class ViewEventComponent implements OnInit {
       this.event = temp as eventData ;
     });
 
-    if (JSON.parse(localStorage.getItem('user'))) {
+    if ( localStorage.getItem('displayName')) {
       if ( localStorage.getItem('displayName') === 'student' ) {
 
         this.student = JSON.parse(localStorage.getItem('user'));

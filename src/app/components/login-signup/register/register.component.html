@@ -37,7 +37,7 @@
 
                           <!-- /////////////// image uploader - start /////////////// -->
                           <div class="form-group">
-                            <label>Profile picrure :</label>
+                            <label>Profile picture :</label>
                             <div class="card" style="width: 15rem;" >
                               <div class="card-body">
                                 <form [formGroup]="imageForm">
@@ -46,8 +46,9 @@
                                   </div>
                                   <div class="form-group">
                                     <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                    <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
                                     <input type="file"
-                                           class="form-control"
+                                           class="form-control-file d-none"
                                            formControlName="imageUrl"
                                            (change) = "showPreview($event,imageForm.value)"
                                            accept="image/*"
@@ -85,16 +86,16 @@
                           <div class="form-group">
                             <label>Select Your Faculty :</label>
                             <select [class.is-invalid]="StudentRegisterForm.get('faculty').invalid && StudentRegisterForm.get('faculty').touched" class="form-control" formControlName="faculty">
-                              <option>University of Colombo School of Computing</option>
-                              <option>Faculty of Science</option>
-                              <option>Faculty of Management</option>
-                              <option>Faculty of Arts</option>
-                              <option>Faculty of Law</option>
-                              <option>Faculty of Nursing</option>
-                              <option>Faculty of Medicine</option>
-                              <option>Faculty of Technology</option>
-                              <option>Faculty of Education</option>
-        
+                              <option value=1 >University of Colombo School of Computing</option>
+                              <option value=2 >Faculty of Science</option>
+                              <option value=3 >Faculty of Management</option>
+                              <option value=4 >Faculty of Arts</option>
+                              <option value=5 >Faculty of Law</option>
+                              <option value=6 >Faculty of Nursing</option>
+                              <option value=7 >Faculty of Medicine</option>
+                              <option value=8 >Faculty of Technology</option>
+                              <option value=9 >Faculty of Education</option>
+
                             </select>
                             <small class="text-danger" *ngIf="StudentRegisterForm.get('faculty').invalid && StudentRegisterForm.get('faculty').touched">*Select your faculty !</small>
                           </div>
@@ -177,7 +178,7 @@
 
                         <!-- /////////////// image uploader - start /////////////// -->
                         <div class="form-group">
-                          <label>Profile picrure :</label>
+                          <label>Profile picture :</label>
                           <div class="card" style="width: 15rem;" >
                             <div class="card-body">
                               <form [formGroup]="imageForm">
@@ -186,8 +187,9 @@
                                 </div>
                                 <div class="form-group">
                                   <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                  <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
                                   <input type="file"
-                                         class="form-control"
+                                         class="form-control-file d-none"
                                          formControlName="imageUrl"
                                          (change) = "showPreview($event,imageForm.value)"
                                          accept="image/*"
@@ -204,10 +206,10 @@
                         <div class="form-group">
                           <label>Title :</label>
                           <select class="form-control" formControlName="title">
-                            <option>Hon.</option>
-                            <option>Mr.</option>
-                            <option>Mrs.</option>
-                            <option>Miss.</option>
+                            <option [value]=1 >Hon.</option>
+                            <option [value]=2 >Mr.</option>
+                            <option [value]=3 >Mrs.</option>
+                            <option [value]=4 >Miss.</option>                          <option>Miss.</option>
                           </select>
                         </div>
 
@@ -234,7 +236,7 @@
 
                         <div class="form-group">
                           <label>Email :</label> <br>
-                          <small>&#9673; Use your academic Email. (xxxx@cmb.ac.lk)</small>
+                          <small>&#10026; Use your academic Email. (xxxx@cmb.ac.lk)</small>
                           <input [class.is-invalid]="AdvisorRegisterForm.get('email').invalid && AdvisorRegisterForm.get('email').touched"
                                  type="email"
                                  formControlName="email"
@@ -309,8 +311,9 @@
                                 </div>
                                 <div class="form-group">
                                   <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
+                                  <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
                                   <input type="file"
-                                         class="form-control"
+                                         class="form-control-file d-none"
                                          formControlName="imageUrl"
                                          (change) = "showPreview($event,imageForm.value)"
                                          accept="image/*"
@@ -322,7 +325,7 @@
                             </div>
                           </div>
                         </div>
-                        
+
                          <!-- /////////////// image uploader - end /////////////// -->
 
 
@@ -379,14 +382,14 @@
                         </div>
 
 
-                        	
-							      
-							
+
+
+
 							    <div class="form-group">
                           <label>Reservation fee :</label>
                           <input [class.is-invalid]="ServiceProviderRegisterForm.get('price').invalid && ServiceProviderRegisterForm.get('price').touched"
-                                
-                                 
+
+
                                  formControlName="price"
                                  class="form-control"
                                  required>
@@ -412,7 +415,7 @@
                                  formControlName="serviceDes"
                                  class="form-control"
                                  required></textarea>
-                          
+
                           <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('serviceDes').invalid && ServiceProviderRegisterForm.get('serviceDes').touched">*Description is required !</small>
                         </div>
 

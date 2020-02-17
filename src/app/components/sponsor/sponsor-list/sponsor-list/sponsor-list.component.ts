@@ -77,7 +77,7 @@ export class SponsorListComponent implements OnInit {
         });        
       })
       doc.id
-      this.router.navigate(['./sponsor-list'])
+      //this.router.navigate(['./sponsor-list'])
     })
   }
 }

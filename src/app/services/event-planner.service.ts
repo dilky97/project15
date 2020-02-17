@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore,AngularFirestoreCollection } from "@angular/fire/firestore";
+import { AngularFirestore,AngularFirestoreCollection} from "@angular/fire/firestore";
 import { eventData } from '../models/event-details.model';
 
 
@@ -36,6 +36,10 @@ export class EventPlannerService {
 
   updateEvent(eventid :string, editEvent: eventData){
     return this.dbstore.collection('events').doc(eventid).update(editEvent);
+  }
+
+  deleteEvent(eventid : string){
+    return this.dbstore.collection('events').doc(eventid).delete();
   }
 
 
