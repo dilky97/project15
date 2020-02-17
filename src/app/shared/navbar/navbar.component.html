@@ -14,7 +14,13 @@
           <ul class="navbar-nav ml-auto mt-10">
             <ul class="navbar-nav ml-auto main-nav ">
               <li *ngIf="isLogged == 1" class="nav-item dropdown dropdown-slide">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=""> <small>Logged as:</small><b> {{user.firstName}} {{user.lastName}} </b><img src="{{profilePicture}}" class="rounded-circle">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=""> <small>Logged as:</small>
+
+                <div *ngIf="displayName == 'sponsor'; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock><b> {{user.name}} </b></ng-template>
+                <ng-template #elseBlock><b> {{user.firstName}} {{user.lastName}} </b></ng-template>
+
+                <img src="{{profilePicture}}" class="rounded-circle">
                   </a>
 
                   <!-- Dropdown list -->

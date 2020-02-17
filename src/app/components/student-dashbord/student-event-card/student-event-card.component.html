@@ -11,20 +11,21 @@
           <div class="col-lg-9 col-md-10">
               <div class="ad-listing-content">
                   <div>
-                      <a href="single.html" class="font-weight-bold">{{title}}</a>
+                      <a style="font-size: 40px;"  class="font-weight-bold">{{title}}</a>
                   </div>
                   <ul class="list-inline mt-2 mb-3">
-                  <li class="list-inline-item"><a href="category.html"> <i class="fa fa-folder-open-o"></i> {{ club | uppercase }}</a></li>
+                  <li class="list-inline-item"><a> <i class="fa fa-folder-open-o"></i> {{ club | uppercase }}</a></li>
                   <br>
-                  <li class="list-inline-item"><a href=""><i class="fa fa-calendar"></i> {{ startDate | date: 'medium' }}</a></li>
-                  </ul>
+                  <li class="list-inline-item"><a href=""><i class="fa fa-calendar"></i> {{ startDate | date: 'fullDate' }}</a></li>
+                  <li class="list-inline-item"><a href=""> <i class="fa fa-clock-o"></i> {{startTime}}</a></li>
+                </ul>
                   <p class="pr-5">{{des}}</p>
               </div>
           </div>
           <div class="col-lg-3 align-self-center">
               <div class="action float-lg-right pb-3">
               <div>
-                  <ul class="list-inline justify-content-center">
+                  <!-- <ul class="list-inline justify-content-center">
                       <li class="list-inline-item">
                           <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="category.html">
                           <i class="fa fa-eye"></i>
@@ -43,7 +44,7 @@
                           </a>
                       </li>
 
-                  </ul>
+                  </ul> -->
               </div>
               </div>
           </div>

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentDetails } from 'src/app/models/student-details.model';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { LoginRegisterAuthService } from 'src/app/services/login-register-auth.service';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
@@ -17,7 +15,6 @@ export class StudentEditComponent implements OnInit {
   constructor(
               private formBuilder: FormBuilder,
               private firestore: AngularFirestore,
-              private storage: AngularFireStorage,
               private router: Router,
               private loginService: LoginRegisterAuthService
              ) { }
@@ -28,15 +25,7 @@ export class StudentEditComponent implements OnInit {
   errorMessage = 'temp';
   successMessage = 'temp';
 
-    ///////// IMAGE UPLOADER - variables //////////
-    imgSrc = localStorage.getItem('profilePicture');
-    selectedImage: any = null;
-    uploadPercentage: any;
-
-    imageForm = new FormGroup({
-      imageUrl: new FormControl('', Validators.required)
-    });
-    ///////////////////////////////////////////////
+  currentPicture = localStorage.getItem('profilePicture');
 
   StudentUpdateForm = this.formBuilder.group({
     firstName: ['', Validators.required],
@@ -80,39 +69,5 @@ export class StudentEditComponent implements OnInit {
     this.router.navigate(['student-dashboard']);
 
   }
-
-  /////////////////// image uploader functions - start //////////////////////
-  onSubmit(formData) {
-    const filePath = `images/${this.selectedImage.name}_${new Date().getTime()}`;
-    const task = this.storage.upload(filePath, this.selectedImage);
-    this.uploadPercentage = task.percentageChanges();
-    const fileRef = this.storage.ref(filePath);
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe( url => {
-          console.log(url);
-          localStorage.setItem('tempURL', url);
-          formData.imageUrl = url ;
-          // this.resetForm();
-        });
-      })
-    ).subscribe();
-  }
-
-  showPreview(event: any, temp: any) {
-    if ( event.target.files && event.target.files[0] ) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imgSrc = e.target.result;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-      this.selectedImage = event.target.files[0];
-    } else {
-      this.imgSrc = localStorage.getItem('profilePicture');
-      this.selectedImage = null;
-    }
-    this.onSubmit(temp);
-  }
-  /////////////////// image uploader functions - end //////////////////////
 
 }

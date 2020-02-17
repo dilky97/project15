@@ -30,7 +30,7 @@
               <div class="widget user-dashboard-menu">
                   <ul>
                   <li class="active"><a href="#"><i class="fa fa-user"></i>Subscribed Events</a></li>
-                  <li *ngFor="let temp of participatingEventList" ><a (click)='openEvent(temp.id)'><i class="fa fa-bookmark-o"></i> {{temp.eventName}}<span>{{temp.clubID}}</span></a></li>
+                  <li *ngFor="let temp of participatingEventList" ><a (click)='openEvent(temp.id)'><i class="fa fa-bookmark-o"></i> {{temp.eventName}}<span>{{temp.clubName}}</span></a></li>
 
 
                     <li class="active"><a href="#"><i class="fa fa-user"></i>My Clubs</a></li>
@@ -91,7 +91,7 @@
                                           [tempId]="tempEvent.id"
                                           [tempTitle]="tempEvent.eventName"
                                           [tempImg]="tempEvent.image"
-                                          [tempClub]="tempEvent.clubID"
+                                          [tempClub]="tempEvent.clubName"
                                           [tempStartDate]="tempEvent.startDate"
                                           [tempStartTime]="tempEvent.startTime"
                                           [tempStartTimeStamp]="tempEvent.startTimeStamp"
@@ -99,7 +99,7 @@
                                           [tempEndTime]="tempEvent.endTime"
                                           [tempEndTimeStamp]="tempEvent.endTimeStamp"
                                           [tempStatus]="tempEvent.status"
-                                          [tempDescription]="tempEvent.startDate" >
+                                          [tempDescription]="tempEvent.description" >
                   </app-student-event-card>
                 </div>
               </div>

@@ -35,32 +35,7 @@
                     <form [formGroup]="StudentRegisterForm">
                         <fieldset class="p-4">
 
-                          <!-- /////////////// image uploader - start /////////////// -->
-                          <div class="form-group">
-                            <label>Profile picture :</label>
-                            <div class="card" style="width: 15rem;" >
-                              <div class="card-body">
-                                <form [formGroup]="imageForm">
-                                  <div class="text-center">
-                                    <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
-                                  </div>
-                                  <div class="form-group">
-                                    <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
-                                    <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
-                                    <input type="file"
-                                           class="form-control-file d-none"
-                                           formControlName="imageUrl"
-                                           (change) = "showPreview($event,imageForm.value)"
-                                           accept="image/*"
-                                           #fileUploader
-                                    >
-                                    <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- /////////////// image uploader - end /////////////// -->
+                          <app-image-uploader></app-image-uploader>
 
                           <div class="form-group">
                             <label>First Name :</label>
@@ -176,32 +151,7 @@
                   <form [formGroup]="AdvisorRegisterForm">
                       <fieldset class="p-4">
 
-                        <!-- /////////////// image uploader - start /////////////// -->
-                        <div class="form-group">
-                          <label>Profile picture :</label>
-                          <div class="card" style="width: 15rem;" >
-                            <div class="card-body">
-                              <form [formGroup]="imageForm">
-                                <div class="text-center">
-                                  <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
-                                </div>
-                                <div class="form-group">
-                                  <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
-                                  <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
-                                  <input type="file"
-                                         class="form-control-file d-none"
-                                         formControlName="imageUrl"
-                                         (change) = "showPreview($event,imageForm.value)"
-                                         accept="image/*"
-                                         #fileUploader
-                                  >
-                                  <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- /////////////// image uploader - end /////////////// -->
+                        <app-image-uploader></app-image-uploader>
 
                         <div class="form-group">
                           <label>Title :</label>
@@ -209,7 +159,7 @@
                             <option [value]=1 >Hon.</option>
                             <option [value]=2 >Mr.</option>
                             <option [value]=3 >Mrs.</option>
-                            <option [value]=4 >Miss.</option>                          <option>Miss.</option>
+                            <option [value]=4 >Miss.</option>
                           </select>
                         </div>
 
@@ -300,34 +250,7 @@
                   <form [formGroup]="ServiceProviderRegisterForm">
                       <fieldset class="p-4">
 
-                         <!-- /////////////// image uploader - start /////////////// -->
-                         <div class="form-group">
-                          <label>Profile picrure :</label>
-                          <div class="card" style="width: 15rem;" >
-                            <div class="card-body">
-                              <form [formGroup]="imageForm">
-                                <div class="text-center">
-                                  <img (click)="fileUploader.click()"  width="100%" height="100%" class="text-center" [src]="imgSrc">
-                                </div>
-                                <div class="form-group">
-                                  <label> Select File to upload:- ({{uploadPercentage | async}}%)</label>
-                                  <span (click)="fileUploader.click()" class="d-block btn bg-primary text-white my-3 select-files">Select files</span>
-                                  <input type="file"
-                                         class="form-control-file d-none"
-                                         formControlName="imageUrl"
-                                         (change) = "showPreview($event,imageForm.value)"
-                                         accept="image/*"
-                                         #fileUploader
-                                  >
-                                  <div *ngIf="imageForm.get('imageUrl').errors?.required" class="text-danger">*required</div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-
-                         <!-- /////////////// image uploader - end /////////////// -->
-
+                        <app-image-uploader></app-image-uploader>
 
                         <div class="form-group">
                           <label>Company name :</label>
@@ -381,21 +304,14 @@
                           <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('telephoneNo').invalid && ServiceProviderRegisterForm.get('telephoneNo').touched">* Number is required !</small>
                         </div>
 
-
-
-
-
-							    <div class="form-group">
+							          <div class="form-group">
                           <label>Reservation fee :</label>
                           <input [class.is-invalid]="ServiceProviderRegisterForm.get('price').invalid && ServiceProviderRegisterForm.get('price').touched"
-
-
                                  formControlName="price"
                                  class="form-control"
                                  required>
                           <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('price').invalid && ServiceProviderRegisterForm.get('price').touched">* price is required !</small>
                         </div>
-
 
                         <div class="form-group">
                           <label>Your Service</label>
@@ -418,8 +334,6 @@
 
                           <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('serviceDes').invalid && ServiceProviderRegisterForm.get('serviceDes').touched">*Description is required !</small>
                         </div>
-
-
 
                         <div class="form-group">
                           <label>Email :</label>
@@ -483,18 +397,107 @@
                   <div class="bg-gray p-4">
                     <h2>Register Now !</h2> as Sponsor
                   </div>
-                  <form action="#">
-                        <fieldset class="p-4">
-                            <input type="email" placeholder="Email*" class="form-control">
-                            <input type="password" placeholder="Password*" class="form-control">
-                            <input type="password" placeholder="Confirm Password*" class="form-control">
-                            <div class="loggedin-forgot d-inline-flex my-3">
-                                    <input type="checkbox" id="registering" class="mt-1">
-                                    <label for="registering" class="px-2">By registering, you accept our <a class="text-primary font-weight-bold" href="terms-condition.html">Terms & Conditions</a></label>
-                            </div>
-                            <button type="submit" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Register Now</button>
-                        </fieldset>
-                  </form>
+                  <form [formGroup]="SponsorRegisterForm">
+                    <fieldset class="p-4">
+
+                      <app-image-uploader></app-image-uploader>
+
+                      <div class="form-group">
+                        <label>Company Name :</label>
+                        <input [class.is-invalid]="SponsorRegisterForm.get('companyName').invalid && SponsorRegisterForm.get('companyName').touched"
+                               type="text"
+                               formControlName="companyName"
+                               class="form-control"
+                               required>
+                        <small *ngIf="SponsorRegisterForm.get('companyName').invalid && SponsorRegisterForm.get('companyName').touched"
+                               class="text-danger">*Company Name is required !</small>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Address :</label>
+                        <input [class.is-invalid]="SponsorRegisterForm.get('address').invalid && SponsorRegisterForm.get('address').touched"
+                               type="text"
+                               formControlName="address"
+                               class="form-control"
+                               required>
+                        <small class="text-danger" *ngIf="SponsorRegisterForm.get('address').invalid && SponsorRegisterForm.get('address').touched">*Address is required !</small>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Telephone :</label>
+                        <input [class.is-invalid]="SponsorRegisterForm.get('telephoneNo').invalid && SponsorRegisterForm.get('telephoneNo').touched"
+                               type="text"
+                               formControlName="telephoneNo"
+                               class="form-control"
+                               required>
+                        <small class="text-danger" *ngIf="SponsorRegisterForm.get('telephoneNo').invalid && SponsorRegisterForm.get('telephoneNo').touched">*Address is required !</small>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Your Website :</label>
+                        <input
+                               type="text"
+                               formControlName="website"
+                               class="form-control"
+                               required>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Max Budget Limit :</label>
+                        <input [class.is-invalid]="SponsorRegisterForm.get('maxBudget').invalid && SponsorRegisterForm.get('maxBudget').touched"
+                               type="text"
+                               formControlName="maxBudget"
+                               class="form-control"
+                               required>
+                        <small class="text-danger" *ngIf="SponsorRegisterForm.get('maxBudget').invalid && SponsorRegisterForm.get('maxBudget').touched">*Max Budget Limit is required !</small>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Email :</label>
+                        <input [class.is-invalid]="SponsorRegisterForm.get('email').invalid && SponsorRegisterForm.get('email').touched"
+                               type="email"
+                               formControlName="email"
+                               class="form-control"
+                               required>
+                        <div *ngIf="SponsorRegisterForm.get('email').invalid && SponsorRegisterForm.get('email').touched">
+                          <small class="text-danger" *ngIf="SponsorRegisterForm.get('email').errors.required">*Email is required !</small>
+                          <small class="text-danger" *ngIf="SponsorRegisterForm.get('email').errors.email">*Email is badly formatted !</small>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Password :</label>
+                        <input [class.is-invalid]="SponsorRegisterForm.get('password').invalid && SponsorRegisterForm.get('password').touched"
+                               type="password"
+                               formControlName="password"
+                               class="form-control">
+                              <div *ngIf="SponsorRegisterForm.get('password').invalid && SponsorRegisterForm.get('password').touched">
+                                <small class="text-danger" *ngIf="SponsorRegisterForm.get('password').errors.required">*Enter a password !</small>
+                                <small class="text-danger" *ngIf="SponsorRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
+                              </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Confirm Password :</label>
+                        <input [class.is-invalid]="SponsorRegisterForm.get('confirmPassword').invalid && SponsorRegisterForm.get('confirmPassword').touched"
+                               type="password"
+                               formControlName="confirmPassword"
+                               class="form-control">
+                               <div *ngIf="SponsorRegisterForm.get('confirmPassword').invalid && SponsorRegisterForm.get('confirmPassword').touched">
+                                <small class="text-danger" *ngIf="SponsorRegisterForm.get('confirmPassword').errors.required">*Re-Enter the password !</small>
+                                <small class="text-danger" *ngIf="SponsorRegisterForm.get('confirmPassword').errors.mustMatch">*Passwords doesn't match !</small>
+                              </div>
+                      </div>
+
+                      <div class="form-group">
+                      <label *ngIf="errorMessage != 'temp'" class="text-danger">{{errorMessage}}</label>
+                      <label *ngIf="successMessage != 'temp'" class="success">{{successMessage}}</label>
+                      </div>
+
+                      <button [disabled]="SponsorRegisterForm.invalid" type="submit" (click)="trySponsorRegister(SponsorRegisterForm.value)" class="btn btn-primary" >Register Now</button>
+
+                    </fieldset>
+                </form>
                 </div>
             </div>
         </div>

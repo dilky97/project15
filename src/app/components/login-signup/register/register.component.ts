@@ -11,6 +11,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { MustLecturer } from 'src/app/helpers/must-lecturer.validator';
 import { Router } from '@angular/router';
+import { Sponsor } from 'src/app/models/sponsor.model';
 
 @Component({
   selector: 'app-register',
@@ -19,22 +20,13 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  ///////// IMAGE UPLOADER - variables //////////
-  imgSrc = '../../../../assets/profile.jpg';
-  selectedImage: any = null;
-  uploadPercentage: any;
-
-  imageForm = new FormGroup({
-    imageUrl: new FormControl('', Validators.required)
-  });
-  ///////////////////////////////////////////////
-
   errorMessage = 'temp';
   successMessage = 'temp';
 
   student: StudentDetails = {} as StudentDetails;
   advisor: AdvisorDetails = {} as AdvisorDetails;
   serviceProvider: ServiceProviderDetails = {} as ServiceProviderDetails;
+  sponsor: Sponsor = {} as Sponsor;
 
   roleForm = this.formBuilder.group({
     role: ['Student in UOC']
@@ -79,11 +71,23 @@ export class RegisterComponent implements OnInit {
     validator: MustMatch('password', 'confirmPassword')
   });
 
+  SponsorRegisterForm = this.formBuilder.group({
+    companyName:['',Validators.required],
+    address:['',Validators.required],
+    telephoneNo:['', Validators.required],
+    website:[''],
+    maxBudget:['',Validators.required],
+    email:['', [Validators.email]],
+    password:['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword:['', Validators.required],
+  }, {
+    validator: MustMatch('password', 'confirmPassword')
+  });
+
   constructor(
               private formBuilder: FormBuilder,
               private registerService: LoginRegisterAuthService,
               private userDetailsService: UserDetailsService,
-              private storage: AngularFireStorage,
               private router: Router,
              ) { }
 
@@ -167,6 +171,7 @@ export class RegisterComponent implements OnInit {
     this.serviceProvider.price = formData.price;
     this.serviceProvider.service = formData.service;
     this.serviceProvider.serviceDes = formData.serviceDes;
+    this.serviceProvider.logo = localStorage.getItem('tempURL');
 
     this.registerService.doRegisterServiceProvider(formData).then(
       resAuth => {
@@ -192,38 +197,44 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  /////////////////// image uploader functions - start //////////////////////
-  onSubmit(formData) {
-    const filePath = `images/${this.selectedImage.name}_${new Date().getTime()}`;
-    const task = this.storage.upload(filePath, this.selectedImage);
-    this.uploadPercentage = task.percentageChanges();
-    const fileRef = this.storage.ref(filePath);
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe( url => {
-          console.log(url);
-          localStorage.setItem('tempURL', url);
-          formData.imageUrl = url ;
-          // this.resetForm();
-        });
-      })
-    ).subscribe();
-  }
+  trySponsorRegister(formData) {
 
-  showPreview(event: any, temp: any) {
-    if ( event.target.files && event.target.files[0] ) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imgSrc = e.target.result;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-      this.selectedImage = event.target.files[0];
-    } else {
-      this.imgSrc = '../../../../assets/profile.jpg';
-      this.selectedImage = null;
-    }
-    this.onSubmit(temp);
+    this.sponsor.name = formData.companyName;
+    this.sponsor.address = formData.address;
+    this.sponsor.email = formData.email;
+    this.sponsor.maxBudgetLimit = formData.maxBudget;
+    this.sponsor.telephoneNo = formData.telephoneNo;
+    this.sponsor.websiteUrl = formData.website;
+    this.sponsor.logo = localStorage.getItem('tempURL');
+    this.sponsor.categories = [] as Array<string>;
+    this.sponsor.sponsoredEvents = [] as Array<string>;
+    this.sponsor.locationUrl = '';
+    this.sponsor.receivedProposals = [] as Array<string>;
+    this.sponsor.acceptedProposals = [] as Array<string>;
+    this.sponsor.availability = true;
+
+    this.registerService.doRegisterSponsor(formData).then(
+      resAuth => {
+        this.userDetailsService.createSponsorDatabase(this.sponsor, resAuth.user.uid ).then(
+          resDb => {
+            this.errorMessage = 'temp';
+            this.successMessage = 'Authentification And database added Succesfully';
+            this.router.navigate(['/login']);
+          },
+          errDb => {
+            firebase.auth().currentUser.delete().then( resDel => {
+              this.errorMessage = 'SignUp error: Try again(' + errDb.message + ')';
+              this.successMessage = 'temp';
+            });
+          }
+        );
+      },
+      errAuth => {
+        this.errorMessage = errAuth.message;
+        this.successMessage = 'temp';
+      }
+    );
+
   }
-  /////////////////// image uploader functions - end //////////////////////
 
 }

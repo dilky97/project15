@@ -99,6 +99,9 @@ export class EditEventComponent implements OnInit {
     this.editEvent.startDate = this.startDateStr;
     this.editEvent.endDate = this.endDateStr;
 
+    this.editEvent.startTimeStamp = new Date(this.editEvent.startDate).getTime();
+    this.editEvent.endTimeStamp = new Date(this.editEvent.endDate).getTime();
+
     console.log(this.editEvent);
 
     if(this.eventService.updateEvent(this.currentEventId,this.editEvent)){

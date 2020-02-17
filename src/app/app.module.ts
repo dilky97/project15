@@ -82,6 +82,7 @@ import { AttendeeListComponent } from './components/event-planner/attendee-list/
 import { AdvisorHomeComponent } from './components/advisor-dashbord/advisor-home/advisor-home.component';
 import { StudentEditComponent } from './components/student-dashbord/student-edit/student-edit.component';
 import { AdvisorEditComponent } from './components/advisor-dashbord/advisor-edit/advisor-edit.component';
+import { ImageUploaderComponent } from './shared/image-uploader/image-uploader.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { AdvisorEditComponent } from './components/advisor-dashbord/advisor-edit
     AttendeeListComponent,
     AdvisorHomeComponent,
     StudentEditComponent,
-    AdvisorEditComponent
+    AdvisorEditComponent,
+    ImageUploaderComponent
   ],
   imports: [
     HttpClientModule,

@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { StudentDetails } from '../models/student-details.model';
 import { AdvisorDetails } from '../models/advisor-details.model';
 import { ServiceProviderDetails } from '../models/service-provider-details.model';
+import { Sponsor } from '../models/sponsor.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,13 +29,21 @@ export class UserDetailsService {
   createServiceProviderDatabase(serviceProvider: ServiceProviderDetails ,id: string){
     return this.firestore.collection('serviceProviders').doc(id).set(serviceProvider);
   }
-  
+
   readAdvisorDatabase(id: string) {
     return this.firestore.collection('advisors').doc(id).valueChanges();
   }
 
   readServiceProviderDatabase(id: string) {
     return this.firestore.collection('serviceProviders').doc(id).valueChanges();
+  }
+
+  createSponsorDatabase(sponsor: Sponsor , id: string ) {
+    return this.firestore.collection('sponsors').doc(id).set(sponsor);
+  }
+
+  readSponsorDatabase(id: string) {
+    return this.firestore.collection('sponsors').doc(id).valueChanges();
   }
 
 }

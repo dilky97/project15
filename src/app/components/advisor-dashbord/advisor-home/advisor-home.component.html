@@ -80,7 +80,7 @@
 
               <div>
 
-                <h3 class="widget-header">{{selectedClubName}} - events </h3>
+                <h3 class="widget-header"> <div style="font-size: 20px;" >{{selectedClubName}}</div> - events </h3>
 
                 <div class="ad-listing-list mt-20" *ngFor="let tempEvent of showingEventlist" >
                   <div class="card">
@@ -96,7 +96,7 @@
                                             [tempEndTime]="tempEvent.endTime"
                                             [tempEndTimeStamp]="tempEvent.endTimeStamp"
                                             [tempStatus]="tempEvent.status"
-                                            [tempDescription]="tempEvent.startDate" >
+                                            [tempDescription]="tempEvent.description" >
                     </app-student-event-card>
                   </div>
                 </div>

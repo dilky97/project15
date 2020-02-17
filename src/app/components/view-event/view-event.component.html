@@ -8,7 +8,7 @@
           <h2>{{event.eventName}}</h2>
 
 					<ul class="list-inline">
-						<li class="list-inline-item">by <a href="">{{event.clubID}}</a></li>
+						<li class="list-inline-item">by <a href="">{{event.clubName}}</a></li>
 						<!-- <li class="list-inline-item">{{event.date.toDate() | date: 'medium'}}</li> -->
           </ul>
 
@@ -19,8 +19,8 @@
             {{event.description}}
           </p>
           <!-- Details paragraph - end -->
-          <button *ngIf="isGoing == 0" (click)="changeGoing()" type="button" class="btn btn-outline-success">Mark as Going</button>
-          <button *ngIf="isGoing == 1" (click)="changeGoing()" type="button" class="btn btn-success">Going</button>
+          <button *ngIf="isGoing == 0" (click)="changeGoing()" type="button" class="btn btn-outline-success float-right">Mark as Going</button>
+          <button *ngIf="isGoing == 1" (click)="changeGoing()" type="button" class="btn btn-success float-right">Going</button>
 
           <!-- social media icons - start -->
 					<ul class="social-circle-icons list-inline">
@@ -36,25 +36,25 @@
         <!-------------- article - end -------------->
 
         <!-------------- Comment Section - start -------------->
-				<div class="block comment">
+				<!-- <div class="block comment">
 					<h4>Leave A Comment</h4>
-					<form action="#">
+					<form action="#"> -->
 						<!-- Message -->
-						<div class="form-group mb-30">
+						<!-- <div class="form-group mb-30">
 						    <label for="message">Message</label>
 						    <textarea class="form-control" id="message" rows="8"></textarea>
 						</div>
 						<div class="row">
-							<div class="col-sm-12 col-md-6">
+							<div class="col-sm-12 col-md-6"> -->
 								<!-- Name -->
-								<div class="form-group mb-30">
+								<!-- <div class="form-group mb-30">
 								    <label for="name">Name</label>
 								    <input type="text" class="form-control" id="name">
 								</div>
 							</div>
-							<div class="col-sm-12 col-md-6">
+							<div class="col-sm-12 col-md-6"> -->
 								<!-- Email -->
-								<div class="form-group mb-30">
+								<!-- <div class="form-group mb-30">
 								    <label for="email">Email</label>
 								    <input type="email" class="form-control" id="email">
 								</div>
@@ -62,7 +62,7 @@
 						</div>
 						<button class="btn btn-transparent">Leave Comment</button>
 					</form>
-        </div>
+        </div> -->
         <!-------------- Comment Section - end -------------->
       </div>
 

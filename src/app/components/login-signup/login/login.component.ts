@@ -68,6 +68,15 @@ export class LoginComponent implements OnInit {
             });
           }
 
+          if (user.displayName === 'sponsor') {
+            this.userDetailsService.readSponsorDatabase( user.uid ).subscribe( temp => {
+              this.user = temp;
+              localStorage.setItem('user', JSON.stringify(this.user));
+              console.log(JSON.parse(localStorage.getItem('user')));
+              this.router.navigate(['/home']);
+            });
+          }
+
         } else { // no user
           this.errorMessage = 'Login Error, Try Again !';
           this.successMessage = 'temp';

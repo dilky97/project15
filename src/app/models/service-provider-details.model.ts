@@ -10,4 +10,5 @@ export class ServiceProviderDetails {
     supportedevents:Array<string>;
     telephoneNo:Array<string>;
     serviceareas:Array<string>;
+    logo: string;
 }
