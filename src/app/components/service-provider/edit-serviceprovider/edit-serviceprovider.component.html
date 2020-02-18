@@ -25,7 +25,8 @@
                             formControlName="companyName"
                           
                             required 
-                            [(ngModel)]="ServiceproviderData.companyName"><small *ngIf="ServiceProviderEditForm.get('companyName').invalid && ServiceProviderEditForm.get('companyName').touched"
+                            [(ngModel)]="ServiceproviderData.companyName"> <!--can pass data component(controller) to html(template) and  html to component --><small *ngIf="ServiceProviderEditForm.get('companyName').invalid && ServiceProviderEditForm.get('companyName').touched"
+                        
                             class="text-danger">*Company Name is required !</small>
                             
                         </div>
@@ -45,7 +46,7 @@
                             <label>Last Name</label>
                             
                             <input type="text"   class="form-control" [(ngModel)]="ServiceproviderData.lastName" value="{{ServiceproviderData.lastName}}" [class.is-invalid]="ServiceProviderEditForm.get('lastName').invalid && ServiceProviderEditForm.get('lastName').touched"
-                           
+                                                          
                             formControlName="lastName"
                           
                             required ><small *ngIf="ServiceProviderEditForm.get('lastName').invalid && ServiceProviderEditForm.get('lastName').touched"

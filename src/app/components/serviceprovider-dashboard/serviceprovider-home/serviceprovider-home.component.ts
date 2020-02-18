@@ -126,6 +126,7 @@ export class ServiceproviderHomeComponent implements OnInit {
     this.firestore.doc('serviceProviders/' + id).delete();
     this.toastr.warning('Account was removed successfully');
     this.router.navigate(['/home']);
+    console.log(this.serviceProviderObservable)
   }
    
   }
