@@ -441,8 +441,11 @@
                                  formControlName="password"
                                  class="form-control">
                           <div *ngIf="ServiceProviderRegisterForm.get('password').invalid && ServiceProviderRegisterForm.get('password').touched">
+                            <!--password is not full and input field is touched-->
                             <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.required">*Enter a password !</small>
                             <small class="text-danger" *ngIf="ServiceProviderRegisterForm.get('password').errors.minlength">*Password must be atleast 6 charactors !</small>
+                            <!--not add password->add password-->
+                            <!--password less than 6 character ->password must be at least 6 characters-->
                           </div>
                         </div>
 

@@ -23,11 +23,12 @@ import { ToastrService } from 'ngx-toastr';
 export class ServiceproviderHomeComponent implements OnInit {
   files: File[] = [];
   file: Observable<any>;
-  isHovering: boolean;
+  //object
+  //isHovering: boolean;
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   task: AngularFireUploadTask;
-  percentage: Observable<number>;
+  //percentage: Observable<number>;
   snapshot: Observable<any>;
   ref: AngularFireStorageReference;
  images: Observable<any[]>;
@@ -43,6 +44,7 @@ export class ServiceproviderHomeComponent implements OnInit {
   ) {
     
     this.images = this.firestore.collection('spEvents', ref => ref.orderBy('date')).valueChanges({idField:'id'});
+                       //collection eke ekin eka document id walata adala value tika ynawa
     this.id = localStorage.getItem("id");
     this.profilePicture = localStorage.getItem('profilePicture');
    }
@@ -50,8 +52,7 @@ export class ServiceproviderHomeComponent implements OnInit {
    id;
    profilePicture ;
   serviceProvider: ServiceProviderDetails = {} as ServiceProviderDetails;
-  // allEventList: EventDetails[] ;
-  // participatingEventList: EventDetails[] = [] as EventDetails[];
+  
 
   serviceProviderObservable: Observable<ServiceProviderDetails>;
   // data;
@@ -93,15 +94,18 @@ export class ServiceproviderHomeComponent implements OnInit {
   
     const file = event.target.files[0];
     const filePath = '/spEvents/' + Date.now() + '-' + this.files[0];
-    const fileRef = this.afStorage.ref(filePath);
+    //const fileRef = this.afStorage.ref(filePath);
     const task = this.afStorage.upload(filePath, file);
     this.ref = this.afStorage.ref(filePath);
     this.uploadPercent = task.percentageChanges();
     task
       .snapshotChanges()
+      //returns an observable of data as a array
       .pipe(
+        //takes a data as input transform it to abimatha output
         finalize(async () => {
           this.downloadURL = await this.ref.getDownloadURL().toPromise();
+          //storage giyapu eka
           this.firestore.collection('spEvents').add({
             type: 'file',
             time: Date.now(),
@@ -113,6 +117,7 @@ export class ServiceproviderHomeComponent implements OnInit {
         })
       )
       .subscribe();
+      //method  on the observable type
   }
  
   delete(Id) {
