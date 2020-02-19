@@ -21,7 +21,9 @@ export class ViewspComponent implements OnInit {
     this.id = localStorage.getItem("listItemId");
 
     this.sData = firestore.collection("serviceProviders").doc(this.id).valueChanges() as Observable<ServiceProviderDetails> ;
+                                                                 //returns observeble containing sp details in db
     this.images = this.firestore.collection('spEvents', ref => ref.orderBy('date')).valueChanges({idField:'id'});
+     //collection eke ekin eka document id walata adala value tika ynawa
     console.log(this.images);
   }
 

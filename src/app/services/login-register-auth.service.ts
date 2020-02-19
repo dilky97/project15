@@ -43,11 +43,14 @@ export class LoginRegisterAuthService {
     });
   }
 
-  doRegisterServiceProvider(formData) {
+  doRegisterServiceProvider(formData)//formdata tika enwa
+   {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
-      .then( res => {
+      //get email and password and firebase authentificaton wlin create user  display name set(login) db not create
+      .then( res => {  //login eken user kenek create unanm response array ekt ynwa
         res.user.updateProfile({ displayName: 'serviceProvider' });
+        //
         if (localStorage.getItem('tempURL')) {
           res.user.updateProfile({ photoURL: localStorage.getItem('tempURL') });
           localStorage.removeItem('tempURL');

@@ -12,6 +12,7 @@ import { ServiceProviderDetails } from 'src/app/models/service-provider-details.
 export class EditServiceproviderComponent implements OnInit {
 
   sData : Observable<ServiceProviderDetails>;
+           //pipe ekk wge data wenas wena sareta data wenas wenawa
 
   ServiceproviderData: ServiceProviderDetails = {} as ServiceProviderDetails ;
 
@@ -22,6 +23,7 @@ export class EditServiceproviderComponent implements OnInit {
       this.id = localStorage.getItem("id");
 
       this.sData = firestore.collection("serviceProviders").doc(this.id).valueChanges() as Observable<ServiceProviderDetails> ;
+                                                                        //returns observeble containing sp details in db
     }
     
     data;

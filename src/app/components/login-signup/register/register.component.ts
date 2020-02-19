@@ -157,7 +157,9 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  tryServiceProviderRegister(formData) {
+  tryServiceProviderRegister(formData)//formdata tika issarama enwa form eke tyna data tika api hadagtta object ekt
+  //dagannawa db hdna eki user hdana eki both 2
+   {
     this.serviceProvider.companyName=formData.companyName;
     this.serviceProvider.firstName = formData.firstName;
     this.serviceProvider.lastName = formData.lastName;
@@ -171,12 +173,16 @@ export class RegisterComponent implements OnInit {
     this.registerService.doRegisterServiceProvider(formData).then(
       resAuth => {
         this.userDetailsService.createServiceProviderDatabase(this.serviceProvider, resAuth.user.uid ).then(
+                                                             //object eki,resAuth wlin create krpu userge id eki ywnawa
           resDb => {
+            //id ekt adalawa create object in db
             this.errorMessage = 'temp';
             this.successMessage = 'Authentification And database added Succesfully';
             this.router.navigate(['/login']);
           },
           errDb => {
+            //eka false nm authenitification is correct but not create db nikn user kenek create wela witri ee values
+            //db ekt gihin naaa ee nisa ee user delete krnwa
             firebase.auth().currentUser.delete().then( resDel => {
               this.errorMessage = 'SignUp error: Try again(' + errDb.message + ')';
               this.successMessage = 'temp';

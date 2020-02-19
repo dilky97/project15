@@ -71,7 +71,7 @@ export class ServiceproviderHomeComponent implements OnInit {
 
           this.serviceProvider = temp as ServiceProviderDetails ;
 
-          console.log(temp);
+          //console.log(temp);
 
           //this.getParticipatingEvents(this.serviceProvider.participatingEvents);
 

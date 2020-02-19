@@ -12,5 +12,6 @@ export class ServiceProviderService {
   getServiceproviders()
   {
     return this.firestore.collection('serviceProviders').snapshotChanges();
+                                                           //returns observeble containing sp details in db
   }
 }
